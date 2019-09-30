@@ -84,6 +84,8 @@ What we would like to add on top of Balsa are as follows:
 | Document anchors | Bulk image upload  |      |
 | Font colors, table background | Tip/warn/error/note extension  |      |
 | Image annotations | Web clipper  |      |
+|  | Table of contents  |      |
+
 
 
 ## Credits
