@@ -78,12 +78,12 @@ What we would like to add on top of Balsa are as follows:
 | Offline access  | Spreadsheet support  | Database support |
 | Emoji support  | Browser plugins  | Edit/annotate images |
 | Smart links preview | Calendar support  | Search in PDFs    |
-| Mobile apps for iOS/Android | Gantt support  | Search in images   |
 | File lock & unlock | Document history  | A full fledged database    |
 | Evernote exporter | Any file upload & storage  |  Spell checker   |
-| Document anchors | Bulk image upload  |      |
+| Document anchors | Bulk image upload  |  Mobile apps for iOS/Android    |
 | Font colors, table background | Tip/warn/error/note extension  |      |
 | Image annotations | Web clipper  |      |
+|  | Gantt support  | Search in images   |
 |  | Table of contents  |      |
 
 
