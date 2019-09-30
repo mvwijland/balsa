@@ -78,7 +78,7 @@ What we would like to add on top of Balsa are as follows:
 | Offline access  | Spreadsheet support  | Database support |
 | Emoji support  | Browser plugins  | Edit/annotate images |
 | Smart links preview | Calendar support  | Search in PDFs    |
-| File lock & unlock | Document history  | A full fledged database    |
+| [File lock & unlock](#3) | Document history  | A full fledged database    |
 | Evernote exporter | Any file upload & storage  |  Spell checker   |
 | Document anchors | Bulk image upload  |  Mobile apps for iOS/Android    |
 | Font colors, table background | Tip/warn/error/note extension  |   Search in images   |
