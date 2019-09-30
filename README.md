@@ -79,13 +79,13 @@ What we would like to add on top of Balsa are as follows:
 | [Emoji support](https://github.com/balsa-team/balsa/issues/1)  | Browser plugins  | Edit/annotate images |
 | [Smart links preview](https://github.com/balsa-team/balsa/issues/2) | Calendar support  | Search in PDFs    |
 | [File lock & unlock](https://github.com/balsa-team/balsa/issues/3) | Document history  | A full fledged database    |
-| Evernote importer | Any file upload & storage  |  Spell checker   |
+| [Evernote importer](https://github.com/balsa-team/balsa/issues/7) | Any file upload & storage  |  Spell checker   |
 | Document anchors | Bulk image upload  |  Mobile apps for iOS/Android    |
-| Font colors, table background | Tip/warn/error/note extension  |   Search in images   |
-| Image annotations | Web clipper  |      |
-| LDAP support for Enterprise Edition | Gantt support  |    |
-| Confluence importer | Table of contents  |      |
-
+| [Font](https://github.com/balsa-team/balsa/issues/5) & [table bg colors](https://github.com/balsa-team/balsa/issues/6) | Tip/warn/error/note extension  |   Search in images   |
+| LDAP support for Enterprise Edition | Web clipper  |      |
+| [Confluence importer](https://github.com/balsa-team/balsa/issues/4) | Gantt support  |    |
+|  | Table of contents  |      |
+|  | Image annotations  |      |
 
 
 ## Credits
