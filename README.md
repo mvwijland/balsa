@@ -81,7 +81,7 @@ What we would like to add on top of Balsa are as follows:
 | Evernote exporter | Any file upload & storage  |  Spell checker   |
 | Document anchors | Bulk image upload  |      |
 | Font colors, table background | Tip/warn/error/note extension  |      |
-|  | Web clipper  |      |
+| Image annotations | Web clipper  |      |
 
 
 ## Credits
