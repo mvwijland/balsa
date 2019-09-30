@@ -71,13 +71,17 @@ To deploy Balsa, download the latest release and run: ```sudo ./install.sh```.
 
 What we would like to add on top of Balsa are as follows: 
 
-- A full fledged database
-- Calendar integration 
-- Gantt chart
-- Spell checker
-- ENEX dump (for Evernote migration)
-- Web clipper (not very soon)
-- Better offline work
+| Currently working on  | Near term features | Long term features |
+| ------------- | ------------- | ------------ |
+| Offline access  | Browser plugins  | Database support |
+| Emoji support  | Browser plugins  | Edit/annotate images |
+| Smart links preview | Calendar support  | Search in PDFs    |
+| Mobile apps for iOS/Android | Gantt support  | Search in images   |
+| File lock & unlock | Document history  | A full fledged database    |
+| Evernote exporter | Any file upload & storage  |  Spell checker   |
+| Document anchors | Bulk image upload  |      |
+| Font colors, table background | Tip/warn/error/note extension  |      |
+|  | Web clipper  |      |
 
 
 ## Credits
