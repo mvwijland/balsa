@@ -73,7 +73,7 @@ What we would like to add on top of Balsa are as follows:
 
 | Currently working on  | Near term features | Long term features |
 | ------------- | ------------- | ------------ |
-| Offline access  | Browser plugins  | Database support |
+| Offline access  | Spreadsheet support  | Database support |
 | Emoji support  | Browser plugins  | Edit/annotate images |
 | Smart links preview | Calendar support  | Search in PDFs    |
 | Mobile apps for iOS/Android | Gantt support  | Search in images   |
