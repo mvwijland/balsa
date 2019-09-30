@@ -76,15 +76,15 @@ What we would like to add on top of Balsa are as follows:
 | Currently working on  | Near term features | Long term features |
 | ------------- | ------------- | ------------ |
 | Offline access  | Spreadsheet support  | Database support |
-| Emoji support  | Browser plugins  | Edit/annotate images |
-| Smart links preview | Calendar support  | Search in PDFs    |
-| [File lock & unlock](#3) | Document history  | A full fledged database    |
-| Evernote exporter | Any file upload & storage  |  Spell checker   |
+| [Emoji support](https://github.com/balsa-team/balsa/issues/1)  | Browser plugins  | Edit/annotate images |
+| [Smart links preview](https://github.com/balsa-team/balsa/issues/2) | Calendar support  | Search in PDFs    |
+| [File lock & unlock](https://github.com/balsa-team/balsa/issues/3) | Document history  | A full fledged database    |
+| Evernote importer | Any file upload & storage  |  Spell checker   |
 | Document anchors | Bulk image upload  |  Mobile apps for iOS/Android    |
 | Font colors, table background | Tip/warn/error/note extension  |   Search in images   |
 | Image annotations | Web clipper  |      |
-|  | Gantt support  |    |
-|  | Table of contents  |      |
+| LDAP support for Enterprise Edition | Gantt support  |    |
+| Confluence importer | Table of contents  |      |
 
 
 
