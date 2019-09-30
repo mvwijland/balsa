@@ -63,9 +63,11 @@ We realize you need a modern, fast, plugin based knowledge management platform t
 
 ## Installation
 
-Balsa installer assumes it is running on a vanilla Ubuntu/CentOS/RHEL without any services listening on port 80 or 443 (which should also be open to incoming traffic). Once run, it takes care of every configuration and doesn't require any additional, manual intervention.
+Balsa installer assumes it is running on a vanilla Ubuntu without any services listening on port 80 or 443 (which should also be open to incoming traffic). Once run, it takes care of every configuration and doesn't require any additional, manual intervention.
 
-To deploy Balsa, download the latest release and run: ```sudo ./install.sh```.  
+To deploy Balsa, download the latest release and run: ```sudo ./install.sh```.
+
+We are going to add more Linux distributions (e.g CentOS and RHEL) in the very near future.
 
 ## Roadmap
 
