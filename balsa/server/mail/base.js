@@ -12,16 +12,6 @@ export default class BaseMailer {
   constructor() {}
 
   getTransporterOptions() {
-    /*
-      DEFAULT_FROM_EMAIL = 'noreply@univerlist.com'
-      EMAIL_HOST = 'smtp.gmail.com'
-      EMAIL_HOST_USER = 'noreply@univerlist.com'
-      EMAIL_HOST_PASSWORD = 'selam123'
-      EMAIL_PORT = 465
-      EMAIL_USE_TLS = False
-      EMAIL_USE_SSL = True
-      SERVER_EMAIL = 'noreply@univerlist.com'
-     */
     return {
       host: SMTP_SERVICE_HOST,
       port: SMTP_SERVICE_PORT,

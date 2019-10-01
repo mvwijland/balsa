@@ -74,8 +74,7 @@ class EmailNotifier {
   }
   async sendNotification(type, to, subject, template, data) {
     const mailer = new Mailer();
-    const from = 'noreply@describe.im';
-    mailer.sendMail(from, to, subject, template, data);
+    mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, to, subject, template, data);
     // logger.log(user, file, action, false, true);
   }
   async sendAllNotifications(receiver, type) {

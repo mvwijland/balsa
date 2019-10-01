@@ -15,6 +15,7 @@ import {UserInviteCode} from "../../entities/userInviteCode";
 import {BehaviourLog} from "../../entities/behaviourLog";
 import {BehaviourLogger} from "../../logging/core";
 import {Configurations} from "../../entities/configurations";
+import {SMTP_DEFAULT_FROM_EMAIL} from "../../constants";
 
 const logger = new BehaviourLogger();
 
@@ -122,7 +123,7 @@ const resolvers = {
         logger.log(user, inviteData, BehaviourLog.ACTION_INVITE_USER);
 
         const mailer = new Mailer();
-        mailer.sendMail('noreply@describe.im', inviteData.email, 'Invitation to Balsa',
+        mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, inviteData.email, 'Invitation to Balsa',
           'invite', { inviteData, user, inviteLink: inviteData.inviteUrl() });
       }
 
@@ -190,7 +191,7 @@ const resolvers = {
       logger.log(newUser, newUser, BehaviourLog.ACTION_REGISTER_USER);
 
       const mailer = new Mailer();
-      mailer.sendMail('noreply@describe.im', newUser.email, 'Welcome to Balsa!', 'register', { user: newUser });
+      mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, newUser.email, 'Welcome to Balsa!', 'register', { user: newUser });
       if (inviteCode) {
         await inviteCode.remove();
         logger.log(newUser, inviteCode, BehaviourLog.ACTION_ACCEPT_USER_INVITE, true);
@@ -249,7 +250,7 @@ const resolvers = {
       await forgotPasswordCode.save();
 
       const mailer = new Mailer();
-      mailer.sendMail('noreply@describe.im', email, `Balsa password reset`, 'passwordReset', {
+      mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, email, `Balsa password reset`, 'passwordReset', {
         resetUrl: forgotPasswordCode.passwordChangeUrl(),
         user: user,
       });
