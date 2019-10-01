@@ -4,5 +4,5 @@ curl -s https://api.github.com/repos/balsa-team/balsa/releases/latest | grep "ba
 tar -xvf balsa.tar.gz
 rm balsa.tar.gz
 
-yarn && yarn build
+sudo yarn && sudo yarn build
 sudo systemctl restart balsa

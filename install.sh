@@ -16,8 +16,8 @@ fi
 . ./scripts/system_detect.sh
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-apt -y update
-apt -y install gnupg curl ca-certificates wget gcc g++ make
+sudo apt -y update
+sudo apt -y install gnupg curl ca-certificates wget gcc g++ make
 
 # postgresql
 ./scripts/install_database.sh
@@ -31,7 +31,7 @@ sudo apt -y update
 sudo apt -y install nodejs yarn
 
 # build and install project
-yarn && yarn build
+sudo yarn && sudo yarn build
 
 # nginx
 sudo apt -y install nginx
