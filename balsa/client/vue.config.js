@@ -7,7 +7,7 @@ const process = require('process');
 
 const dotenv = require('dotenv');
 
-dotenv.config();
+dotenv.config({path: '../../.env'});
 
 const MODE = process.env.NODE_ENV;
 const SERVER_DOMAIN = process.env.SERVER_DOMAIN;
