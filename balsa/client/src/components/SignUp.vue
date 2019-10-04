@@ -75,7 +75,7 @@ export default {
         name: [
           {
             required: true,
-            message: 'Please input Activity name',
+            message: 'Please enter your name.',
             trigger: 'change',
           },
           {
@@ -88,7 +88,7 @@ export default {
         surname: [
           {
             required: true,
-            message: 'Please input Activity surname',
+            message: 'Please enter your surname.',
             trigger: 'change',
           },
           {
@@ -101,7 +101,7 @@ export default {
         email: [
           {
             required: true,
-            message: 'email address required.',
+            message: 'An email address is required.',
             trigger: 'change',
           },
           {
@@ -113,7 +113,7 @@ export default {
         password: [
           {
             required: true,
-            message: 'Please input Activity password',
+            message: 'A password is required.',
             trigger: 'change',
           },
           {
