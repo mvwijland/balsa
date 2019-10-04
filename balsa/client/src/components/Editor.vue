@@ -131,13 +131,13 @@
               <icon name="annotation" />
             </button>
 
-            <button
+            <!-- <button
               class="menubar__button"
               :class="{ 'is-active': isActive.code_block() }"
               @click="commands.code_block"
             >
               <icon name="code" />
-            </button>
+            </button>-->
 
             <button class="menubar__button" @click="commands.horizontal_rule">
               <icon name="hr" />
