@@ -109,6 +109,7 @@ p {
 .el-input__inner {
   color: #323f50;
   /* opacity: 0.6; */
+  line-height: 1.4;
   font-size: 15px;
 }
 .el-message .el-icon-success {
@@ -197,6 +198,7 @@ p {
 }
 .filled .el-input__inner {
   font-size: 12px;
+  line-height: 1.4;
   background-color: #f1f2f4;
   border: 0;
 }
