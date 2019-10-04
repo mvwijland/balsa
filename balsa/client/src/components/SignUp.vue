@@ -26,7 +26,6 @@
                         </el-form-item>
                       </el-col>
                     </el-row>
-
                     <el-form-item label="Email" prop="email" :error="errors.email">
                       <el-input v-model="ruleForm.email"></el-input>
                     </el-form-item>
@@ -53,12 +52,10 @@
     </el-col>
   </el-row>
 </template>
-
 <script>
 import Button from './Button.vue';
 import gql from 'graphql-tag';
 import NotificationMixin from './Mixins/NotificationMixin';
-
 export default {
   mixins: [NotificationMixin],
   data() {
@@ -79,51 +76,51 @@ export default {
           {
             required: true,
             message: 'Please input Activity name',
-            trigger: 'blur',
+            trigger: 'change',
           },
           {
             min: 3,
             max: 50,
             message: 'Length should be 3 to 50',
-            trigger: 'blur',
+            //trigger: 'blur',
           },
         ],
         surname: [
           {
             required: true,
             message: 'Please input Activity surname',
-            trigger: 'blur',
+            trigger: 'change',
           },
           {
             min: 3,
             max: 50,
             message: 'Length should be 3 to 50',
-            trigger: 'blur',
+            //trigger: 'blur',
           },
         ],
         email: [
           {
             required: true,
             message: 'email address required.',
-            trigger: 'blur',
+            trigger: 'change',
           },
           {
             type: 'email',
             message: 'Please input correct email address',
-            trigger: ['blur', 'change'],
+            //trigger: ['blur', 'change'],
           },
         ],
         password: [
           {
             required: true,
             message: 'Please input Activity password',
-            trigger: 'blur',
+            trigger: 'change',
           },
           {
             min: 6,
             max: 255,
             message: 'Length should be 6 to 255',
-            trigger: 'blur',
+            //trigger: 'blur',
           },
         ],
       },
@@ -148,7 +145,7 @@ export default {
               this.$router.push({ name: 'login' });
             })
             .catch(error => {
-              this.notifyError(error.message)
+              this.notifyError(error.message);
             });
         }
       });
@@ -187,11 +184,10 @@ export default {
         if (configurations.appInitialized) {
           this.$router.push({ name: 'login' });
         }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
-
 <style scoped>
 </style>
