@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       radio: '-1',
-      datas: ['#ffedc0', '#4bc961', '#fa7047', '#4b87c9', '#ffbab7', '#c9bd4b', '#e9f2f8', '#304057'],
+      datas: ['#ffedc0', '#4bc961', '#fa7047', '#4b87c9', '#ffbab7', '#c9bd4b', '#e9f2f8', 'rgb(218, 187, 187)'],
     };
   },
 
