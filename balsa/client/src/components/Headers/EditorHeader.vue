@@ -89,7 +89,7 @@ export default {
       }
     },
     handleEdit() {
-      if (!this.$apollo.queries.File.loading && !File.hasWritePermission) {
+      if (!this.$apollo.queries.File.loading && !this.File.hasWritePermission) {
         return;
       }
       this.edit = true;
