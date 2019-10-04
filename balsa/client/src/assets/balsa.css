@@ -252,6 +252,14 @@ p {
   margin: 2% 0;
   color: #293543;
 }
+.editor__content-balsa-preview .comment-bg {
+  font-size: 8px;
+}
+.editor__content-balsa-preview ol {
+  margin: 0.1rem 0;
+  font-size: 8px;
+  color: initial;
+}
 .full-width {
   width: 100%;
 }

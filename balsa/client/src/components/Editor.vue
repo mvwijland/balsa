@@ -1210,6 +1210,7 @@ export default {
 
 .comment-bg {
   background-color: yellow;
+  font-size: 18px;
 }
 
 .editor .comment-bg::after {
@@ -1596,6 +1597,10 @@ pre {
 .editor__content a {
   color: #007aff;
   text-decoration: underline;
+}
+.editor__content ul,
+.editor__content ol {
+  font-size: 18px;
 }
 </style>
 
