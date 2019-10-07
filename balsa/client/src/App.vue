@@ -43,6 +43,25 @@
           }
         },
       },
+      configurations: {
+        query: gql`
+            query configurations {
+                configurations {
+                    id
+                    appInitialized
+                }
+            }
+        `,
+        result({ data }) {
+          const configurations = data.configurations;
+          if (!configurations.appInitialized) {
+            console.log('ASSS')
+            this.$router.push({name: 'sign-up'})
+          } else if (configurations.appInitialized && this.$route.name === 'sign-up') {
+            this.$router.push({name: 'login'})
+          }
+        }
+      }
     },
   };
 </script>

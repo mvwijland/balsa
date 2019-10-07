@@ -32,9 +32,6 @@
                     <el-form-item label="Password" prop="password">
                       <el-input v-model="ruleForm.password" show-password></el-input>
                     </el-form-item>
-                    <el-row type="flex" justify="end">
-                      <router-link to="login" class="small-span">Already have an account?</router-link>
-                    </el-row>
                     <el-form-item style="margin-top:10px">
                       <el-button
                         :class="{'full-width':fullWidth}"
