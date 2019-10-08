@@ -84,7 +84,7 @@ What we would like to add on top of Balsa are as follows:
 | [Font](https://github.com/balsa-team/balsa/issues/5) & [table bg colors](https://github.com/balsa-team/balsa/issues/6) | Tip/warn/error/note extension  |      |
 | LDAP support for Enterprise Edition | Web clipper  |      |
 | [Confluence importer](https://github.com/balsa-team/balsa/issues/4) | Gantt support  |    |
-|  | Table of contents  |      |
+| Plugin support | Table of contents  |      |
 
 
 ## Credits
