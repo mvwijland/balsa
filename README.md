@@ -106,5 +106,7 @@ Security is critical to us. If you discover any issue regarding security, please
 
 Feel free to send us feedback on [Twitter](https://twitter.com/getbalsa) or [file an issue](https://github.com/balsa-team/balsa/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
 
-If there's anything you'd like to chat about, please feel free to join our [Gitter chat](https://gitter.im/getbalsa)!
+If there's anything you'd like to discuss, please feel free to join our [forum](https://community.getbalsa.com). In case there is a feature you care about currently missing, make sure to [browse the issue tracker](https://github.com/balsa-team/balsa/issues) and add your "👍" reaction to the issue(s) you care about. That way you will help us prioritize those ones.
+
+
 
