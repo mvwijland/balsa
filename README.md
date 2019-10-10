@@ -109,4 +109,7 @@ Feel free to send us feedback on [Twitter](https://twitter.com/getbalsa) or [fil
 If there's anything you'd like to discuss, please feel free to join our [forum](https://community.getbalsa.com). In case there is a feature you care about currently missing, make sure to [browse the issue tracker](https://github.com/balsa-team/balsa/issues) and add your "👍" reaction to the issue(s) you care about. That way you will help us prioritize those ones.
 
 
+## License
+
+[Apache 2.0 with Commons Clause](https://github.com/balsa-team/balsa/blob/master/LICENSE)
 
