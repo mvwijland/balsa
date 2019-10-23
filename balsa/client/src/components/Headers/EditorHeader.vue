@@ -25,7 +25,7 @@
       </div>
 
       <div class="flex-grow" />
-      <el-menu-item v-if="!this.$apollo.queries.File.loading" class="hidden-sm-and-down">
+      <el-menu-item v-if="!this.$apollo.queries.File.loading && !$store.getters.isDemoMode" class="hidden-sm-and-down">
         <AvatarContainer
           :avatars="File.nonMeContributors"
           :addAvatar="!this.$apollo.queries.File.loading && File.hasWritePermission"

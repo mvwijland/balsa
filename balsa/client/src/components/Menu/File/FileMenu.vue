@@ -44,7 +44,7 @@
               <el-menu-item index="edit" v-else>Show</el-menu-item>
             </router-link>
             <el-menu-item
-                v-if="file.hasWritePermission && !process.env.VUE_APP_DEMO_MODE"
+                v-if="file.hasWritePermission && !$store.getters.isDemoMode"
                 @click="filePermissionDialogHandler"
                 index="invite"
             >Share

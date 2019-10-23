@@ -15,7 +15,7 @@ import { UserInviteCode } from '../../entities/userInviteCode';
 import { BehaviourLog } from '../../entities/behaviourLog';
 import { BehaviourLogger } from '../../logging/core';
 import { Configurations } from '../../entities/configurations';
-import { SMTP_DEFAULT_FROM_EMAIL } from '../../constants';
+import {DEMO_MODE, SMTP_DEFAULT_FROM_EMAIL} from '../../constants';
 
 const logger = new BehaviourLogger();
 
@@ -189,10 +189,15 @@ const resolvers = {
       newUser.password = hashedPassword;
       newUser.firstName = firstName;
       newUser.lastName = lastName;
+
       if (inviteCode) {
         newUser.role = inviteCode.role;
       } else {
-        newUser.role = User.ROLE_ADMIN;
+        if (!DEMO_MODE) {
+          newUser.role = User.ROLE_ADMIN;
+        } else {
+          newUser.role = User.ROLE_USER;
+        }
       }
       await newUser.save();
 
@@ -303,7 +308,7 @@ const resolvers = {
         const { id, filename, mimetype, path } = await storage.store(profilePhoto, 'profile');
         user.profilePhoto = path;
       }
-      if (role) {
+      if (role && actor.role === User.ROLE_ADMIN) {
         user.role = role;
       }
       if (status) {

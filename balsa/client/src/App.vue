@@ -6,7 +6,6 @@
 
 <script>
   import gql from 'graphql-tag';
-  import process from 'process';
 
   export default {
     name: 'app',
@@ -57,7 +56,7 @@
           const configurations = data.configurations;
           if (!configurations.appInitialized) {
             this.$router.push({name: 'sign-up'})
-          } else if (configurations.appInitialized && this.$route.name === 'sign-up' && !process.env.VUE_APP_DEMO_MODE) {
+          } else if (configurations.appInitialized && this.$route.name === 'sign-up' && !this.$store.getters.isDemoMode) {
             this.$router.push({name: 'login'})
           }
         }

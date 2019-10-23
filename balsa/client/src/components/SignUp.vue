@@ -14,7 +14,7 @@
                     ref="ruleForm"
                     label-width="120px"
                   >
-                    <div class="small-text-color" v-if="!process.env.VUE_APP_DEMO_MODE">* Now, you are going to create an admin account on this Balsa instance. That means, you will be able to add other users to this platform as well, either as user account, or admin account.</div>
+                    <div class="small-text-color" v-if="!$store.getters.isDemoMode">* Now, you are going to create an admin account on this Balsa instance. That means, you will be able to add other users to this platform as well, either as user account, or admin account.</div>
                     <el-row type="flex" :gutter="20">
                       <el-col>
                         <el-form-item label="Name" prop="name">
@@ -54,7 +54,6 @@
 import Button from './Button.vue';
 import gql from 'graphql-tag';
 import NotificationMixin from './Mixins/NotificationMixin';
-import process from 'process';
 
 export default {
   mixins: [NotificationMixin],
@@ -181,7 +180,7 @@ export default {
       `,
       result({ data }) {
         const configurations = data.configurations;
-        if (configurations.appInitialized && !process.env.VUE_APP_DEMO_MODE) {
+        if (configurations.appInitialized && !this.$store.getters.isDemoMode) {
           this.$router.push({ name: 'login' });
         }
       },

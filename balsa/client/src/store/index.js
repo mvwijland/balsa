@@ -1,8 +1,8 @@
-import process from 'process';
-
 const state = {
   user: {},
   isSaving: false,
+  isDemoMode: process.env.VUE_APP_DEMO_MODE === 'true',
+  isSecure: process.env.VUE_APP_IS_SECURE === 'true',
   isMoveDialogOpen: false,
   isExportFileDialogOpen: false,
   isFilePermissionDialogOpen : false,
@@ -16,6 +16,12 @@ const state = {
 const getters = {
   userInfo(state) {
     return state.user;
+  },
+  isDemoMode(state) {
+    return state.isDemoMode
+  },
+  isSecure(state) {
+    return state.isSecure
   },
   isSaving(state) {
     return state.isSaving;
