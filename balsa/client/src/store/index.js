@@ -5,10 +5,10 @@ const state = {
   isSecure: process.env.VUE_APP_IS_SECURE === 'true',
   isMoveDialogOpen: false,
   isExportFileDialogOpen: false,
-  isFilePermissionDialogOpen : false,
+  isFilePermissionDialogOpen: false,
 
-  isRemoveFileDialogOpen : false,
-  isRenameFileDialogOpen : false,
+  isRemoveFileDialogOpen: false,
+  isRenameFileDialogOpen: false,
 
   file: { id: null },
 };
@@ -18,10 +18,10 @@ const getters = {
     return state.user;
   },
   isDemoMode(state) {
-    return state.isDemoMode
+    return state.isDemoMode;
   },
   isSecure(state) {
-    return state.isSecure
+    return state.isSecure;
   },
   isSaving(state) {
     return state.isSaving;
@@ -69,7 +69,6 @@ const mutations = {
   toggleRemoveFileDialog(state, data) {
     state.isRemoveFileDialogOpen = !state.isRemoveFileDialogOpen;
   },
-
 };
 
 const actions = {

@@ -1,7 +1,7 @@
-import {Entity, Column, BaseEntity, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinTable, ManyToOne} from 'typeorm';
-import {BehaviourLog} from "./behaviourLog";
-import {User} from "./user";
-import {SHARED_WITH_ME, REPLIED_ME, MENTIONED_ME, MODIFIED_MY_DOCUMENT, PUBLISHED_DOCUMENT} from '../constants';
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { BehaviourLog } from './behaviourLog';
+import { User } from './user';
+import { SHARED_WITH_ME, REPLIED_ME, MENTIONED_ME, MODIFIED_MY_DOCUMENT, PUBLISHED_DOCUMENT } from '../constants';
 @Entity()
 export class UserConfigurations extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -22,10 +22,10 @@ export class UserConfigurations extends BaseEntity {
   @OneToMany(type => BehaviourLog, object => object.userConfiguration)
   public logs: BehaviourLog[];
 
-  @ManyToOne(type=> User, object => object.userConfiguration, { onDelete: 'CASCADE' })
+  @ManyToOne(type => User, object => object.userConfiguration, { onDelete: 'CASCADE' })
   public user: User;
 
-  public checkConfig(type: String): boolean {
+  public checkConfig(type: string): boolean {
     if (type === SHARED_WITH_ME) {
       return this.notifyMeOnShare;
     } else if (type === REPLIED_ME) {
@@ -38,7 +38,7 @@ export class UserConfigurations extends BaseEntity {
     return false;
   }
 
-  public getInterval(type: String): number {
+  public getInterval(type: string): number {
     // interval as seconds
     if (type === SHARED_WITH_ME) {
       return 0;

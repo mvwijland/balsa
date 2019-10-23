@@ -15,7 +15,7 @@ import { UserInviteCode } from '../../entities/userInviteCode';
 import { BehaviourLog } from '../../entities/behaviourLog';
 import { BehaviourLogger } from '../../logging/core';
 import { Configurations } from '../../entities/configurations';
-import {DEMO_MODE, SMTP_DEFAULT_FROM_EMAIL} from '../../constants';
+import { DEMO_MODE, SMTP_DEFAULT_FROM_EMAIL } from '../../constants';
 
 const logger = new BehaviourLogger();
 

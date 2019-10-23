@@ -5,8 +5,9 @@ import {
   SMTP_SERVICE_HOST,
   SMTP_SERVICE_PORT,
   SMTP_SERVICE_SECURE,
-  SMTP_SERVICE_USER_NAME, SMTP_SERVICE_USER_PASSWORD
-} from "../constants";
+  SMTP_SERVICE_USER_NAME,
+  SMTP_SERVICE_USER_PASSWORD,
+} from '../constants';
 
 export default class BaseMailer {
   constructor() {}

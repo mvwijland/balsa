@@ -5,13 +5,14 @@ import {
   PrimaryGeneratedColumn,
   BaseEntity,
   CreateDateColumn,
-  UpdateDateColumn, OneToMany
+  UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user';
 import { UUIDTransformer } from './transformers';
 import { CLIENT_URL } from '../constants';
 import { BalsaFile } from './balsaFile';
-import {BehaviourLog} from "./behaviourLog";
+import { BehaviourLog } from './behaviourLog';
 
 @Entity()
 export class Contributor extends BaseEntity {

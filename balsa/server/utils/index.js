@@ -1,14 +1,20 @@
 import Mailer from '../mail/base';
-import {UserConfigurations} from "../entities/userConfigurations";
-import {BehaviourLogger, logExistCheck} from "../logging/core";
-import {MENTIONED_ME, MODIFIED_MY_DOCUMENT, PUBLISHED_DOCUMENT, REPLIED_ME, SHARED_WITH_ME, SMTP_DEFAULT_FROM_EMAIL} from "../constants";
-import {BehaviourLog} from "../entities/behaviourLog";
-import {scheduleJob} from 'node-schedule';
-import {EmailNotifications} from "../entities/emailNotifications";
-import {CronJob} from "../entities/cronJob";
+import { UserConfigurations } from '../entities/userConfigurations';
+import { BehaviourLogger, logExistCheck } from '../logging/core';
+import {
+  MENTIONED_ME,
+  MODIFIED_MY_DOCUMENT,
+  PUBLISHED_DOCUMENT,
+  REPLIED_ME,
+  SHARED_WITH_ME,
+  SMTP_DEFAULT_FROM_EMAIL,
+} from '../constants';
+import { BehaviourLog } from '../entities/behaviourLog';
+import { scheduleJob } from 'node-schedule';
+import { EmailNotifications } from '../entities/emailNotifications';
+import { CronJob } from '../entities/cronJob';
 
 const logger = new BehaviourLogger();
-
 
 class EmailNotifier {
   async notify(sender, receiver, type, to, subject, template, data) {
@@ -19,13 +25,13 @@ class EmailNotifier {
       if (interval) {
         const exist = await this.notificationExistCheck(receiver, type, interval);
         if (exist) {
-          this.createNotification(sender, receiver, type, to, subject, template, data, false).then(async (obj) => {
+          this.createNotification(sender, receiver, type, to, subject, template, data, false).then(async obj => {
             const scheduleCheck = await this.checkSchedule(receiver);
             if (!scheduleCheck) {
-              const executeDate = new Date(obj.createdAt.getTime() + (21600 * 1000)); // 26100 saniye = 6 saat
+              const executeDate = new Date(obj.createdAt.getTime() + 21600 * 1000); // 26100 saniye = 6 saat
               this.createCronJob(obj, executeDate);
             }
-          })
+          });
         } else {
           this.createNotification(sender, receiver, type, to, subject, template, data, true);
           this.sendNotification(type, to, subject, template, data);
@@ -35,7 +41,6 @@ class EmailNotifier {
         this.sendNotification(type, to, subject, template, data);
       }
     }
-
   }
   async notificationExistCheck(user, type, interval) {
     const now = new Date();
@@ -43,18 +48,19 @@ class EmailNotifier {
 
     const qb = EmailNotifications.getRepository().createQueryBuilder('notification');
     // const log = await BehaviourLog.findOne({ user, objectType, action, file: entity });
-    const notification = await qb.leftJoin('notification.sender', 'sender')
+    const notification = await qb
+      .leftJoin('notification.sender', 'sender')
       .leftJoin('notification.receiver', 'receiver')
       .andWhere('notification.isSent = True')
       .andWhere('notification.type = :type', { type })
       .andWhere('receiver.id = :userId', { userId: user.id })
-      .andWhere("notification.createdAt > :lookupDate", { lookupDate: lookupDate.toISOString() })
+      .andWhere('notification.createdAt > :lookupDate', { lookupDate: lookupDate.toISOString() })
       .orderBy('notification.createdAt', 'DESC', 'NULLS FIRST')
       .limit(1)
       .getMany();
 
     if (notification.length) {
-      return notification[0]
+      return notification[0];
     } else {
       return false;
     }
@@ -70,7 +76,7 @@ class EmailNotifier {
     notification.data = JSON.stringify(data);
     notification.isSent = isSent;
     await notification.save();
-    return notification
+    return notification;
   }
   async sendNotification(type, to, subject, template, data) {
     const mailer = new Mailer();
@@ -79,14 +85,15 @@ class EmailNotifier {
   }
   async sendAllNotifications(receiver, type) {
     const qb = EmailNotifications.getRepository().createQueryBuilder('notification');
-    const notifications = await qb.leftJoinAndSelect('notification.sender', 'sender')
+    const notifications = await qb
+      .leftJoinAndSelect('notification.sender', 'sender')
       .leftJoinAndSelect('notification.receiver', 'receiver')
       .andWhere('notification.isSent = False')
       .andWhere('notification.type = :type', { type })
       .andWhere('receiver.id = :userId', { userId: receiver.id })
       .getMany();
 
-    const context = {notifications: []};
+    const context = { notifications: [] };
     for (const notification of notifications) {
       const data = JSON.parse(notification.data);
       data.message = notification.getMessage();
@@ -102,10 +109,9 @@ class EmailNotifier {
         receiver.email,
         `You have new notifications (${context.notifications.length})`,
         'multipleNotifications',
-        context
+        context,
       );
     }
-
   }
   async checkSchedule(receiver) {
     const qb = CronJob.getRepository().createQueryBuilder('cronJob');
@@ -127,12 +133,12 @@ class EmailNotifier {
     cronJob.status = CronJob.ON_QUEUE;
     cronJob.executeDate = executeDate;
     cronJob.save().then(obj => {
-      scheduleJob(obj.executeDate, function(){
-        _this.sendAllNotifications(notification.receiver, notification.type)
+      scheduleJob(obj.executeDate, function() {
+        _this.sendAllNotifications(notification.receiver, notification.type);
         cronJob.status = CronJob.FINISHED;
         cronJob.save();
       });
-    })
+    });
   }
 }
 
@@ -165,7 +171,7 @@ module.exports = {
     return parseInt(score);
   },
   highlighter: resultItem => {
-    resultItem.matches.forEach((matchItem) => {
+    resultItem.matches.forEach(matchItem => {
       const text = resultItem.item[matchItem.key];
       const result = [];
       const matches = [].concat(matchItem.indices);
@@ -177,14 +183,14 @@ module.exports = {
       for (let i = 0; i < text.length; i++) {
         const char = text.charAt(i);
         if (pair && i == pair[0]) {
-          result.push('<b>')
+          result.push('<b>');
         }
-        if (i >= x-10 && i <= y+10) {
+        if (i >= x - 10 && i <= y + 10) {
           result.push(char);
         }
         if (pair && i == pair[1]) {
           result.push('</b>');
-          pair = matches.shift()
+          pair = matches.shift();
         }
       }
       resultItem.highlightedField = matchItem.key;
@@ -194,13 +200,13 @@ module.exports = {
         resultItem.highlight = result.join('');
       }
 
-      if(resultItem.children && resultItem.children.length > 0){
-        resultItem.children.forEach((child) => {
+      if (resultItem.children && resultItem.children.length > 0) {
+        resultItem.children.forEach(child => {
           highlighter(child);
         });
       }
     });
-    return resultItem
+    return resultItem;
   },
   notifyUser: async (user, type, to, subject, template, data, file) => {
     const config = await UserConfigurations.findOne({ user });
@@ -233,6 +239,5 @@ module.exports = {
       }
     }
   },
-  EmailNotifier
+  EmailNotifier,
 };
-

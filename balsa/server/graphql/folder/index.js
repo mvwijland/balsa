@@ -105,11 +105,13 @@ const resolvers = {
       if (parentId) {
         qb = qb.andWhere('parent.id = :parentId', { parentId });
       } else {
-        qb = qb.andWhere('(user.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NOT NULL AND parentContribUser.id != :userId)', { userId: user.id })
+        qb = qb.andWhere(
+          '(user.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NOT NULL AND parentContribUser.id != :userId)',
+          { userId: user.id },
+        );
       }
 
       const folders = await qb.getMany();
-
 
       return folders;
     },
@@ -129,13 +131,15 @@ const resolvers = {
         .andWhere('(user.id = :userId OR contributor.id = :userId)', { userId: context.user.id });
 
       if (exceptFolderId) {
-        qb = qb.andWhere('file.id != :exceptFolderId', { exceptFolderId })
+        qb = qb.andWhere('file.id != :exceptFolderId', { exceptFolderId });
       }
 
       if (parentId) {
         qb = qb.andWhere('parent.id = :parentId', { parentId });
       } else {
-        qb = qb.andWhere('(user.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NOT NULL AND parentContribUser.id != :userId)')
+        qb = qb.andWhere(
+          '(user.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NULL) OR (contributor.id = :userId AND parent IS NOT NULL AND parentContribUser.id != :userId)',
+        );
       }
 
       const folders = await qb.getMany();

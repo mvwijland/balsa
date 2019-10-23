@@ -1,30 +1,21 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BaseEntity,
-  OneToMany,
-  CreateDateColumn,
-  ManyToOne,
-  ManyToMany, JoinTable, OneToOne, JoinColumn
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, CreateDateColumn, ManyToMany } from 'typeorm';
 import { BalsaFile } from './balsaFile';
 import { FileTransformer } from './transformers';
 import { ForgotPasswordCode } from './forgotPasswordCode';
 import { Contributor } from './contributor';
 import { Star } from './star';
-import {BehaviourLog} from "./behaviourLog";
+import { BehaviourLog } from './behaviourLog';
 import { Comment } from './comment';
-import {UserConfigurations} from "./userConfigurations";
-import {EmailNotifications} from "./emailNotifications";
-import {CronJob} from "./cronJob";
+import { UserConfigurations } from './userConfigurations';
+import { EmailNotifications } from './emailNotifications';
+import { CronJob } from './cronJob';
 
 const ROLE_USER = 'User';
 const ROLE_ADMIN = 'Admin';
 const ROLE_SUPERUSER = 'Superuser';
 
 const STATUS_ACTIVE = 'Active';
-const STATUS_PASSIVE  = 'Passive';
+const STATUS_PASSIVE = 'Passive';
 
 @Entity()
 export class User extends BaseEntity {
@@ -59,11 +50,11 @@ export class User extends BaseEntity {
   @CreateDateColumn()
   public createdAt: Date;
 
-  @Column({ default: ROLE_USER})
-  public role:  string;
+  @Column({ default: ROLE_USER })
+  public role: string;
 
-  @Column({ default: STATUS_ACTIVE})
-  public status:  string;
+  @Column({ default: STATUS_ACTIVE })
+  public status: string;
 
   @OneToMany(type => Star, star => star.user, { nullable: false })
   public stars: Star;
@@ -92,13 +83,13 @@ export class User extends BaseEntity {
   @OneToMany(type => UserConfigurations, config => config.user)
   public userConfiguration: UserConfigurations[];
 
-  @OneToMany(type=> EmailNotifications, object => object.sender)
+  @OneToMany(type => EmailNotifications, object => object.sender)
   public sentNotifications: EmailNotifications[];
 
-  @OneToMany(type=> EmailNotifications, object => object.receiver)
+  @OneToMany(type => EmailNotifications, object => object.receiver)
   public receivedNotifications: EmailNotifications[];
 
-  @OneToMany(type=> CronJob, object => object.owner)
+  @OneToMany(type => CronJob, object => object.owner)
   public cronJobs: CronJob[];
 
   public fileCount() {

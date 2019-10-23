@@ -5,11 +5,11 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
 } from 'typeorm';
 import { User } from './user';
 import { BalsaFile } from './balsaFile';
-import {BehaviourLog} from "./behaviourLog";
+import { BehaviourLog } from './behaviourLog';
 
 @Entity()
 export class Star extends BaseEntity {

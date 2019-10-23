@@ -7,7 +7,7 @@ import { Star } from './star';
 import { UserAwareEntity } from './abstracts';
 import { BehaviourLog } from './behaviourLog';
 import { Comment } from './comment';
-import {Conversation} from "./conversation";
+import { Conversation } from './conversation';
 
 @Entity()
 export class BalsaFile extends UserAwareEntity {
@@ -71,11 +71,11 @@ export class BalsaFile extends UserAwareEntity {
   @OneToMany(type => BehaviourLog, object => object.file)
   public logs: BehaviourLog[];
 
-  @OneToMany(type => Conversation, conversation => conversation.file,)
+  @OneToMany(type => Conversation, conversation => conversation.file)
   public conversations: Conversation[];
 
   @Column({ type: Boolean, default: false })
-  public isFolder: Boolean;
+  public isFolder: boolean;
 
   public isStarred() {
     if (this.stars && this.requestUser) {
@@ -86,11 +86,16 @@ export class BalsaFile extends UserAwareEntity {
   }
 
   public hasWritePermission() {
-    return this.user.id === this.requestUser.id || this.contributors.map((contrib) => {
-      if (contrib.permissionLevel === contrib.READ_WRITE) {
-        return contrib.user.id
-      }
-    }).includes(this.requestUser.id);
+    return (
+      this.user.id === this.requestUser.id ||
+      this.contributors
+        .map(contrib => {
+          if (contrib.permissionLevel === contrib.READ_WRITE) {
+            return contrib.user.id;
+          }
+        })
+        .includes(this.requestUser.id)
+    );
   }
 
   public getUrl() {
@@ -127,13 +132,15 @@ export class BalsaFile extends UserAwareEntity {
   }
 
   public nonMeContributors() {
-    const users = this.contributors.filter((contrib) => {
-      if (contrib.user.id !== this.requestUser.id) {
-        return contrib;
-      }
-    }).map((contrib) => {
-      return contrib.user;
-    });
+    const users = this.contributors
+      .filter(contrib => {
+        if (contrib.user.id !== this.requestUser.id) {
+          return contrib;
+        }
+      })
+      .map(contrib => {
+        return contrib.user;
+      });
     if (this.user.id !== this.requestUser.id) {
       users.push(this.user);
     }

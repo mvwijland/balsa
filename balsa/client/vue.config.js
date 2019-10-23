@@ -7,7 +7,7 @@ const process = require('process');
 
 const dotenv = require('dotenv');
 
-dotenv.config({path: '../../.env'});
+dotenv.config({ path: '../../.env' });
 
 const MODE = process.env.NODE_ENV;
 const DEMO_MODE = process.env.DEMO_MODE;
@@ -53,7 +53,7 @@ module.exports = {
       new SvgStore({
         prefix: 'icon--',
         svgoOptions: {
-          plugins: [{cleanupIDs: false}, {collapseGroups: false}, {removeTitle: true}],
+          plugins: [{ cleanupIDs: false }, { collapseGroups: false }, { removeTitle: true }],
         },
       }),
     ],

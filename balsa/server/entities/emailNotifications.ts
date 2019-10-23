@@ -1,13 +1,6 @@
-import {
-  Entity,
-  Column,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  CreateDateColumn
-} from 'typeorm';
-import { User } from "./user";
-import {SHARED_WITH_ME, REPLIED_ME, MENTIONED_ME, MODIFIED_MY_DOCUMENT} from '../constants';
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn } from 'typeorm';
+import { User } from './user';
+import { SHARED_WITH_ME, REPLIED_ME, MENTIONED_ME, MODIFIED_MY_DOCUMENT } from '../constants';
 
 @Entity()
 export class EmailNotifications extends BaseEntity {
@@ -20,38 +13,37 @@ export class EmailNotifications extends BaseEntity {
   public id: number;
 
   @Column()
-  public type: String;
+  public type: string;
 
   @Column()
-  public to: String;
+  public to: string;
 
   @Column()
-  public subject: String;
+  public subject: string;
 
   @Column()
-  public template: String;
+  public template: string;
 
   @Column({ nullable: true })
-  public data: String;
+  public data: string;
 
   @Column()
-  public isSent: Boolean;
+  public isSent: boolean;
 
   @CreateDateColumn()
   public createdAt: Date;
 
-  @ManyToOne(type=> User, object => object.sentNotifications, { nullable: true })
+  @ManyToOne(type => User, object => object.sentNotifications, { nullable: true })
   public sender: User;
 
-  @ManyToOne(type=> User, object => object.receivedNotifications, { nullable: true })
+  @ManyToOne(type => User, object => object.receivedNotifications, { nullable: true })
   public receiver: User;
 
   public getMessage() {
     if (this.type === SHARED_WITH_ME) {
-      return `${this.sender.firstName} ${this.sender.lastName} has invited you to a document.`
+      return `${this.sender.firstName} ${this.sender.lastName} has invited you to a document.`;
     } else if (this.type === MODIFIED_MY_DOCUMENT) {
-      return `${this.sender.firstName} ${this.sender.lastName} has updated your document.`
+      return `${this.sender.firstName} ${this.sender.lastName} has updated your document.`;
     }
   }
-
 }

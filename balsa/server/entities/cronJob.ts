@@ -1,12 +1,5 @@
-import {
-  Entity,
-  Column,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  CreateDateColumn
-} from 'typeorm';
-import { User } from "./user";
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn } from 'typeorm';
+import { User } from './user';
 
 const STARTED = 'started';
 const FINISHED = 'finished';
@@ -27,13 +20,13 @@ export class CronJob extends BaseEntity {
   public id: number;
 
   @Column()
-  public job: String;
+  public job: string;
 
   @Column()
-  public status: String;
+  public status: string;
 
   @Column()
-  public data: String;
+  public data: string;
 
   @Column()
   public executeDate: Date;
@@ -41,7 +34,6 @@ export class CronJob extends BaseEntity {
   @CreateDateColumn()
   public createdAt: Date;
 
-  @ManyToOne(type=> User, object => object.cronJobs, { nullable: true })
+  @ManyToOne(type => User, object => object.cronJobs, { nullable: true })
   public owner: User;
-
 }

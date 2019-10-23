@@ -1,9 +1,9 @@
-import {Entity, Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, OneToMany} from 'typeorm';
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { UUIDTransformer } from './transformers';
 import { CLIENT_URL } from '../constants';
-import {BehaviourLog} from "./behaviourLog";
+import { BehaviourLog } from './behaviourLog';
 
-const STATUS_PENDING  = 'Pending';
+const STATUS_PENDING = 'Pending';
 const ROLE_USER = 'User';
 const ROLE_ADMIN = 'Admin';
 
@@ -31,8 +31,8 @@ export class UserInviteCode extends BaseEntity {
   @Column({ default: STATUS_PENDING })
   public status: string;
 
-  @Column({ default: ROLE_USER})
-  public role:  string;
+  @Column({ default: ROLE_USER })
+  public role: string;
 
   @Column({ transformer: new UUIDTransformer() })
   public inviteCode: string;

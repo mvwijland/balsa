@@ -1,6 +1,6 @@
 import { ValueTransformer } from 'typeorm';
 import uuidv4 from 'uuid/v4';
-import {SERVER_URL, UPLOADS_DIR} from '../constants';
+import { SERVER_URL, UPLOADS_DIR } from '../constants';
 
 export class UUIDTransformer implements ValueTransformer {
   public to(value: any): string {
