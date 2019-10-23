@@ -7,9 +7,10 @@
     @select="handleSelect"
   >
     <el-menu-item>
-      <router-link to="/" class="hidden-xs-only">
+      <router-link v-if="isLogin" :to="{name:'home'}" class="hidden-xs-only">
         <Logo />
       </router-link>
+      <Logo v-else/>
       <div class="hold-menu hidden-sm-and-up">
         <MobileMenu />
       </div>
