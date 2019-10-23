@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import { merge } from 'lodash';
-import { typeDefs as BaseType } from './base';
+import { typeDefs as BaseType, directives as BaseDirectives } from './base';
 import { typeDefs as AuthTypes, resolvers as AuthResolvers, directives as AuthDirectives } from './auth';
 import { typeDefs as FileTypes, resolvers as FileResolvers } from './file';
 import { typeDefs as FolderTypes, resolvers as FolderResolvers } from './folder';
@@ -25,7 +25,7 @@ const apolloServer = new ApolloServer({
     LogResolvers,
     UserUploadResolvers,
   ),
-  schemaDirectives: merge(directives, AuthDirectives),
+  schemaDirectives: merge(directives, AuthDirectives, BaseDirectives),
   context: ({ req }) => ({
     user: req.user,
   }),

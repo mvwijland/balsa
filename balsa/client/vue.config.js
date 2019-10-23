@@ -10,17 +10,18 @@ const dotenv = require('dotenv');
 dotenv.config({path: '../../.env'});
 
 const MODE = process.env.NODE_ENV;
+const DEMO_MODE = process.env.DEMO_MODE;
 const SERVER_DOMAIN = process.env.SERVER_DOMAIN;
 const SERVER_PORT = process.env.SERVER_PORT;
 const IS_SECURE = process.env.SSL;
 const HTML_SCHEMA = IS_SECURE ? 'https' : 'http';
 const SERVER_URL = `${HTML_SCHEMA}://${SERVER_DOMAIN}${SERVER_PORT === 80 ? '' : ':' + SERVER_PORT}`;
 
-
 process.env.VUE_APP_MODE = MODE;
+process.env.VUE_APP_DEMO_MODE = DEMO_MODE;
 process.env.VUE_APP_SERVER_URL = SERVER_URL;
 process.env.VUE_APP_IS_SECURE = IS_SECURE;
-process.env.VUE_APP_SERVER_PORT= SERVER_PORT;
+process.env.VUE_APP_SERVER_PORT = SERVER_PORT;
 
 module.exports = {
   runtimeCompiler: true,
@@ -52,7 +53,7 @@ module.exports = {
       new SvgStore({
         prefix: 'icon--',
         svgoOptions: {
-          plugins: [{ cleanupIDs: false }, { collapseGroups: false }, { removeTitle: true }],
+          plugins: [{cleanupIDs: false}, {collapseGroups: false}, {removeTitle: true}],
         },
       }),
     ],

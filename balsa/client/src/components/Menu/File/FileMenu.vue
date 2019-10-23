@@ -44,7 +44,7 @@
               <el-menu-item index="edit" v-else>Show</el-menu-item>
             </router-link>
             <el-menu-item
-                v-if="file.hasWritePermission"
+                v-if="file.hasWritePermission && !process.env.VUE_APP_DEMO_MODE"
                 @click="filePermissionDialogHandler"
                 index="invite"
             >Share
@@ -118,6 +118,7 @@
   import {CONFIGURATIONS_QUERY, GET_FILE_PUBLIC_URL} from '../../../queries';
   import ConfigurationAwareMixin from '../../Mixins/ConfigurationAwareMixin';
   import AddToFolderDialog from '../../Dialogs/AddToFolderDialog';
+  import process from 'process';
 
   export default {
     components: {

@@ -1,3 +1,5 @@
+import process from 'process';
+
 const state = {
   user: {},
   isSaving: false,
@@ -25,7 +27,7 @@ const getters = {
     return state.isExportFileDialogOpen;
   },
   isFilePermissionDialogOpen(state, data) {
-    return state.isFilePermissionDialogOpen;
+    return state.isFilePermissionDialogOpen && !process.env.VUE_APP_DEMO_MODE;
   },
   isRemoveFileDialogOpen(state, data) {
     return state.isRemoveFileDialogOpen;

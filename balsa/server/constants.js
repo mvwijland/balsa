@@ -2,6 +2,7 @@ import process from 'process';
 import _package from '../../package.json';
 
 export const MODE = process.env.NODE_ENV;
+export const DEMO_MODE = process.env.DEMO_MODE;
 export const IS_DEV = MODE !== 'production';
 export const IS_PRODUCTION = !IS_DEV;
 
@@ -12,7 +13,7 @@ export const CLIENT_PORT = process.env.CLIENT_PORT;
 export const IS_SECURE = process.env.SSL;
 export const HTML_SCHEMA = IS_SECURE ? 'https' : 'http';
 export const SERVER_URL = `${HTML_SCHEMA}://${SERVER_DOMAIN}${
-  (SERVER_PORT === '80' || SERVER_PORT === 80) ? '' : ':' + SERVER_PORT
+  SERVER_PORT === '80' || SERVER_PORT === 80 ? '' : ':' + SERVER_PORT
 }`;
 export const CLIENT_URL = `${HTML_SCHEMA}://${CLIENT_DOMAIN}${IS_PRODUCTION ? '' : ':' + CLIENT_PORT}`;
 export const UPLOADS_DIR = process.env.UPLOADS_DIR;

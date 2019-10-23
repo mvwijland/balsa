@@ -12,7 +12,7 @@ import { EmailNotifier, highlighter } from '../../utils';
 import { BehaviourLogger } from '../../logging/core';
 import { BehaviourLog } from '../../entities/behaviourLog';
 import { EmailNotifications } from '../../entities/emailNotifications';
-import {Conversation} from "../../entities/conversation";
+import { Conversation } from '../../entities/conversation';
 
 const logger = new BehaviourLogger();
 
@@ -32,14 +32,14 @@ const typeDefs = gql`
       defaultPermissionLevel: String
     ): File
     duplicateFile(id: Int!, name: String, folderId: Int, keepContributors: Boolean): File
-    giveFilePermission(fileID: Int!, emails: [String!], permissionLevel: String): Boolean
-    dropFilePermission(fileID: Int!, email: String!): Boolean
-    updateFilePermission(fileID: Int!, email: String!, permissionLevel: String!): Boolean
+    giveFilePermission(fileID: Int!, emails: [String!], permissionLevel: String): Boolean @nonDemoMode
+    dropFilePermission(fileID: Int!, email: String!): Boolean @nonDemoMode
+    updateFilePermission(fileID: Int!, email: String!, permissionLevel: String!): Boolean @nonDemoMode
     starFile(fileId: Int!): File!
     createComment(conversationUuid: String, fileId: Int, text: String): Comment
     createConversation(fileId: Int!, uuid: String!): Conversation
     deleteConversation(fileId: Int!, uuid: String!): Conversation
-    mentionUser(fileId: Int!, userId: Int!): Boolean
+    mentionUser(fileId: Int!, userId: Int!): Boolean @nonDemoMode
   }
 
   extend type Query {
@@ -407,7 +407,7 @@ const resolvers = {
       conversation.remove();
       // logger.log(user, newFile, BehaviourLog.ACTION_CREATE_FILE);
 
-      return removedConversation ;
+      return removedConversation;
     },
     updateFile: async (_, { id, parentId, ...fields }, context) => {
       const user = context.user;
@@ -760,9 +760,9 @@ const resolvers = {
         .leftJoinAndSelect('conversation.file', 'file');
 
       if (id) {
-        qb = qb.where('conversation.id = :id', { id })
+        qb = qb.where('conversation.id = :id', { id });
       } else {
-        qb =  qb.where('conversation.uuid = :uuid', { uuid })
+        qb = qb.where('conversation.uuid = :uuid', { uuid });
       }
 
       const conversation = await qb.getOne();

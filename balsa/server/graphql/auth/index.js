@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import argon2 from 'argon2';
 import process from 'process';
-import { gql, AuthenticationError, ValidationError, UserInputError, ForbiddenError } from 'apollo-server-express';
+import { gql, AuthenticationError, ValidationError, ForbiddenError } from 'apollo-server-express';
 import { User } from '../../entities/user';
 import { passwordStrongCheck } from '../../utils';
 import { isAuthenticated, userAware } from './directiveResolvers';
@@ -11,11 +11,11 @@ import Mailer from '../../mail/base';
 import { ForgotPasswordCode } from '../../entities/forgotPasswordCode';
 import uuidv4 from 'uuid/v4';
 import { BalsaFile } from '../../entities/balsaFile';
-import {UserInviteCode} from "../../entities/userInviteCode";
-import {BehaviourLog} from "../../entities/behaviourLog";
-import {BehaviourLogger} from "../../logging/core";
-import {Configurations} from "../../entities/configurations";
-import {SMTP_DEFAULT_FROM_EMAIL} from "../../constants";
+import { UserInviteCode } from '../../entities/userInviteCode';
+import { BehaviourLog } from '../../entities/behaviourLog';
+import { BehaviourLogger } from '../../logging/core';
+import { Configurations } from '../../entities/configurations';
+import { SMTP_DEFAULT_FROM_EMAIL } from '../../constants';
 
 const logger = new BehaviourLogger();
 
@@ -35,7 +35,16 @@ const typeDefs = gql`
     register(email: String!, password: String!, firstName: String!, lastName: String!, code: String): Boolean
     authenticate(email: String!, password: String!): LoginResponse
     changePassword(oldPassword: String!, newPassword1: String!, newPassword2: String!): Boolean!
-    editProfile(id: Int, email: String!, firstName: String!, lastName: String!, jobTitle: String, profilePhoto: Upload, role: String, status: String): Boolean!
+    editProfile(
+      id: Int
+      email: String!
+      firstName: String!
+      lastName: String!
+      jobTitle: String
+      profilePhoto: Upload
+      role: String
+      status: String
+    ): Boolean!
     startForgotPassword(email: String!): Boolean!
     forgotPassword(code: String!, newPassword: String!): Boolean!
     inviteUser(data: [InviteCodeInput]): Boolean!
@@ -72,7 +81,7 @@ const typeDefs = gql`
     token: String!
     user: User!
   }
-  
+
   type InviteCode {
     id: Int
     firstName: String
@@ -82,7 +91,7 @@ const typeDefs = gql`
     status: String
     createdAt: String
   }
-  
+
   input InviteCodeInput {
     firstName: String
     lastName: String
@@ -105,11 +114,11 @@ const resolvers = {
         const existInvitationCheck = await UserInviteCode.findOne({ email });
 
         if (existUserCheck) {
-          throw new ValidationError(`User with email (${email}) already exists.`)
+          throw new ValidationError(`User with email (${email}) already exists.`);
         }
 
         if (existInvitationCheck) {
-          throw new ValidationError(`Invitation with email (${email}) already exists.`)
+          throw new ValidationError(`Invitation with email (${email}) already exists.`);
         }
 
         const inviteData = new UserInviteCode();
@@ -123,8 +132,11 @@ const resolvers = {
         logger.log(user, inviteData, BehaviourLog.ACTION_INVITE_USER);
 
         const mailer = new Mailer();
-        mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, inviteData.email, 'Invitation to Balsa',
-          'invite', { inviteData, user, inviteLink: inviteData.inviteUrl() });
+        mailer.sendMail(SMTP_DEFAULT_FROM_EMAIL, inviteData.email, 'Invitation to Balsa', 'invite', {
+          inviteData,
+          user,
+          inviteLink: inviteData.inviteUrl(),
+        });
       }
 
       return true;
@@ -165,11 +177,11 @@ const resolvers = {
       if (code) {
         inviteCode = await UserInviteCode.findOne({ inviteCode: code });
         if (!inviteCode) {
-          throw new ForbiddenError('Wrong code.')
+          throw new ForbiddenError('Wrong code.');
         }
       }
       if (await User.findOne({ email: email })) {
-        throw new ValidationError(`User with email (${email}) already exists.`)
+        throw new ValidationError(`User with email (${email}) already exists.`);
       }
       const hashedPassword = await argon2.hash(password);
       const newUser = new User();
@@ -186,7 +198,7 @@ const resolvers = {
 
       const configuration = await Configurations.findOne({ id: 1 });
       configuration.appInitialized = true;
-      await configuration.save()
+      await configuration.save();
 
       logger.log(newUser, newUser, BehaviourLog.ACTION_REGISTER_USER);
 
@@ -319,7 +331,7 @@ const resolvers = {
       });
       return users;
     },
-    invitedUsers: async (_, { }, context) => {
+    invitedUsers: async (_, {}, context) => {
       return await UserInviteCode.find();
     },
     inviteToFileUserList: async (_, { filterQuery, fileID }, context) => {
@@ -391,7 +403,7 @@ const resolvers = {
       return user;
     },
     invitedUser: async (_, { code }, context) => {
-      return await UserInviteCode.findOne({ inviteCode: code })
+      return await UserInviteCode.findOne({ inviteCode: code });
     },
   },
 };
