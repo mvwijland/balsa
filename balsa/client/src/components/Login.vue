@@ -31,7 +31,7 @@
                     </el-form-item>
                     <el-row type="flex" align="middle" justify="space-between">
                       <router-link to="forgot-password" class="small-span">Forgot Password?</router-link>
-                      <div v-if="!this.$apollo.queries.configurations.loading && !this.configurations.appInitialized">
+                      <div v-if="(!this.$apollo.queries.configurations.loading && !this.configurations.appInitialized && !$store.getters.isDemoMode) || $store.getters.isDemoMode ">
                         <span
                             class="small-span small-text-color"
                             style="margin-right:5px;"
