@@ -12,7 +12,7 @@
       </router-link>
       <Logo v-else/>
       <div class="hold-menu hidden-sm-and-up">
-        <MobileMenu />
+        <!-- <MobileMenu />-->
       </div>
     </el-menu-item>
 
