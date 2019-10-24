@@ -21,8 +21,7 @@ const cache = new InMemoryCache();
 
 const hostname = window.location.hostname;
 const protocol = window.location.protocol;
-const port = process.env.VUE_APP_SERVER_PORT;
-const serverUrl = `${protocol}//${hostname}${port === '80' || port === 80 ? '' : ':' + port}`;
+const serverUrl = `${protocol}//${hostname}`;
 
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([
