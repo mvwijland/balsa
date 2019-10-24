@@ -7,6 +7,7 @@ then
     source ./.env
 else
     cp sample.env .env
+    ln -s $(pwd)/.env $(pwd)/balsa/server/.env
     source ./.env
 fi
 

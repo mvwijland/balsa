@@ -1,5 +1,7 @@
 import process from 'process';
 import _package from '../../package.json';
+import dotenv from "dotenv";
+dotenv.config();
 
 export const MODE = process.env.NODE_ENV;
 export const DEMO_MODE = process.env.DEMO_MODE;
