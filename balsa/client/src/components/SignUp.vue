@@ -14,7 +14,10 @@
                     ref="ruleForm"
                     label-width="120px"
                   >
-                    <div class="small-text-color" v-if="!$store.getters.isDemoMode">* Now, you are going to create an admin account on this Balsa instance. That means, you will be able to add other users to this platform as well, either as user account, or admin account.</div>
+                    <div
+                      class="small-text-color login-admin-informer"
+                      v-if="!$store.getters.isDemoMode"
+                    >Now, you are going to create an admin account on this Balsa instance. That means, you will be able to add other users to this platform as well, either as user account, or admin account.</div>
                     <el-row type="flex" :gutter="20">
                       <el-col>
                         <el-form-item label="Name" prop="name">
