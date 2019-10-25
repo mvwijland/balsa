@@ -15,12 +15,12 @@
         :class="open ? 'visible':'invisible'"
       >
         <el-row class="padding-LR-20" type="flex" align="middle">
-          <Avatar />
+          <Avatar :src="src" size="smallAvatar" :firstName="firstName" :lastName="lastName" />
           <div
             style="display:flex;flex-direction:column;justify-content:space-between;height:37px;"
           >
             <span style="margin-left:5px;line-height:normal;color: #007aff;">Welcome!</span>
-            <span class="extra-small" style="margin-left:5px;line-height:normal">George</span>
+            <span class="extra-small" style="margin-left:5px;line-height:normal">{{firstName}}</span>
           </div>
         </el-row>
         <Divider class="padding-LR-20" style="margin-top:10px;" />
@@ -28,7 +28,7 @@
 
         <!-- <el-menu-item index="/files">Files & Folders</el-menu-item> -->
 
-        <el-menu-item index="/activity">Activity</el-menu-item>
+        <el-menu-item index="/activities">Activity</el-menu-item>
         <!-- <el-menu-item index="/notes">Notes</el-menu-item> -->
         <Divider class="padding-LR-20" />
         <el-menu-item>
@@ -48,6 +48,17 @@ import Input from './Input.vue';
 import InputCapsule from './InputCapsule.vue';
 import Logo from './Logo.vue';
 export default {
+  props: {
+    firstName: {
+      type: String,
+      default: '',
+    },
+    lastName: {
+      type: String,
+      default: '',
+    },
+    src: String,
+  },
   components: {
     Logo,
     Avatar,
@@ -98,7 +109,7 @@ export default {
   left: 0;
   width: 100%;
   height: 0;
-  transition: all 1s;
+  transition: all 0.5s;
   transition-timing-function: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 .open-balsa-header {

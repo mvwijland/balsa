@@ -10,14 +10,22 @@
       <router-link v-if="isLogin" :to="{name:'home'}" class="hidden-xs-only">
         <Logo />
       </router-link>
-      <Logo v-else/>
+      <Logo v-else />
       <div class="hold-menu hidden-sm-and-up">
-        <!-- <MobileMenu />-->
+        <MobileMenu
+          :src="myProfile.profilePhoto"
+          :firstName="myProfile.firstName"
+          :lastName="myProfile.lastName"
+        />
       </div>
     </el-menu-item>
 
-    <el-menu-item v-if="isLogin" index="home"
-      :route="{name:'home'}" class="el-menu-item-text hidden-xs-only">My Drive</el-menu-item>
+    <el-menu-item
+      v-if="isLogin"
+      index="home"
+      :route="{name:'home'}"
+      class="el-menu-item-text hidden-xs-only"
+    >My Drive</el-menu-item>
     <!-- <el-menu-item
       v-if="isLogin"
       index="files"

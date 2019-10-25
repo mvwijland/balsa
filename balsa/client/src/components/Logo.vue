@@ -1,5 +1,5 @@
 <template>
-  <icon name="balsa" style="width:65px;height:24px" class="logo-balsa-svg"/>
+  <icon name="balsa" style="width:65px;height:24px" class="logo-balsa-svg" />
 </template>
 
 <script>
