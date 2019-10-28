@@ -33,7 +33,7 @@ const getters = {
     return state.isExportFileDialogOpen;
   },
   isFilePermissionDialogOpen(state, data) {
-    return state.isFilePermissionDialogOpen && !process.env.VUE_APP_DEMO_MODE;
+    return state.isFilePermissionDialogOpen && !state.isDemoMode;
   },
   isRemoveFileDialogOpen(state, data) {
     return state.isRemoveFileDialogOpen;
