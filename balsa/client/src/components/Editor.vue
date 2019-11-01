@@ -1210,7 +1210,7 @@ export default {
 
 .comment-bg {
   background-color: yellow;
-  font-size: 18px;
+  font-size: inherit;
 }
 
 .editor .comment-bg::after {
@@ -1269,22 +1269,22 @@ export default {
 }
 
 .editor__content h1 {
-  font-size: 42px;
+  font-size: 31.3px;
   color: #293543;
 }
 
 .editor__content h2 {
-  font-size: 34px;
+  font-size: 25.1px;
   color: #293543;
 }
 
 .editor__content h3 {
-  font-size: 26px;
+  font-size: 21.95px;
   color: #293543;
 }
 
 .editor__content p {
-  font-size: 18px;
+  font-size: 17.24px;
   color: #293543;
   letter-spacing: -0.2px;
 }
