@@ -466,6 +466,7 @@ import Title from './Editor/Components/Title';
 import Iframe from './Editor/Components/Iframe';
 import Comment from './Editor/Nodes/Comment';
 import Image from './Editor/Nodes/Image';
+import TodoItem from './Editor/Nodes/TodoItem';
 import {
   Blockquote,
   CodeBlock,
@@ -475,7 +476,6 @@ import {
   OrderedList,
   BulletList,
   ListItem,
-  TodoItem,
   TodoList,
   Bold,
   Code,
@@ -1209,8 +1209,12 @@ export default {
 }
 
 .comment-bg {
-  background-color: yellow;
+  background-color: #fffadc;
   font-size: inherit;
+}
+.comment-bg u {
+  text-decoration: underline;
+  text-decoration-color: #ffd20a;
 }
 
 .editor .comment-bg::after {
@@ -1270,23 +1274,26 @@ export default {
 
 .editor__content h1 {
   font-size: 31.3px;
-  color: #293543;
+  color: #1c4586;
 }
 
 .editor__content h2 {
   font-size: 25.1px;
-  color: #293543;
+  color: #1c4586;
 }
 
 .editor__content h3 {
   font-size: 21.95px;
-  color: #293543;
+  color: #1c4586;
 }
 
 .editor__content p {
   font-size: 17.24px;
   color: #293543;
   letter-spacing: -0.2px;
+}
+.ProseMirror > p {
+  margin-top: 16px;
 }
 
 .menubar {
@@ -1307,11 +1314,11 @@ li[data-type='todo_item'] {
 }
 
 .todo-checkbox {
-  border: 2px solid $color-black;
-  height: 0.9em;
-  width: 0.9em;
+  border: 1px solid #1c4586;
+  height: 1.2em;
+  width: 1.2em;
   box-sizing: border-box;
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: 0;
   user-select: none;
   -webkit-user-select: none;
@@ -1321,6 +1328,15 @@ li[data-type='todo_item'] {
   transition: 0.4s background;
 }
 
+li[data-done='true'] > .todo-checkbox::after {
+  content: '\e6da';
+  color: white;
+  top: 0px;
+  left: 1.2px;
+  font-weight: 600;
+  font-size: 14px;
+  position: relative;
+}
 .todo-content {
   flex: 1;
 
@@ -1420,7 +1436,7 @@ li[data-done='false'] {
   max-width: 960px;
 }
 .mention {
-  background: rgba($color-black, 0.1);
+  background: #d0e0e2;
   color: rgba($color-black, 0.6);
   font-size: 0.8rem;
   font-weight: bold;
@@ -1595,12 +1611,43 @@ pre {
   color: rgb(172, 174, 175);
 }
 .editor__content a {
-  color: #007aff;
+  color: #0a5394;
+  cursor: pointer;
   text-decoration: underline;
 }
 .editor__content ul,
 .editor__content ol {
   font-size: 18px;
+}
+p {
+  line-height: 1.5;
+}
+li[data-done='true'] > .todo-checkbox {
+  background-color: #1c4586;
+}
+li[data-type='todo_item'] {
+  padding: 8px 0;
+}
+li[data-type='todo_item']:hover {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-left: -8px;
+  padding-left: 8px;
+}
+.editor__content li > p {
+  padding-left: 20px;
+}
+.el-icon-check:before {
+  content: '';
+}
+.editor__content ul,
+.editor__content ol {
+  font-size: 17.24px;
+}
+.editor__content blockquote {
+  border-left: 3px solid #1c4586;
+  padding: 10px;
+  background-color: #e5e5e5;
 }
 </style>
 
