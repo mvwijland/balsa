@@ -316,9 +316,6 @@ const resolvers = {
       return true;
     },
     createFile: async (_, { templateId, content, folderId }, context) => {
-      /*
-      folderId aslında parent folderın idsi
-       */
       const user = context.user;
       let parent;
       if (!user) {
