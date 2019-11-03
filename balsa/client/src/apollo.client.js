@@ -29,7 +29,7 @@ const apolloClient = new ApolloClient({
     authMiddleware,
     debounceLink,
     createUploadLink({
-      uri: `${serverUrl}${ IS_DEV ? ':3000' : ''}/graphql`,
+      uri: `${serverUrl}${IS_DEV ? ':3000' : ''}/graphql`,
     }),
   ]),
   cache,
