@@ -13,13 +13,14 @@ import { BehaviourLogger } from '../../logging/core';
 import { BehaviourLog } from '../../entities/behaviourLog';
 import { EmailNotifications } from '../../entities/emailNotifications';
 import { Conversation } from '../../entities/conversation';
+import { Template } from '../../entities/template';
 
 const logger = new BehaviourLogger();
 
 const typeDefs = gql`
   extend type Mutation {
     searchFile(query: String!): [SearchResponse!]
-    createFile(content: String, folderId: Int): File
+    createFile(templateId: Int, content: String, folderId: Int): File
     deleteFile(id: Int!): File
     updateFile(
       id: Int!
@@ -314,7 +315,7 @@ const resolvers = {
       logger.log(user, contributor, BehaviourLog.ACTION_UPDATE_PERMISSION);
       return true;
     },
-    createFile: async (_, { content, folderId }, context) => {
+    createFile: async (_, { templateId, content, folderId }, context) => {
       /*
       folderId aslında parent folderın idsi
        */
@@ -333,7 +334,14 @@ const resolvers = {
       newFile.name = 'Untitled';
       newFile.user = user;
       newFile.updatedAt = new Date();
-      newFile.content = content;
+
+      if (templateId) {
+        const template = await Template.find({ id: templateId });
+        newFile.content = JSON.parse(template.content);
+      } else {
+        newFile.content = content;
+      }
+
       const savedFile = await newFile.save();
 
       if (folderId) {

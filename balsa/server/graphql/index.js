@@ -7,6 +7,7 @@ import { typeDefs as FolderTypes, resolvers as FolderResolvers } from './folder'
 import { typeDefs as ConfigTypes, resolvers as ConfigResolvers } from './config';
 import { typeDefs as LogTypes, resolvers as LogResolvers } from './logging';
 import { typeDefs as UserUploadTypes, resolvers as UserUploadResolvers } from './userUpload';
+import { typeDefs as TemplateTypes, resolvers as TemplateResolvers } from './template';
 import { IS_DEV } from '../constants';
 
 const resolvers = {};
@@ -15,7 +16,7 @@ const directives = {};
 const apolloServer = new ApolloServer({
   playground: IS_DEV,
   introspection: IS_DEV,
-  typeDefs: [BaseType, AuthTypes, FileTypes, FolderTypes, ConfigTypes, LogTypes, UserUploadTypes],
+  typeDefs: [BaseType, AuthTypes, FileTypes, FolderTypes, ConfigTypes, LogTypes, UserUploadTypes, TemplateTypes],
   resolvers: merge(
     resolvers,
     AuthResolvers,
@@ -24,6 +25,7 @@ const apolloServer = new ApolloServer({
     ConfigResolvers,
     LogResolvers,
     UserUploadResolvers,
+    TemplateResolvers,
   ),
   schemaDirectives: merge(directives, AuthDirectives, BaseDirectives),
   context: ({ req }) => ({

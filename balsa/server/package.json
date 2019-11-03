@@ -10,7 +10,8 @@
     "docker-compose-up": "nodemon --legacy-watch --verbose --exec ts-node app.js --transpile-only",
     "dev": "nodemon --legacy-watch --verbose --exec ts-node app.js --transpile-only",
     "typeorm-ts": "ts-node ./node_modules/.bin/typeorm",
-    "create-root-user": "ts-node createRootUser.js"
+    "create-root-user": "ts-node createRootUser.js",
+    "import-templates": "ts-node importTemplates.js"
   },
   "author": "",
   "license": "ISC",
