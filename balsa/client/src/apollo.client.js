@@ -22,7 +22,7 @@ const cache = new InMemoryCache();
 const hostname = window.location.hostname;
 const protocol = window.location.protocol;
 const serverUrl = `${protocol}//${hostname}`;
-const IS_DEV = process.env.VUE_APP_IS_DEV;
+const IS_DEV = process.env.VUE_APP_IS_DEV === 'true';
 
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([
