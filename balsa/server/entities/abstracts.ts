@@ -9,20 +9,6 @@ import { User } from './user';
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
 }; */
 
-export abstract class ShareableBase extends BaseEntity {
-  public READ_ONLY: string = 'READ_ONLY';
-  public READ_WRITE: string = 'READ_WRITE';
-
-  @PrimaryGeneratedColumn()
-  public id: number;
-
-  @Column({ default: 'READ_ONLY' })
-  public permissionLevel: string;
-
-  @ManyToOne(type => BalsaFile, file => file.contributors, { nullable: false })
-  public file: BalsaFile;
-}
-
 export abstract class UserAwareEntity extends BaseEntity {
   public requestUser: User;
 

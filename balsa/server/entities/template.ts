@@ -1,9 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-  Column,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from 'typeorm';
 
 @Entity()
 export class Template extends BaseEntity {
@@ -13,6 +8,6 @@ export class Template extends BaseEntity {
   @Column()
   public name: string;
 
-  @Column({default: ''})
+  @Column({ default: '' })
   public content: string;
 }

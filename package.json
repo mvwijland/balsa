@@ -18,7 +18,8 @@
     "lint": "lerna run lint",
     "apollo:introspect": "lerna run apollo:introspect --scope client",
     "apollo:generate": "lerna run apollo:generate --scope client",
-    "create-root-user": "lerna run create-root-user --scope server"
+    "create-root-user": "lerna run create-root-user --scope server",
+    "import-templates": "lerna run import-templates --scope server"
   },
   "workspaces": [
     "balsa/client",

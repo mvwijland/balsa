@@ -103,8 +103,8 @@ export default {
       this.$apollo
         .mutate({
           mutation: gql`
-            mutation($email: String!, $firstName: String!, $lastName: String!, $jobTitle: String) {
-              editProfile(email: $email, firstName: $firstName, lastName: $lastName, jobTitle: $jobTitle)
+            mutation($id: Int, $email: String!, $firstName: String!, $lastName: String!, $jobTitle: String, $role: String, $status: String) {
+              editProfile(id: $id, email: $email, firstName: $firstName, lastName: $lastName, jobTitle: $jobTitle, role: $role, status: $status)
             }
           `,
           variables: {

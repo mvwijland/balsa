@@ -14,7 +14,7 @@ const DEMO_MODE = process.env.DEMO_MODE;
 const IS_SECURE = process.env.SSL;
 
 process.env.VUE_APP_MODE = MODE;
-process.env.VUE_APP_IS_DEV = MODE === 'development' || DEMO_MODE;
+process.env.VUE_APP_IS_DEV = MODE === 'development';
 process.env.VUE_APP_DEMO_MODE = DEMO_MODE;
 process.env.VUE_APP_IS_SECURE = IS_SECURE;
 
