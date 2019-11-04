@@ -1,0 +1,66 @@
+<template>
+  <el-col :xl="6" :lg="8" :md="12">
+    <el-row class="template--card">
+      <el-row style="padding:8px 0">
+        <div class="template-image"></div>
+      </el-row>
+      <el-col>
+        <el-row class="card-container" type="flex" align="middle">
+          <Avatar />
+          <span class="medium-font-weight small-text-color" style="margin-left:8px;">{{data.title}}</span>
+        </el-row>
+      </el-col>
+    </el-row>
+  </el-col>
+</template>
+
+<script>
+import Avatar from '../../Avatar';
+export default {
+  props: {
+    data: {
+      type: Object,
+    },
+  },
+  components: {
+    Avatar,
+  },
+};
+</script>
+
+<style>
+.template--card {
+  margin-top: 36px;
+  cursor: pointer;
+}
+.card-container {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ebeef5;
+  padding: 24px;
+  z-index: 1;
+  position: relative;
+  background: white;
+  top: 0;
+  transition: all 0.5s;
+}
+.template--card:hover .card-container {
+  transition: all 0.5s;
+  top: -20px;
+  border-radius: 0;
+  border-color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.template--card:hover .template-image {
+  transition: all 0.5s;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+}
+.template-image {
+  height: 240px;
+  width: 100%;
+  background: #eaeaea;
+  border-radius: 4px;
+}
+</style>

@@ -17,12 +17,19 @@ import NotesRouter from './components/NotesRouter.vue';
 import ConfigurationsRouter from './components/ConfigurationsRouter.vue';
 import InviteSignUpRouter from './components/InviteSignUpRouter';
 import Activities from './components/ActivitiesRouter.vue';
+import Templates from './components/Templates/Templates.vue';
+
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/templates',
+      name: 'templates',
+      component: Templates,
+    },
     {
       path: '/profile',
       name: 'profile',
