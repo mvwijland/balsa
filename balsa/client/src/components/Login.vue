@@ -8,11 +8,11 @@
               <el-col :lg="16" :xl="14">
                 <el-row>
                   <el-form
-                      label-position="top"
-                      :model="ruleForm"
-                      :rules="rules"
-                      ref="ruleForm"
-                      label-width="120px"
+                    label-position="top"
+                    :model="ruleForm"
+                    :rules="rules"
+                    ref="ruleForm"
+                    label-width="120px"
                   >
                     <el-form-item label="Email" prop="email">
                       <el-input v-model="ruleForm.email"></el-input>
@@ -22,19 +22,20 @@
                     </el-form-item>
                     <el-form-item style="margin-top:10px">
                       <el-button
-                          :class="{'full-width':fullWidth}"
-                          type="primary"
-                          @click="submitForm('ruleForm')"
-                          :loading="loading"
-                      >Login
-                      </el-button>
+                        :class="{'full-width':fullWidth}"
+                        type="primary"
+                        @click="submitForm('ruleForm')"
+                        :loading="loading"
+                      >Login</el-button>
                     </el-form-item>
                     <el-row type="flex" align="middle" justify="space-between">
                       <router-link to="forgot-password" class="small-span">Forgot Password?</router-link>
-                      <div v-if="(!this.$apollo.queries.configurations.loading && !this.configurations.appInitialized && !$store.getters.isDemoMode) || $store.getters.isDemoMode ">
+                      <div
+                        v-if="(!this.$apollo.queries.configurations.loading && !this.configurations.appInitialized && !$store.getters.isDemoMode) || $store.getters.isDemoMode "
+                      >
                         <span
-                            class="small-span small-text-color"
-                            style="margin-right:5px;"
+                          class="small-span small-text-color"
+                          style="margin-right:5px;"
                         >No account yet?</span>
                         <router-link to="sign-up" class="small-span">Sign up</router-link>
                       </div>
@@ -51,94 +52,105 @@
 </template>
 
 <script>
-  import gql from 'graphql-tag';
-  import NotificationMixin from './Mixins/NotificationMixin';
+import gql from 'graphql-tag';
+import NotificationMixin from './Mixins/NotificationMixin';
 
-  export default {
-    mixins: [NotificationMixin],
-    data() {
-      return {
-        fullWidth: true,
-        loading: false,
-        ruleForm: {
-          email: '',
-          password: '',
-        },
-        rules: {
-          email: [
-            {
-              required: true,
-              message: 'email address required.',
-              trigger: 'blur',
-            },
-            {
-              type: 'email',
-              message: 'Please input correct email address',
-              trigger: ['blur', 'change'],
-            },
-          ],
-          password: [
-            {
-              required: true,
-              message: 'Please input Activity password',
-              trigger: 'blur',
-            },
-            {
-              min: 6,
-              max: 100,
-              message: 'Length should be 6 to 100',
-              trigger: 'blur',
-            },
-          ],
-        },
-      };
-    },
-    created() {
-      const token = localStorage.getItem('TOKEN');
-      if (token) {
-        this.$router.push({name: 'home'});
-      }
-    },
-    apollo: {
-      configurations: {
-        query: gql`
-          query configurations {
-            configurations {
-              id
-              appInitialized
-            }
+export default {
+  mixins: [NotificationMixin],
+  data() {
+    return {
+      fullWidth: true,
+      loading: false,
+      ruleForm: {
+        email: '',
+        password: '',
+      },
+      rules: {
+        email: [
+          {
+            required: true,
+            message: 'email address required.',
+            trigger: 'blur',
+          },
+          {
+            type: 'email',
+            message: 'Please input correct email address',
+            trigger: ['blur', 'change'],
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: 'Please input Activity password',
+            trigger: 'blur',
+          },
+          {
+            min: 6,
+            max: 100,
+            message: 'Length should be 6 to 100',
+            trigger: 'blur',
+          },
+        ],
+      },
+    };
+  },
+  created() {
+    window.addEventListener('keydown', this.handleLogin);
+    const token = localStorage.getItem('TOKEN');
+    if (token) {
+      this.$router.push({ name: 'home' });
+    }
+  },
+  destroyed() {
+    window.removeEventListener('keydown', this.handleLogin);
+  },
+  apollo: {
+    configurations: {
+      query: gql`
+        query configurations {
+          configurations {
+            id
+            appInitialized
           }
-        `,
+        }
+      `,
+    },
+  },
+  methods: {
+    handleLogin(e) {
+      //if user pressed enter ...
+      if (e.which === 13) {
+        this.submitForm('ruleForm');
+        e.preventDefault();
       }
     },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            this.loading = true;
-            this.login()
-              .then(({data}) => {
-                this.loading = false;
-                this.$store.dispatch('saveUserInformation', data.authenticate).then(() => {
-                  localStorage.setItem('TOKEN', data.authenticate.token);
-                  localStorage.setItem('USERID', data.authenticate.user.id);
-                  this.notifySuccess('Logged in successfully.');
-                  this.$router.push({name: 'home'});
-                });
-              })
-              .catch((error) => {
-                this.notifyError(error.message);
-                this.loading = false;
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          this.login()
+            .then(({ data }) => {
+              this.loading = false;
+              this.$store.dispatch('saveUserInformation', data.authenticate).then(() => {
+                localStorage.setItem('TOKEN', data.authenticate.token);
+                localStorage.setItem('USERID', data.authenticate.user.id);
+                this.notifySuccess('Logged in successfully.');
+                this.$router.push({ name: 'home' });
               });
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      login() {
-        return this.$apollo.mutate({
-          mutation: gql`
+            })
+            .catch(error => {
+              this.notifyError(error.message);
+              this.loading = false;
+            });
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    login() {
+      return this.$apollo.mutate({
+        mutation: gql`
           mutation($email: String!, $password: String!) {
             authenticate(email: $email, password: $password) {
               token
@@ -150,18 +162,17 @@
             }
           }
         `,
-          variables: {
-            email: this.ruleForm.email,
-            password: this.ruleForm.password,
-          },
-        });
-      },
+        variables: {
+          email: this.ruleForm.email,
+          password: this.ruleForm.password,
+        },
+      });
     },
-  };
+  },
+};
 </script>
 
 <style>
-  .el-form--label-top {
-
-  }
+.el-form--label-top {
+}
 </style>

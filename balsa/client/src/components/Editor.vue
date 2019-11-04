@@ -842,22 +842,24 @@ export default {
     },
   },
   created() {
-    window.addEventListener('keydown', e => {
-      if ((e.which == '115' || e.which == '83' || e.which == '70') && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        this.search = true;
-        return false;
-      }
-    });
+    window.addEventListener('keydown', this.handleSearch);
     window.addEventListener('scroll', this.handleScroll);
     let randText = this.randomPlaceHolder();
     this.placeholderH1 = randText.h1;
     this.placeholderP = randText.p;
   },
   destroyed() {
+    window.removeEventListener('keydown', this.handleSearch);
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    handleSearch(e) {
+      if ((e.which == '115' || e.which == '83' || e.which == '70') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        this.search = true;
+        return false;
+      }
+    },
     convertDate(createdAt) {
       return moment(parseInt(createdAt)).fromNow();
     },
