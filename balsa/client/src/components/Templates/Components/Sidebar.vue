@@ -2,45 +2,46 @@
   <el-row class="tac">
     <el-col :span="24">
       <el-menu
-        default-active="1"
+        @select="handleSelect"
+        default-active="design"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         style="height:calc(100vh - 60px);"
         @close="handleClose"
       >
-        <el-menu-item index="1">
+        <el-menu-item index="design">
           <i class="el-icon-menu"></i>
           <span>Design</span>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="engineer">
           <i class="el-icon-menu"></i>
           <span>Engineering</span>
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="human">
           <i class="el-icon-menu"></i>
           <span>Human resources</span>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="marketing">
           <i class="el-icon-menu"></i>
           <span>Marketing</span>
         </el-menu-item>
-        <el-menu-item index="5">
+        <el-menu-item index="meetings">
           <i class="el-icon-menu"></i>
           <span>Meetings</span>
         </el-menu-item>
-        <el-menu-item index="6">
+        <el-menu-item index="miscellaneous">
           <i class="el-icon-menu"></i>
           <span>Miscellaneous</span>
         </el-menu-item>
-        <el-menu-item index="7">
+        <el-menu-item index="product">
           <i class="el-icon-menu"></i>
           <span>Product</span>
         </el-menu-item>
-        <el-menu-item index="8">
+        <el-menu-item index="sales">
           <i class="el-icon-menu"></i>
           <span>Sales</span>
         </el-menu-item>
-        <el-menu-item index="9">
+        <el-menu-item index="support">
           <i class="el-icon-menu"></i>
           <span>Support</span>
         </el-menu-item>
@@ -64,6 +65,9 @@
 <script>
 export default {
   methods: {
+    handleSelect(index) {
+      this.$emit('handler', index);
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },

@@ -1,6 +1,6 @@
 <template>
   <el-col :xl="6" :lg="8" :md="12">
-    <el-row class="template--card">
+    <el-row class="template--card" :class="selectedCard===data ? 'selected-card':null">
       <el-row style="padding:8px 0">
         <div class="template-image"></div>
       </el-row>
@@ -20,8 +20,14 @@ export default {
   props: {
     data: {
       type: Object,
+      default: { id: -1 },
+    },
+    selectedCard: {
+      tpye: Object,
+      default: { id: -2 },
     },
   },
+  methods: {},
   components: {
     Avatar,
   },
@@ -62,5 +68,17 @@ export default {
   width: 100%;
   background: #eaeaea;
   border-radius: 4px;
+}
+.selected-card .card-container {
+  transition: all 0.5s;
+  top: -20px;
+  border-radius: 0;
+  border-color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.selected-card .template-image {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
 }
 </style>

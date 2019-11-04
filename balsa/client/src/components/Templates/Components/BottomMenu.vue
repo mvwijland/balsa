@@ -1,11 +1,19 @@
 <template>
   <el-row class="bottom-template-menu" type="flex" justify="end">
-    <el-button style="padding-left:48px;padding-right:48px;" type="primary">Create</el-button>
+    <el-button
+      :disabled="selectedCard?false:true"
+      style="padding-left:48px;padding-right:48px;"
+      type="primary"
+    >Create</el-button>
   </el-row>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    selectedCard: { type: Object },
+  },
+};
 </script>
 
 <style scoped>

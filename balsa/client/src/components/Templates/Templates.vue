@@ -1,22 +1,20 @@
 <template>
   <el-container>
-    <Header />
-    <el-container style="margin-top:60px;">
-      <el-aside>
-        <SideBar />
+    <el-container>
+      <el-aside width="200px">
+        <SideBar @handler="selectedIndex" />
       </el-aside>
       <el-container>
         <el-main class="main">
-          <Main />
+          <Main :selectedCategory="index" @handler="selectedCard" :selectedCard="card" />
         </el-main>
       </el-container>
-      <BottomMenu />
+      <BottomMenu :selectedCard="card" />
     </el-container>
   </el-container>
 </template>
 
 <script>
-import Header from '../Headers/HomeHeader';
 import BottomMenu from './Components/BottomMenu';
 import Main from './Components/Main';
 import SideBar from './Components/Sidebar';
@@ -25,7 +23,27 @@ export default {
     SideBar,
     Main,
     BottomMenu,
-    Header,
+  },
+  data() {
+    return {
+      index: 'design',
+      card: null,
+    };
+  },
+  methods: {
+    selectedCard(data) {
+      // selected card's object holds in here.
+      this.card = data;
+    },
+    selectedIndex(index) {
+      //selected data comes from Sidebar component.
+      // Once the data declared. We are holding a copy of it.
+      // And we are passing the copy to the other Components
+      this.index = index;
+
+      //once selected category changed. Selected card needs to be an empty.
+      this.card = null;
+    },
   },
 };
 </script>
