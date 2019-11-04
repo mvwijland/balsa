@@ -1189,7 +1189,10 @@ export default {
 .el-input--small input {
   font-size: 13px;
 }
-
+.editor__content table td,
+.editor__content table th {
+  border: 2px solid #c8c8c8;
+}
 .comment-balsa {
   opacity: 1;
   transition: all 0.4s;
@@ -1328,6 +1331,9 @@ li[data-type='todo_item'] {
   transition: 0.4s background;
 }
 
+.todo-content > p:last-of-type {
+  font-weight: initial;
+}
 li[data-done='true'] > .todo-checkbox::after {
   content: '\e6da';
   color: white;
@@ -1615,10 +1621,6 @@ pre {
   cursor: pointer;
   text-decoration: underline;
 }
-.editor__content ul,
-.editor__content ol {
-  font-size: 18px;
-}
 p {
   line-height: 1.5;
 }
@@ -1636,13 +1638,16 @@ li[data-type='todo_item']:hover {
 }
 .editor__content li > p {
   padding-left: 20px;
+  font-weight: initial;
 }
 .el-icon-check:before {
   content: '';
 }
 .editor__content ul,
 .editor__content ol {
+  color: #1c4586;
   font-size: 17.24px;
+  font-weight: 600;
 }
 .editor__content blockquote {
   border-left: 3px solid #1c4586;

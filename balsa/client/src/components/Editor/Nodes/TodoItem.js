@@ -31,7 +31,7 @@ export default class TodoItem extends Node {
         <li :data-type="node.type.name" :data-done="node.attrs.done.toString()" data-drag-handle >
           <span class="todo-checkbox el-icon-check" contenteditable="false" @click="onChange"></span>         
           <div v-if="node.textContent"   class="todo-content" ref="content" :contenteditable="view.editable.toString()"></div>
-          <div  v-else class="todo-content is-empty" :data-empty-text="infoText" ref="content" :contenteditable="view.editable.toString()"></div>
+          <div  v-else class="todo-content is-empty" :data-empty-text="infoText" ref="content" :contenteditable="view.editable.toString()" style='font-weight:initial;'></div>
         </li>
       `,
     };
