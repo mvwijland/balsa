@@ -1,5 +1,5 @@
 <template>
-  <el-col :xl="6" :lg="8" :md="12">
+  <el-col :xl="12" :lg="12" :md="12">
     <el-row class="template--card" :class="selectedCard===data ? 'selected-card':null">
       <el-row style="padding:8px 0">
         <div class="template-image"></div>
@@ -50,7 +50,7 @@ export default {
   top: 0;
   transition: all 0.5s;
 }
-.template--card:hover .card-container {
+/* .template--card:hover .card-container {
   transition: all 0.5s;
   top: -20px;
   border-radius: 0;
@@ -62,7 +62,7 @@ export default {
 .template--card:hover .template-image {
   transition: all 0.5s;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
-}
+} */
 .template-image {
   height: 240px;
   width: 100%;

@@ -1,7 +1,7 @@
 <template>
-  <el-row :gutter="48" style=";margin-bottom:90px">
+  <el-row :gutter="48">
     <div
-      v-on:click="$emit('handler',card);"
+      v-on:click="selectedCard !==card ? $emit('handler',card):$emit('handler',null);"
       v-for="(card,index) in arr.filter(a=>a.category===selectedCategory)"
       :key="index"
     >

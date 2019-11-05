@@ -1,14 +1,67 @@
 <template>
   <div class="balsa-container">
+    <el-dialog
+      title="Select Your Template"
+      :visible.sync="dialogFormVisible"
+      custom-class="el-dialog-balsa big-dialog template-dialog"
+    >
+      <Templates @handler="selectedCard" />
+      <span slot="footer" class="dialog-footer">
+        <el-button
+          type="text"
+          @click="dialogFormVisible = false"
+          style="color:#9ca2aa;margin-right:20px;"
+        >
+          <span class="small-span">Cancel</span>
+        </el-button>
+
+        <el-button
+          type="primary"
+          @click="createSelectedTemplate"
+          :disabled="selectedTemplateCard?false:true"
+        >Create</el-button>
+      </span>
+    </el-dialog>
     <el-row type="flex" style="justify-content:flex-end" class="mobile-margin-bottom-32">
-      <el-button
-        style="margin-right:10px;"
-        type="success"
-        @click="createFile(true)"
-        :plain="false"
-        icon="el-icon-files"
-        class="semi-medium-font"
-      >Create File</el-button>
+      <el-button-group style="margin-right:10px;">
+        <el-button
+          type="success"
+          @click="selectedText==='Create File' ? createFile(true):dialogFormVisible=true"
+          :plain="false"
+          icon="el-icon-files"
+          class="semi-medium-font"
+        >{{selectedText}}</el-button>
+        <el-popover
+          ref="popover"
+          placement="bottom"
+          width="200"
+          trigger="click"
+          v-model="visible"
+          popper-class="no--padding"
+        >
+          <ul class="el-scrollbar__view el-select-dropdown__list">
+            <li
+              @click="visible=!visible; selectedText='Create File'"
+              class="el-select-dropdown__item"
+            >
+              <span>Create File</span>
+            </li>
+            <li
+              @click="visible=!visible;selectedText='Create From Template'"
+              class="el-select-dropdown__item"
+            >
+              <span>Create From Template</span>
+            </li>
+          </ul>
+        </el-popover>
+        <el-button
+          type="success"
+          class="semi-medium-font"
+          v-popover:popover
+          icon="el-icon-arrow-down bold-font-weight"
+        ></el-button>
+      </el-button-group>
+
       <CreateFolder />
     </el-row>
     <el-row v-if="(allFolders&&allFolders.length>0 ) && !this.$apollo.queries.myFiles.loading">
@@ -96,9 +149,22 @@ import moment from 'moment';
 import { RECENT_FILES_QUERY, MY_FILES_QUERY, ALL_FOLDERS_QUERY } from '../../queries';
 import CreateFolder from '../CreateFolder.vue';
 import TabContainer from '../TabContainer.vue';
-
+import Templates from '../Templates/Templates.vue';
 export default {
   methods: {
+    createSelectedTemplate() {
+      this.dialogFormVisible = false;
+      //selected template
+      console.log('selected template', this.selectedTemplateCard);
+      //call APOLLO function here
+      //...
+      //then call success message from bottom-right
+      //...
+    },
+    selectedCard(card) {
+      //Selected card coming from Temlplates.vue by using EMİT.
+      this.selectedTemplateCard = card;
+    },
     checkRoot(to) {
       if (to.path === '/' || to.path === '/home') {
         this.quickAccess = false;
@@ -194,6 +260,10 @@ export default {
   },
   data: function() {
     return {
+      selectedTemplateCard: null,
+      dialogFormVisible: false,
+      selectedText: 'Create File',
+      visible: false,
       cards: [],
       files: [],
       quickAccess: true,
@@ -240,6 +310,7 @@ export default {
     },
   },
   components: {
+    Templates,
     BalsaSpaceBetween,
     DocCard,
     File,
@@ -282,5 +353,14 @@ h1 {
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
+}
+.template-dialog .el-dialog__body {
+  padding: 0;
+}
+.template-dialog .el-dialog__header {
+  padding: 32px 24px;
+}
+.template-dialog .el-dialog__footer {
+  border: solid 1px #e6e6e6;
 }
 </style>

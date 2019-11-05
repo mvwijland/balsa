@@ -2,11 +2,11 @@
   <el-row class="tac">
     <el-col :span="24">
       <el-menu
+        :collapse="isMobile()? true:false"
         @select="handleSelect"
         default-active="design"
         class="el-menu-vertical-demo"
         @open="handleOpen"
-        style="height:calc(100vh - 60px);"
         @close="handleClose"
       >
         <el-menu-item index="design">
@@ -65,6 +65,21 @@
 <script>
 export default {
   methods: {
+    isMobile() {
+      try {
+        if (
+          /Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(
+            navigator.userAgent,
+          )
+        ) {
+          return true;
+        }
+        return false;
+      } catch (e) {
+        console.log('Error in isMobile');
+        return false;
+      }
+    },
     handleSelect(index) {
       this.$emit('handler', index);
     },
