@@ -42,7 +42,6 @@ export default {
       this.card = data;
     },
     selectedIndex(index) {
-      console.log('index', index);
       this.activeAnim = true;
       setTimeout(() => (this.activeAnim = false), 150);
 

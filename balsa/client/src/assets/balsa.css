@@ -205,6 +205,9 @@ p {
 .small-dialog {
   max-width: 440px;
 }
+.bigger-dialog {
+  max-width: 1124px;
+}
 .big-dialog {
   max-width: 881px;
 }

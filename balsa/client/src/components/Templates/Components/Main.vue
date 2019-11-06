@@ -1,12 +1,12 @@
 <template>
-  <el-row :gutter="48">
-    <div
-      v-on:click="selectedCard !==card ? $emit('handler',card):$emit('handler',null);"
+  <el-row :gutter="36">
+    <TemplateCard
+      :data="card"
       v-for="(card,index) in arr.filter(a=>a.category===selectedCategory)"
       :key="index"
-    >
-      <TemplateCard :data="card" :selectedCard="selectedCard" />
-    </div>
+      :selectedCard="selectedCard"
+      @click.native="selectedCard !==card ? $emit('handler',card):$emit('handler',null);"
+    />
   </el-row>
 </template>
 

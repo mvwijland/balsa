@@ -1,5 +1,5 @@
 <template>
-  <el-col :xl="12" :lg="12" :md="12">
+  <el-col :xl="8" :lg="8" :md="10">
     <el-row class="template--card" :class="selectedCard===data ? 'selected-card':null">
       <el-row style="padding:8px 0">
         <div class="template-image"></div>
@@ -43,7 +43,7 @@ export default {
   width: 100%;
   border-radius: 4px;
   border: 1px solid #ebeef5;
-  padding: 24px;
+  padding: 24px 22px;
   z-index: 1;
   position: relative;
   background: white;

@@ -3,7 +3,7 @@
     <el-dialog
       title="Select Your Template"
       :visible.sync="dialogFormVisible"
-      custom-class="el-dialog-balsa big-dialog template-dialog"
+      custom-class="el-dialog-balsa bigger-dialog template-dialog"
     >
       <Templates @handler="selectedCard" />
       <span slot="footer" class="dialog-footer">
