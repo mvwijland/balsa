@@ -2,46 +2,41 @@
   <el-row :gutter="36">
     <TemplateCard
       :data="card"
-      v-for="(card,index) in arr.filter(a=>a.category===selectedCategory)"
-      :key="index"
+      v-for="card in templates"
+      v-if="!$apollo.queries.templates.loading"
+      :key="card.id"
       :selectedCard="selectedCard"
-      @click.native="selectedCard !==card ? $emit('handler',card):$emit('handler',null);"
+      @click.native="selectedCard !==card ? $emit('handler',card) : $emit('handler',null)"
     />
   </el-row>
 </template>
 
 <script>
 import TemplateCard from './TemplateCard';
+import {TEMPLATES_QUERY} from "../../../queries";
 export default {
   props: {
-    selectedCategory: { type: String, default: 'design' },
+    selectedCategory: {
+      type: Number,
+      default: 0
+    },
     selectedCard: {
-      tpye: Object,
+      type: Object,
       default: {},
     },
   },
   components: {
     TemplateCard,
   },
-  data() {
-    return {
-      arr: [
-        { id: '1', title: 'Tasks & Issues', category: 'design' },
-        { id: '2', title: 'Meeting notes', category: 'design' },
-        { id: '3', title: 'Product specifications', category: 'engineer' },
-        { id: '4', title: 'Vision & mission', category: 'engineer' },
-        { id: '5', title: 'Weekly reviews', category: 'engineer' },
-        { id: '6', title: 'Product management', category: 'engineer' },
-        { id: '7', title: 'Tasks & Issues', category: '3' },
-        { id: '8', title: 'Tasks & Issues', category: '3' },
-        { id: '9', title: 'Tasks & Issues', category: '4' },
-        { id: '10', title: 'Tasks & Issues', category: '5' },
-        { id: '11', title: 'Tasks & Issues', category: '6' },
-        { id: '12', title: 'Tasks & Issues', category: '7' },
-        { id: '13', title: 'Tasks & Issues', category: '8' },
-        { id: '14', title: 'Tasks & Issues', category: '9' },
-      ],
-    };
+  apollo: {
+    templates: {
+      query: TEMPLATES_QUERY,
+      variables() {
+        return {
+          categoryId: this.selectedCategory ? this.selectedCategory : null
+        };
+      },
+    },
   },
 };
 </script>

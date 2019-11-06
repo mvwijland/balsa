@@ -4,8 +4,11 @@ import dotenv from 'dotenv';
 
 import { Template } from './entities/template';
 import TEMPLATES_DATA from './templates.json';
+import { TemplateCategory } from './entities/templateCategory';
 
 dotenv.config();
+
+const CATEGORIES = ['Bussiness', 'Engineering', 'Design'];
 
 createConnection(...ormconfig)
   .then(async connection => {
@@ -15,13 +18,24 @@ createConnection(...ormconfig)
       return;
     }
 
+    for (const category of CATEGORIES) {
+      let categoryObject = new TemplateCategory();
+      categoryObject.name = category;
+      await categoryObject.save();
+    }
+
     for (const templateData of TEMPLATES_DATA) {
       let templateObject = new Template();
-      templateObject.content = JSON.stringify(templateData);
-      const title = templateData.content[0];
-      if (title.type === 'title' && title.content) {
-        templateObject.name = title.content[0].text;
+
+      templateObject.name = templateData.name;
+      for (const categoryId of templateData.categories) {
+        if (!templateObject.categories) {
+          templateObject.categories = [];
+        }
+        templateObject.categories.push(await TemplateCategory.findOne({ id: categoryId }));
       }
+      templateObject.content = JSON.stringify(templateData.content);
+
       templateObject.save();
     }
     console.log('Templates successfully imported.');

@@ -9,41 +9,13 @@
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-menu-item index="design">
+        <el-menu-item
+          v-for="category in templateCategories"
+          v-if="!$apollo.queries.templateCategories.loading"
+          :index="category.id"
+        >
           <i class="el-icon-menu"></i>
-          <span>Design</span>
-        </el-menu-item>
-        <el-menu-item index="engineer">
-          <i class="el-icon-menu"></i>
-          <span>Engineering</span>
-        </el-menu-item>
-        <el-menu-item index="human">
-          <i class="el-icon-menu"></i>
-          <span>Human resources</span>
-        </el-menu-item>
-        <el-menu-item index="marketing">
-          <i class="el-icon-menu"></i>
-          <span>Marketing</span>
-        </el-menu-item>
-        <el-menu-item index="meetings">
-          <i class="el-icon-menu"></i>
-          <span>Meetings</span>
-        </el-menu-item>
-        <el-menu-item index="miscellaneous">
-          <i class="el-icon-menu"></i>
-          <span>Miscellaneous</span>
-        </el-menu-item>
-        <el-menu-item index="product">
-          <i class="el-icon-menu"></i>
-          <span>Product</span>
-        </el-menu-item>
-        <el-menu-item index="sales">
-          <i class="el-icon-menu"></i>
-          <span>Sales</span>
-        </el-menu-item>
-        <el-menu-item index="support">
-          <i class="el-icon-menu"></i>
-          <span>Support</span>
+          <span>{{ category.name }}</span>
         </el-menu-item>
 
         <!-- <div style="padding:20px;margin-bottom:90px">
@@ -53,7 +25,7 @@
             </el-row>
             <el-row
               style="margin-bottom:8px;"
-            >show somoe display texts here ! it may be usefull the show some tips to user.</el-row>
+            >show some display texts here ! it may be useful the show some tips to user.</el-row>
             <el-row>this is going to be an dummy data.</el-row>
           </el-card>
         </div>-->
@@ -63,7 +35,14 @@
 </template>
 
 <script>
+import {TEMPLATE_CATEGORIES_QUERY} from "../../../queries";
+
 export default {
+  apollo: {
+    templateCategories: {
+      query: TEMPLATE_CATEGORIES_QUERY,
+    },
+  },
   methods: {
     isMobile() {
       try {

@@ -356,3 +356,22 @@ export const MYPROFILE_QUERY = gql`
     }
   }
 `;
+
+export const TEMPLATES_QUERY = gql`
+  query templates($categoryId: Int) {
+    templates(categoryId: $categoryId) {
+      id
+      name
+      content
+    }
+  }
+`;
+
+export const TEMPLATE_CATEGORIES_QUERY = gql`
+  query templateCategories {
+    templateCategories {
+      id
+      name
+    }
+  }
+`;

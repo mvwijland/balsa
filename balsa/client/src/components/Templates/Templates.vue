@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      index: 'design',
+      index: 0,
       card: null,
       activeAnim: false,
     };

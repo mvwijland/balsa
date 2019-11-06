@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, BaseEntity, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, BaseEntity, Column, JoinTable, ManyToMany } from 'typeorm';
+import { TemplateCategory } from './templateCategory';
 
 @Entity()
 export class Template extends BaseEntity {
@@ -10,4 +11,8 @@ export class Template extends BaseEntity {
 
   @Column({ default: '' })
   public content: string;
+
+  @JoinTable()
+  @ManyToMany(type => TemplateCategory, category => category.templates)
+  public categories: TemplateCategory[];
 }

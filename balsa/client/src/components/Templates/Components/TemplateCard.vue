@@ -1,13 +1,13 @@
 <template>
   <el-col :xl="8" :lg="8" :md="10">
-    <el-row class="template--card" :class="selectedCard===data ? 'selected-card':null">
+    <el-row class="template--card" :class="selectedCard && selectedCard.id === data.id ? 'selected-card' : null">
       <el-row style="padding:8px 0">
         <div class="template-image"></div>
       </el-row>
       <el-col>
         <el-row class="card-container" type="flex" align="middle">
           <Avatar />
-          <span class="medium-font-weight small-text-color" style="margin-left:8px;">{{data.title}}</span>
+          <span class="medium-font-weight small-text-color" style="margin-left:8px;">{{data.name}}</span>
         </el-row>
       </el-col>
     </el-row>
@@ -23,7 +23,7 @@ export default {
       default: { id: -1 },
     },
     selectedCard: {
-      tpye: Object,
+      type: Object,
       default: { id: -2 },
     },
   },
