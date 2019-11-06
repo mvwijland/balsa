@@ -12,6 +12,9 @@ export class Template extends BaseEntity {
   @Column({ default: '' })
   public content: string;
 
+  @Column({ default: '' })
+  public contentHtml: string;
+
   @JoinTable()
   @ManyToMany(type => TemplateCategory, category => category.templates)
   public categories: TemplateCategory[];

@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-express';
 import { Template } from '../../entities/template';
 import { TemplateCategory } from '../../entities/templateCategory';
-import { Conversation } from '../../entities/conversation';
 
 const typeDefs = gql`
   extend type Query {
@@ -12,6 +11,7 @@ const typeDefs = gql`
     id: Int
     name: String
     content: String
+    contentHtml: String
   }
 
   type TemplateCategory {

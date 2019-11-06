@@ -35,6 +35,7 @@ createConnection(...ormconfig)
         templateObject.categories.push(await TemplateCategory.findOne({ id: categoryId }));
       }
       templateObject.content = JSON.stringify(templateData.content);
+      templateObject.contentHtml = templateData.contentHtml;
 
       templateObject.save();
     }

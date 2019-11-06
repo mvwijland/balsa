@@ -363,6 +363,7 @@ export const TEMPLATES_QUERY = gql`
       id
       name
       content
+      contentHtml
     }
   }
 `;
