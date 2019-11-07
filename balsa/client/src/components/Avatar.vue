@@ -50,6 +50,7 @@ export default {
 
 <style>
 .avatar {
+  min-width: 37px;
   width: 37px;
   height: 37px;
   border-radius: 50%;

@@ -336,3 +336,6 @@ p {
 .no--padding {
   padding: 0;
 }
+.full-height {
+  height: 100%;
+}

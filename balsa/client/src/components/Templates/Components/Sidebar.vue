@@ -1,11 +1,11 @@
 <template>
-  <el-row class="tac">
-    <el-col :span="24">
+  <el-row class="tac full-height">
+    <el-col :span="24" class="full-height">
       <el-menu
         :collapse="isMobile()? true:false"
         @select="handleSelect"
         default-active="design"
-        class="el-menu-vertical-demo"
+        class="el-menu-vertical-demo full-height"
         @open="handleOpen"
         @close="handleClose"
       >
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import {TEMPLATE_CATEGORIES_QUERY} from "../../../queries";
+import { TEMPLATE_CATEGORIES_QUERY } from '../../../queries';
 
 export default {
   apollo: {

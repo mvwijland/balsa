@@ -1,6 +1,9 @@
 <template>
   <el-col :xl="8" :lg="8" :md="10">
-    <el-row class="template--card" :class="selectedCard && selectedCard.id === data.id ? 'selected-card' : null">
+    <el-row
+      class="template--card"
+      :class="selectedCard && selectedCard.id === data.id ? 'selected-card' : null"
+    >
       <el-row style="padding:8px 0">
         <div class="template-image"></div>
       </el-row>
@@ -43,12 +46,14 @@ export default {
   width: 100%;
   border-radius: 4px;
   border: 1px solid #ebeef5;
-  padding: 24px 22px;
+  padding-left: 22px;
+  padding-right: 22px;
   z-index: 1;
   position: relative;
   background: white;
   top: 0;
   transition: all 0.5s;
+  height: 94px;
 }
 /* .template--card:hover .card-container {
   transition: all 0.5s;
