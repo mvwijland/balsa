@@ -5,12 +5,15 @@
       :class="selectedCard && selectedCard.id === data.id ? 'selected-card' : null"
     >
       <el-row style="padding:8px 0">
-        <div class="template-image"></div>
+        <div class="template-image template-holder" v-html="data.contentHtml"></div>
       </el-row>
       <el-col>
         <el-row class="card-container" type="flex" align="middle">
           <Avatar />
-          <span class="medium-font-weight small-text-color" style="margin-left:8px;">{{data.name}}</span>
+          <span
+            class="medium-font-weight small-text-color medium-font"
+            style="margin-left:8px;word-break: break-word;"
+          >{{data.name}}</span>
         </el-row>
       </el-col>
     </el-row>
@@ -71,7 +74,9 @@ export default {
 .template-image {
   height: 240px;
   width: 100%;
-  background: #eaeaea;
+  padding: 24px;
+  overflow: hidden;
+  background: #f9f9f9;
   border-radius: 4px;
 }
 .selected-card .card-container {

@@ -339,3 +339,68 @@ p {
 .full-height {
   height: 100%;
 }
+.template-holder h1 {
+  font-size: 8.54px;
+}
+.template-holder h2 {
+  font-size: 6.85px;
+}
+.template-holder h3 {
+  font-size: 5.99px;
+}
+.template-holder p {
+  font-size: 4.7px;
+}
+.template-holder span {
+  padding: 1px 4px;
+  font-size: 4.7px;
+}
+.template-holder > h1,
+h2,
+h3,
+p,
+ul,
+ol,
+pre,
+blockquote,
+hr {
+  margin: 0.5em 0;
+}
+.template-holder table {
+  width: 100%;
+}
+.template-holder ul {
+  padding-left: 15px;
+  font-size: 5px;
+}
+.template-holder ul > li {
+  line-height: 0.4;
+}
+.template-holder .todo-checkbox {
+  width: 0.3em;
+  height: 0.3em;
+  margin-right: 4px;
+  padding: 1px;
+  border: 0.8px solid #1c4586;
+}
+.template-holder li[data-type='todo_item'] {
+  padding: 0 4px;
+}
+.template-holder li[data-type='todo_item']:hover {
+  background-color: transparent;
+  border-radius: 0;
+  margin-left: 0;
+  padding: 0 4px;
+}
+.template-holder td {
+  padding: 2px 4px;
+}
+.template-holder img {
+  width: 100%;
+}
+.template-holder ol {
+  font-size: 5px;
+}
+.template-holder ol > li {
+  margin: 6px 0;
+}
