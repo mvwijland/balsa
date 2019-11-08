@@ -154,12 +154,7 @@ export default {
   methods: {
     createSelectedTemplate() {
       this.dialogFormVisible = false;
-      //selected template
-      console.log('selected template', this.selectedTemplateCard);
-      //call APOLLO function here
-      //...
-      //then call success message from bottom-right
-      //...
+      this.createFile();
     },
     selectedCard(card) {
       //Selected card coming from Temlplates.vue by using EMİT.
@@ -176,8 +171,8 @@ export default {
       this.$apollo
         .mutate({
           mutation: gql`
-            mutation createFile($content: String, $folderId: Int) {
-              createFile(content: $content, folderId: $folderId) {
+            mutation createFile($content: String, $folderId: Int, $templateId: Int) {
+              createFile(content: $content, folderId: $folderId, templateId: $templateId) {
                 id
                 name
                 content
@@ -192,6 +187,7 @@ export default {
           `,
           variables: {
             folderId: inFolder ? parseInt(this.$route.params.id) : undefined,
+            templateId: this.selectedTemplateCard.id,
           },
         })
         .then(({ data }) => {

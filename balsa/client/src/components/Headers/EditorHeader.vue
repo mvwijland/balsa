@@ -1,5 +1,5 @@
 <template>
-  <el-header>
+  <el-header class="no-print">
     <el-menu class="el-menu-demo" mode="horizontal">
       <el-menu-item>
         <el-button type="text" @click="$router.push({name:'home'})">

@@ -333,8 +333,8 @@ const resolvers = {
       newFile.updatedAt = new Date();
 
       if (templateId) {
-        const template = await Template.find({ id: templateId });
-        newFile.content = JSON.parse(template.content);
+        const template = await Template.findOne({ id: templateId });
+        newFile.content = template.content;
       } else {
         newFile.content = content;
       }

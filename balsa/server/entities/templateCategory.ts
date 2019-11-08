@@ -9,6 +9,9 @@ export class TemplateCategory extends BaseEntity {
   @Column()
   public name: string;
 
+  @Column()
+  public icon: string;
+
   @ManyToMany(type => Template, object => object.categories)
   public templates: Template[];
 }

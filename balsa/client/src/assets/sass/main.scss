@@ -81,6 +81,24 @@ h3 {
   font-style: italic;
 }
 
+@media print
+{
+  .no-print, .no-print *
+  {
+    display: none !important;
+    height: 0 !important;
+  }
+  .editor__content {
+    margin-top: 0;
+  }
+  .el-main {
+    padding-top: 0 !important;
+  }
+  .main-capsule {
+    margin-top: 0 !important;
+  }
+}
+
 @import './editor';
 @import './menubar';
 @import './menububble';

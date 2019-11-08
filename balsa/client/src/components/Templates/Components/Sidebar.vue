@@ -11,10 +11,11 @@
       >
         <el-menu-item
           v-for="category in templateCategories"
+          :key="category.id"
           v-if="!$apollo.queries.templateCategories.loading"
           :index="category.id"
         >
-          <i class="el-icon-menu"></i>
+          <i :class="category.icon"></i>
           <span>{{ category.name }}</span>
         </el-menu-item>
 

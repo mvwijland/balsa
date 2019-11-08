@@ -8,7 +8,11 @@ import { TemplateCategory } from './entities/templateCategory';
 
 dotenv.config();
 
-const CATEGORIES = ['Bussiness', 'Engineering', 'Design'];
+const CATEGORIES = [
+  { name: 'Bussiness', icon: 'el-icon-suitcase' },
+  { name: 'Engineering', icon: 'el-icon-monitor' },
+  { name: 'Design', icon: 'el-icon-picture-outline' },
+];
 
 createConnection(...ormconfig)
   .then(async connection => {
@@ -20,7 +24,8 @@ createConnection(...ormconfig)
 
     for (const category of CATEGORIES) {
       let categoryObject = new TemplateCategory();
-      categoryObject.name = category;
+      categoryObject.name = category.name;
+      categoryObject.icon = category.icon;
       await categoryObject.save();
     }
 

@@ -9,7 +9,7 @@
       </el-row>
       <el-col>
         <el-row class="card-container" type="flex" align="middle">
-          <Avatar />
+          <Avatar src="/favicon.ico" />
           <span
             class="medium-font-weight small-text-color medium-font"
             style="margin-left:8px;word-break: break-word;"

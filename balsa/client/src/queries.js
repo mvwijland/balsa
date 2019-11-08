@@ -373,6 +373,7 @@ export const TEMPLATE_CATEGORIES_QUERY = gql`
     templateCategories {
       id
       name
+      icon
     }
   }
 `;

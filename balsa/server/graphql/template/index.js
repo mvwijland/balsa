@@ -17,6 +17,7 @@ const typeDefs = gql`
   type TemplateCategory {
     id: Int
     name: String
+    icon: String
   }
 `;
 

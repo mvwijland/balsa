@@ -2,6 +2,7 @@
   <el-row>
     <AddToFolderDialog
       :dialogVisible="$store.getters.isMoveDialogOpen"
+      class="no-print"
       @handler="$store.dispatch('toggleMoveDialog')"
       :file="File"
       v-if="!this.$apollo.queries.File.loading && $store.getters.isMoveDialogOpen"
@@ -10,23 +11,26 @@
       :dialogVisible="$store.getters.isExportFileDialogOpen"
       @handler="$store.dispatch('toggleExportFileDialog')"
       @export="exportHandler"
+      class="no-print"
       :file="File"
       v-if="!this.$apollo.queries.File.loading && $store.getters.isExportFileDialogOpen"
     />
     <FilePermissionDialog
       :dialogVisible="$store.getters.isFilePermissionDialogOpen"
       @handler="$store.dispatch('toggleFilePermissionDialog')"
+      class="no-print"
       :file="File"
       v-if="!this.$apollo.queries.File.loading && $store.getters.isFilePermissionDialogOpen"
     />
     <RemoveFileDialog
       :dialogVisible="$store.getters.isRemoveFileDialogOpen"
       @handler="$store.dispatch('toggleRemoveFileDialog')"
+      class="no-print"
       :file="File"
       v-if="!this.$apollo.queries.File.loading && $store.getters.isRemoveFileDialogOpen"
     />
     <div class="editor balsa-container" style="margin-bottom:2%;position:relative;">
-      <el-row type="flex" justify="center" style="position:relative;min-height:60px">
+      <el-row type="flex" class="no-print" justify="center" style="position:relative;min-height:60px">
         <editor-menu-bar
           :editor="editor"
           v-slot="{ commands, isActive }"
@@ -199,6 +203,7 @@
 
       <editor-menu-bubble
         :editor="editor"
+        class="no-print"
         :keep-in-bounds="keepInBounds"
         v-slot="{ commands, isActive, getMarkAttrs, menu }"
         v-if="!this.$apollo.queries.File.loading && File.hasWritePermission"
@@ -293,7 +298,7 @@
       <div
         v-if="!this.$apollo.queries.conversation.loading && conversation"
         :class="{'closed': !showConversation}"
-        class="comment-balsa"
+        class="comment-balsa no-print"
       >
         <div v-for="(comment,index) in conversation.comments" :key="{index}">
           <el-row type="flex" justify="space-between">
@@ -378,7 +383,7 @@
     <el-row
       type="flex"
       justify="space-between"
-      class="balsa-editor-search"
+      class="balsa-editor-search no-print"
       :class="search ?'show-search':'hide-search'"
     >
       <el-row type="flex" justify="center" style="width:20px;" class="expanse-search">
