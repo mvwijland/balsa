@@ -1144,16 +1144,7 @@ export default {
       }
     },
     exportToPdf() {
-      const doc = new jsPDF();
-      const canvasElement = document.createElement('canvas');
-      const _html = document.getElementsByClassName('ProseMirror')[0];
-      _html.innerHTML = this.htmlData;
-
-      html2canvas(_html, { canvas: canvasElement }).then(function(canvas) {
-        const img = canvas.toDataURL('image/png');
-        doc.addImage(img, 'PNG', 20, 20);
-        doc.save('document.pdf');
-      });
+      window.print();
     },
     exportToDoc() {
       const header =
