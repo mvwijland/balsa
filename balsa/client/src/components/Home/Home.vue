@@ -1,27 +1,30 @@
 <template>
   <div class="balsa-container">
-    <el-dialog
-      title="Select Your Template"
-      :visible.sync="dialogFormVisible"
-      custom-class="el-dialog-balsa bigger-dialog template-dialog"
-    >
-      <Templates @handler="selectedCard" />
-      <span slot="footer" class="dialog-footer">
-        <el-button
-          type="text"
-          @click="dialogFormVisible = false"
-          style="color:#9ca2aa;margin-right:20px;"
-        >
-          <span class="small-span">Cancel</span>
-        </el-button>
+    <div class="balsa-template">
+      <el-dialog
+        title="Select Your Template"
+        :visible.sync="dialogFormVisible"
+        custom-class="el-dialog-balsa bigger-dialog template-dialog template-dialog-margin"
+      >
+        <Templates @handler="selectedCard" />
+        <span slot="footer" class="dialog-footer">
+          <el-button
+            type="text"
+            @click="dialogFormVisible = false"
+            style="color:#9ca2aa;margin-right:20px;"
+          >
+            <span class="small-span">Cancel</span>
+          </el-button>
 
-        <el-button
-          type="primary"
-          @click="createSelectedTemplate"
-          :disabled="selectedTemplateCard?false:true"
-        >Create</el-button>
-      </span>
-    </el-dialog>
+          <el-button
+            type="primary"
+            @click="createSelectedTemplate"
+            :disabled="selectedTemplateCard?false:true"
+          >Create</el-button>
+        </span>
+      </el-dialog>
+    </div>
+
     <el-row type="flex" style="justify-content:flex-end" class="mobile-margin-bottom-32">
       <el-button-group style="margin-right:10px;">
         <el-button
@@ -358,5 +361,13 @@ h1 {
 }
 .template-dialog .el-dialog__footer {
   border: solid 1px #e6e6e6;
+}
+.template-dialog-margin {
+  margin: 0 !important;
+}
+.balsa-template .el-dialog__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
