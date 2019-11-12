@@ -26,44 +26,32 @@
     </div>
 
     <el-row type="flex" style="justify-content:flex-end" class="mobile-margin-bottom-32">
-      <el-button-group style="margin-right:10px;">
-        <el-button
-          type="success"
-          @click="selectedText==='Create File' ? createFile(true):dialogFormVisible=true"
-          :plain="false"
-          icon="el-icon-files"
-          class="semi-medium-font"
-        >{{selectedText}}</el-button>
-        <el-popover
-          ref="popover"
-          placement="bottom"
-          width="200"
-          trigger="click"
-          v-model="visible"
-          popper-class="no--padding"
-        >
-          <ul class="el-scrollbar__view el-select-dropdown__list">
-            <li
-              @click="visible=!visible; selectedText='Create File'"
-              class="el-select-dropdown__item"
-            >
-              <span>Create File</span>
-            </li>
-            <li
-              @click="visible=!visible;selectedText='Create From Template'"
-              class="el-select-dropdown__item"
-            >
-              <span>Create From Template</span>
-            </li>
-          </ul>
-        </el-popover>
-        <el-button
-          type="success"
-          class="semi-medium-font"
-          v-popover:popover
-          icon="el-icon-arrow-down bold-font-weight"
-        ></el-button>
-      </el-button-group>
+      <el-popover
+        ref="popover"
+        placement="bottom"
+        width="200"
+        trigger="click"
+        v-model="visible"
+        popper-class="no--padding"
+      >
+        <ul class="el-scrollbar__view el-select-dropdown__list">
+          <li @click="visible=!visible; createFile(true)" class="el-select-dropdown__item">
+            <span>New File</span>
+          </li>
+          <li @click="visible=!visible;dialogFormVisible=true" class="el-select-dropdown__item">
+            <span>From template</span>
+          </li>
+        </ul>
+      </el-popover>
+      <el-button
+        type="success"
+        class="semi-medium-font"
+        v-popover:popover
+        style="margin-right:16px;"
+      >
+        Create
+        <i class="el-icon-arrow-down bold-font-weight" style="margin-left:5px;"></i>
+      </el-button>
 
       <CreateFolder />
     </el-row>
@@ -153,6 +141,7 @@ import { RECENT_FILES_QUERY, MY_FILES_QUERY, ALL_FOLDERS_QUERY } from '../../que
 import CreateFolder from '../CreateFolder.vue';
 import TabContainer from '../TabContainer.vue';
 import Templates from '../Templates/Templates.vue';
+import _ from 'lodash';
 export default {
   methods: {
     createSelectedTemplate() {
@@ -190,7 +179,7 @@ export default {
           `,
           variables: {
             folderId: inFolder ? parseInt(this.$route.params.id) : undefined,
-            templateId: this.selectedTemplateCard.id,
+            templateId: _.get(this, 'selectedTemplateCard.id', false) ? this.selectedTemplateCard.id : undefined,
           },
         })
         .then(({ data }) => {
