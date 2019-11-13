@@ -20,7 +20,7 @@
             type="primary"
             @click="createSelectedTemplate"
             :disabled="selectedTemplateCard?false:true"
-          >Create</el-button>
+          >Create File</el-button>
         </span>
       </el-dialog>
     </div>
@@ -36,10 +36,10 @@
       >
         <ul class="el-scrollbar__view el-select-dropdown__list">
           <li @click="visible=!visible; createFile(true)" class="el-select-dropdown__item">
-            <span>New File</span>
+            <span>Blank File”</span>
           </li>
           <li @click="visible=!visible;dialogFormVisible=true" class="el-select-dropdown__item">
-            <span>From template</span>
+            <span>Create from Template</span>
           </li>
         </ul>
       </el-popover>
