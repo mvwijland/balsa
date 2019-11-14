@@ -71,7 +71,7 @@ export default class Image extends Node {
   }
 
   get plugins() {
-    const self = this
+    const self = this;
     return [
       new Plugin({
         props: {
@@ -94,14 +94,13 @@ export default class Image extends Node {
               const { schema } = view.state;
               const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY });
               images.forEach(image => {
-                self.options.uploadImage(image)
-                  .then(({ data }) => {
-                    const node = schema.nodes.image.create({
-                      src: data.uploadFile.file,
-                    });
-                    const transaction = view.state.tr.insert(coordinates.pos, node);
-                    view.dispatch(transaction);
+                self.options.uploadImage(image).then(({ data }) => {
+                  const node = schema.nodes.image.create({
+                    src: data.uploadFile.file,
                   });
+                  const transaction = view.state.tr.insert(coordinates.pos, node);
+                  view.dispatch(transaction);
+                });
               });
             },
           },

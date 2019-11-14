@@ -135,6 +135,14 @@
               <icon name="annotation" />
             </button>
 
+            <button
+              :class="{ 'is-active': showConversation }"
+              class="menubar__button"
+              @click="commands.createHandsonTable"
+            >
+              <icon name="plus" />
+            </button>
+
             <!-- <button
               class="menubar__button"
               :class="{ 'is-active': isActive.code_block() }"
@@ -470,6 +478,7 @@ import _ from 'lodash';
 import Title from './Editor/Components/Title';
 import Iframe from './Editor/Components/Iframe';
 import Comment from './Editor/Nodes/Comment';
+import HandsonTable from './Editor/Nodes/HandsonTable';
 import Image from './Editor/Nodes/Image';
 import TodoItem from './Editor/Nodes/TodoItem';
 import {
@@ -499,7 +508,7 @@ import {
   Search,
   CodeBlockHighlight,
 } from 'tiptap-extensions';
-
+import 'handsontable/dist/handsontable.full.css';
 import { gql } from 'apollo-server-core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -550,6 +559,7 @@ export default {
             hideConversationBox: this.hideConversationBox,
             createConversation: this.createConversation,
           }),
+          new HandsonTable(),
           new CodeBlockHighlight({
             languages: {
               javascript,
@@ -683,6 +693,7 @@ export default {
         onUpdate: ({ getJSON, getHTML, state, ...rest }) => {
           this.saveContent(getJSON(), getHTML(), state.selection.anchor);
           this.htmlData = getHTML();
+          console.log('EDİTOR', state)
         },
         onTransaction: ({ state, transaction }) => {
           // Skip the first transaction to avoid overwriting cursor position

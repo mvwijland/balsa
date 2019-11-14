@@ -1,8 +1,3 @@
-const checkMark = step => {
-  const mark = step.mark;
-  return mark && mark.type.name === 'comment';
-};
-
 const getAnchorMark = anchor => {
   const nodeBefore = anchor.nodeBefore;
   const nodeAfter = anchor.nodeAfter;
@@ -26,21 +21,16 @@ const getAnchorMark = anchor => {
   return null;
 };
 
-export const getCommentStep = transaction => {
+const checkMark = step => {
+  const mark = step.mark;
+  return mark && mark.type.name === 'comment';
+};
+
+export const getHandsonTableStep = transaction => {
   for (const step of transaction.steps) {
     if (checkMark(step)) {
       return step;
     }
-  }
-  return null;
-};
-
-export const getClickMark = transaction => {
-  if (transaction.meta.pointer) {
-    const selection = transaction.curSelection;
-    const anchor = selection.$anchor;
-
-    return getAnchorMark(anchor);
   }
   return null;
 };

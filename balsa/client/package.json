@@ -50,7 +50,9 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.21",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-svgstore-plugin": "^4.1.0"
+    "webpack-svgstore-plugin": "^4.1.0",
+    "handsontable":  "6.2.0",
+    "@handsontable/vue": "latest"
   },
   "postcss": {
     "plugins": {
