@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { HandsonTableState } from './state';
-import Handsontable from "handsontable";
+import Handsontable from 'handsontable';
 
 class HandsonTablePlugin {
   constructor({ editorView, options, key }) {
@@ -14,17 +14,8 @@ class HandsonTablePlugin {
     const next = this.key.getState(view.state);
     const container = document.querySelector(`div[handsomeguid="${next.guid}"]`);
     if (container) {
-      const data = [
-        ['', 'Tesla', 'Volvo', 'Toyota', 'Ford'],
-        ['2019', 10, 11, 12, 13],
-        ['2020', 20, 11, 14, 13],
-        ['2021', 30, 15, 12, 13],
-      ];
-
       const hot = new Handsontable(container, {
-        data: data,
-        rowHeaders: true,
-        colHeaders: true,
+        ...next.handsonSettings,
       });
     }
   }

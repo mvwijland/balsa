@@ -510,10 +510,7 @@ import {
 } from 'tiptap-extensions';
 import 'handsontable/dist/handsontable.full.css';
 import { gql } from 'apollo-server-core';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import TurnDown from 'turndown';
-import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
 import { CONVERSATION_QUERY, MYPROFILE_QUERY } from '../queries';
@@ -693,7 +690,6 @@ export default {
         onUpdate: ({ getJSON, getHTML, state, ...rest }) => {
           this.saveContent(getJSON(), getHTML(), state.selection.anchor);
           this.htmlData = getHTML();
-          console.log('EDİTOR', state)
         },
         onTransaction: ({ state, transaction }) => {
           // Skip the first transaction to avoid overwriting cursor position

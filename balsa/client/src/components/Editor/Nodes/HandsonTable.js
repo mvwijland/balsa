@@ -16,10 +16,25 @@ export default class HandsonTable extends Node {
         guid: {
           default: '',
         },
+        handsomedata: {
+          default: [
+            ['', 'Tesla', 'Volvo', 'Toyota', 'Ford'],
+            ['2019', 10, 11, 12, 13],
+            ['2020', 20, 11, 14, 13],
+            ['2021', 30, 15, 18, 13],
+          ],
+        },
       },
 
       toDOM: node => {
-        return ['div', { class: 'handsome-table', handsomeguid: node.attrs.guid }];
+        return [
+          'div',
+          {
+            class: 'handsome-table',
+            handsomeguid: node.attrs.guid,
+            handsomedata: JSON.stringify(node.attrs.handsomedata),
+          },
+        ];
       },
 
       parseDOM: [
@@ -27,6 +42,7 @@ export default class HandsonTable extends Node {
           tag: 'div[handsomeguid]',
           getAttrs: dom => ({
             guid: dom.getAttribute('guid'),
+            handsomedata: dom.getAttribute('handsomedata'),
           }),
         },
       ],
@@ -42,7 +58,6 @@ export default class HandsonTable extends Node {
           const position = selection.$cursor ? selection.$cursor.pos : selection.$to.pos;
           const node = type.create({ guid });
           const transaction = state.tr.insert(position, node);
-          // console.log('TRANSaction', node);
           dispatch(transaction);
         };
       },
