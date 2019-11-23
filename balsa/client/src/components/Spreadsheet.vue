@@ -190,7 +190,7 @@
       },
 
       generateInitData() {
-        return Handsontable.helper.createEmptySpreadsheetData(25, 25)
+        return Handsontable.helper.createEmptySpreadsheetData(40, 25)
       },
 
       updateFile() {

@@ -36,7 +36,7 @@
       >
         <ul class="el-scrollbar__view el-select-dropdown__list">
           <li @click="visible=!visible; createFile(true)" class="el-select-dropdown__item">
-            <span>Document”</span>
+            <span>Document</span>
           </li>
           <li @click="visible=!visible; createSpreadsheet(true)" class="el-select-dropdown__item">
             <span>Spreadsheet</span>
