@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, On
 import { User } from './user';
 import { Contributor } from './contributor';
 import { UUIDTransformer } from './transformers';
-import { CLIENT_URL } from '../constants';
+import { CLIENT_URL, DOCUMENT, FOLDER, SPREADSHEET } from '../constants';
 import { Star } from './star';
 import { UserAwareEntity } from './abstracts';
 import { BehaviourLog } from './behaviourLog';
@@ -74,8 +74,14 @@ export class BalsaFile extends UserAwareEntity {
   @OneToMany(type => Conversation, conversation => conversation.file)
   public conversations: Conversation[];
 
+  /*
+    @deprecated
+   */
   @Column({ type: Boolean, default: false })
   public isFolder: boolean;
+
+  @Column({ default: DOCUMENT })
+  public fileType: string;
 
   public isStarred() {
     if (this.stars && this.requestUser) {
@@ -99,10 +105,12 @@ export class BalsaFile extends UserAwareEntity {
   }
 
   public getUrl() {
-    if (this.isFolder) {
+    if (this.fileType === FOLDER) {
       return `/${this.id}/`;
-    } else {
+    } else if (this.fileType === SPREADSHEET) {
       return `/editor/${this.id}/`;
+    } else {
+      return `/spreadsheet/${this.id}/`;
     }
   }
 

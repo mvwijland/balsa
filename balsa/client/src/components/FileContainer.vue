@@ -2,7 +2,7 @@
   <el-row>
     <el-row type="flex">
       <router-link
-        :to="file.isFolder?{name:'home', params:{id: file.id}}:{name:'editor', params:{id: file.id}}"
+        :to="fileUrl(file)"
       >
         <span class="title">{{file.title || file.name}}</span>
       </router-link>
@@ -22,6 +22,8 @@
 <script>
 import Stars from './Stars/Stars.vue';
 import moment from 'moment';
+import { getFileUrl } from '../utils';
+
 export default {
   components: {
     Stars,
@@ -32,6 +34,11 @@ export default {
         ? moment(parseInt(this.$props.file.updatedAt)).fromNow()
         : moment(parseInt(this.$props.file.createdAt)).fromNow();
     },
+  },
+  methods: {
+    fileUrl(file) {
+      return getFileUrl(file);
+    }
   },
   props: {
     file: {

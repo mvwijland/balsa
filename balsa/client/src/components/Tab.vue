@@ -34,8 +34,8 @@
                 <template v-slot:image>
                   <!--it was file.svg -->
                   <BalsaIcon
-                    v-if="!file.isFolder"
-                    :icon="file.isFolder?'folder.svg':'newFile2.png'"
+                    v-if="file.fileType === 'document'"
+                    icon="newFile2.png"
                   />
                   <el-row v-else type="flex" justify="center" style="padding:24px 0 24px 0">
                     <icon
@@ -133,10 +133,12 @@ export default {
     },
     callme(el, file) {
       if (!el.target.classList.contains('el-rate__icon')) {
-        if (file.isFolder) {
+        if (file.fileType === 'folder') {
           this.$router.push({ name: 'home', params: { id: file.id } });
-        } else {
+        } else if (file.fileType === 'document') {
           this.$router.push({ name: 'editor', params: { id: file.id } });
+        } else if (file.fileType === 'spreadsheet') {
+          this.$router.push({ name: 'spreadsheet', params: { id: file.id } });
         }
       }
     },
@@ -171,7 +173,7 @@ export default {
     },
     vueOnDrop(id) {
       if (
-        this.files[_.findIndex(this.files, ['id', parseInt(id)])].isFolder &&
+        this.files[_.findIndex(this.files, ['id', parseInt(id)])].fileType === 'folder' &&
         parseInt(this.selectedFile) !== parseInt(id)
       ) {
         if (this.activeDragCss === -2) {
@@ -198,7 +200,7 @@ export default {
       ev.preventDefault();
 
       if (
-        this.files[_.findIndex(this.files, ['id', parseInt(parentId)])].isFolder &&
+        this.files[_.findIndex(this.files, ['id', parseInt(parentId)])].fileType === 'folder' &&
         parseInt(this.selectedFile) !== parseInt(parentId)
       ) {
         this.loadingSuccessState(
@@ -275,7 +277,7 @@ export default {
       return _.filter(arrays, f => Date.now() - f.updatedAt < 86400000 || Date.now() - f.createdAt < 86400000); // less than 1 day old
     },
     filterFiles(arrays) {
-      return _.filter(arrays, f => !f.isFolder);
+      return _.filter(arrays, f => f.fileType !== 'folder');
     },
   },
   created: function() {

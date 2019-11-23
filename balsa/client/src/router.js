@@ -18,6 +18,7 @@ import ConfigurationsRouter from './components/ConfigurationsRouter.vue';
 import InviteSignUpRouter from './components/InviteSignUpRouter';
 import Activities from './components/ActivitiesRouter.vue';
 import Templates from './components/Templates/Templates.vue';
+import SpreadsheetRouter from "./components/SpreadsheetRouter";
 
 Vue.use(Router);
 
@@ -103,6 +104,11 @@ export default new Router({
       path: '/activities',
       name: 'activities',
       component: Activities,
+    },
+    {
+      path: '/spreadsheet/:id',
+      name: 'spreadsheet',
+      component: SpreadsheetRouter,
     },
     {
       path: '/editor/:id',

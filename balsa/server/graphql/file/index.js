@@ -14,6 +14,7 @@ import { BehaviourLog } from '../../entities/behaviourLog';
 import { EmailNotifications } from '../../entities/emailNotifications';
 import { Conversation } from '../../entities/conversation';
 import { Template } from '../../entities/template';
+import {FOLDER} from "../../constants";
 
 const logger = new BehaviourLogger();
 
@@ -72,7 +73,7 @@ const typeDefs = gql`
     hasWritePermission: Boolean @userAware
     parent: File
     children: [File!]
-    isFolder: Boolean
+    fileType: String
     getUrl: String
     comments: [Comment!]
   }
@@ -188,7 +189,7 @@ const resolvers = {
         .leftJoinAndSelect('file.stars', 'stars')
         .leftJoinAndSelect('stars.user', 'starUser')
         .where('user.id = :userID', { userID: user.id })
-        .andWhere('file.isFolder = False')
+        .andWhere('file.fileType != :fileType', { fileType: FOLDER })
         .orWhere('contributor.id = :userID', { userID: user.id })
         .orderBy('file.updatedAt', 'DESC', 'NULLS FIRST')
         .getMany();
@@ -537,7 +538,7 @@ const resolvers = {
       newFile.content = fileToDuplicate.content;
       newFile.contentHtml = fileToDuplicate.contentHtml;
       newFile.cleanedContent = fileToDuplicate.cleanedContent;
-      newFile.isFolder = fileToDuplicate.isFolder;
+      newFile.fileType = fileToDuplicate.fileType;
       newFile.defaultPublicPermissionLevel = fileToDuplicate.defaultPublicPermissionLevel;
       newFile.defaultPermissionLevel = fileToDuplicate.defaultPermissionLevel;
 
@@ -630,7 +631,7 @@ const resolvers = {
           .leftJoinAndSelect('file.stars', 'stars')
           .leftJoinAndSelect('stars.user', 'starUser')
           .where('user.id = :userID', { userID: user.id })
-          .andWhere('file.isFolder = False')
+          .andWhere('file.fileType != :fileType', { fileType: FOLDER })
           .orWhere(' contributor.id = :userID', { userID: user.id })
           // .orderBy('file.updatedAt', 'DESC', 'NULLS FIRST')
           .orderBy(
@@ -659,7 +660,7 @@ const resolvers = {
         .leftJoinAndSelect('file.stars', 'stars')
         .leftJoinAndSelect('stars.user', 'starUser')
         .where('(user.id = :userID OR contributor.id = :userID)', { userID: user.id })
-        .andWhere('file.isFolder = False')
+        .andWhere('file.fileType != :fileType', { fileType: FOLDER })
         .orderBy('file.updatedAt', 'DESC', 'NULLS FIRST')
         .limit(4)
         .getMany();

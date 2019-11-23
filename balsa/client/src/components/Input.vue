@@ -12,7 +12,7 @@
     >
       <!-- <i class="el-icon-edit el-input__icon" slot="suffix"></i> -->
       <template slot-scope="{ item }">
-        <div v-if="!item.file.isFolder">
+        <div v-if="item.file.fileType !== 'folder'">
           <el-popover
             :open-delay="500"
             popper-class="hey"
@@ -26,10 +26,10 @@
 
             <el-row slot="reference" type="flex" align="middle">
               <router-link
-                :to="item.file.isFolder? '/'+item.file.id:'/editor/'+item.file.id"
+                :to="fileUrl(item.file)"
                 style="display:flex;color:unset;width:100%;align-items:center"
               >
-                <BalsaIcon :icon="item.file.isFolder?'folder.svg':'file.svg'" />
+                <BalsaIcon :icon="fileIcon(item.file)" />
                 <el-col :span="24" style="margin-left:16px;">
                   <div class="fullWidth">
                     <span
@@ -53,7 +53,7 @@
         </div>
         <div v-else>
           <el-row slot="reference" type="flex" align="middle">
-            <BalsaIcon :icon="item.file.isFolder?'folder.svg':'file.svg'" />
+            <BalsaIcon :icon="fileIcon(item.file)" />
             <el-col :span="24" style="margin-left:16px;">
               <div class="fullWidth">
                 <span
@@ -84,6 +84,8 @@ import { SEARCH_FILE_QUERY } from '../queries';
 import moment from 'moment';
 import gql from 'graphql-tag';
 import BalsaIcon from './BalsaIcon.vue';
+import {getFileIcon, getFileUrl} from "../utils";
+
 export default {
   components: {
     BalsaIcon,
@@ -111,6 +113,12 @@ export default {
     };
   },
   methods: {
+    fileUrl(file) {
+      return getFileUrl(file);
+    },
+    fileIcon(file) {
+      return getFileIcon(file);
+    },
     loadMore() {
       this.links = this.backupLinks;
       this.cb(this.links);
@@ -191,7 +199,7 @@ export default {
                   highlightedField
                   file {
                     id
-                    isFolder
+                    fileType
                     updatedAt
                     name
                     readAt

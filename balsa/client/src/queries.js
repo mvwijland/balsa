@@ -7,7 +7,7 @@ export const ALL_FOLDERS_QUERY = gql`
       name
       color
       isStarred
-      isFolder
+      fileType
       hasWritePermission
       contributors {
         id
@@ -109,7 +109,7 @@ export const STARRED_FILES_QUERY = gql`
       createdAt
       readAt
       isStarred
-      isFolder
+        fileType
       color
       user {
         id
@@ -152,7 +152,7 @@ export const ONLY_FOLDERS_QUERY = gql`
       name
       isStarred
       hasWritePermission
-      isFolder
+        fileType
       color
       user {
         id
@@ -281,7 +281,7 @@ export const ACTIVITIES_QUERY = gql`
         id
         name
         getUrl
-        isFolder
+          fileType
         user {
           id
           firstName

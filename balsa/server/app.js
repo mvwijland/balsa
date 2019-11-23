@@ -10,6 +10,8 @@ import { createConnection } from 'typeorm';
 import jwtStrategy from './middleware/auth';
 import { apolloServer } from './graphql';
 import { Configurations } from './entities/configurations';
+import { BalsaFile } from './entities/balsaFile';
+import { FOLDER } from './constants';
 
 dotenv.config();
 createConnection()
@@ -27,6 +29,18 @@ createConnection()
     if (!config) {
       config = new Configurations();
       await config.save();
+    }
+
+    /*
+      Data migration for deprecation of isFolder
+     */
+    const files = await BalsaFile.find({ isFolder: true });
+    if (files) {
+      for (const file of files) {
+        file.fileType = FOLDER;
+        file.isFolder = false;
+        await file.save();
+      }
     }
 
     passport.use('jwt', jwtStrategy);

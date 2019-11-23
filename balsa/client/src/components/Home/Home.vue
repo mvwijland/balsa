@@ -36,7 +36,10 @@
       >
         <ul class="el-scrollbar__view el-select-dropdown__list">
           <li @click="visible=!visible; createFile(true)" class="el-select-dropdown__item">
-            <span>Blank File”</span>
+            <span>Document”</span>
+          </li>
+          <li @click="visible=!visible; createSpreadsheet(true)" class="el-select-dropdown__item">
+            <span>Spreadsheet</span>
           </li>
           <li @click="visible=!visible;dialogFormVisible=true" class="el-select-dropdown__item">
             <span>Create from Template</span>
@@ -184,6 +187,33 @@ export default {
         })
         .then(({ data }) => {
           this.$router.push({ name: 'editor', params: { id: data.createFile.id } });
+        });
+    },
+    createSpreadsheet(inFolder) {
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation createSpreadsheet($content: String, $folderId: Int, $templateId: Int) {
+              createSpreadsheet(content: $content, folderId: $folderId, templateId: $templateId) {
+                id
+                name
+                content
+                user {
+                  id
+                  firstName
+                  lastName
+                }
+                updatedAt
+              }
+            }
+          `,
+          variables: {
+            folderId: inFolder ? parseInt(this.$route.params.id) : undefined,
+            templateId: _.get(this, 'selectedTemplateCard.id', false) ? this.selectedTemplateCard.id : undefined,
+          },
+        })
+        .then(({ data }) => {
+          this.$router.push({ name: 'spreadsheet', params: { id: data.createSpreadsheet.id } });
         });
     },
     parseTimingLog(f, myId) {

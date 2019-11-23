@@ -2,9 +2,9 @@ import { gql } from 'apollo-server-express';
 import { BalsaFile } from '../../entities/balsaFile';
 import shortid from 'shortid';
 import { User } from '../../entities/user';
-import { IsNull } from 'typeorm';
 import { BehaviourLogger } from '../../logging/core';
 import { BehaviourLog } from '../../entities/behaviourLog';
+import { FOLDER } from '../../constants';
 
 const logger = new BehaviourLogger();
 function pickColor() {
@@ -35,7 +35,7 @@ const resolvers = {
       const user = context.user;
       const newFolder = new BalsaFile();
       newFolder.color = pickColor();
-      newFolder.isFolder = true;
+      newFolder.fileType = FOLDER;
       const folderId = shortid.generate();
       if (name) {
         newFolder.name = name;
@@ -127,7 +127,7 @@ const resolvers = {
         .leftJoinAndSelect('file.contributors', 'contributors')
         .leftJoinAndSelect('contributors.user', 'contributor')
         .leftJoinAndSelect('stars.user', 'starUser')
-        .where('file.isFolder = True')
+        .where('file.fileType = :fileType', { fileType: FOLDER })
         .andWhere('(user.id = :userId OR contributor.id = :userId)', { userId: context.user.id });
 
       if (exceptFolderId) {

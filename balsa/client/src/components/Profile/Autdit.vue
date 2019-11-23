@@ -28,7 +28,7 @@
                         <el-row type="flex">
                           <BalsaIcon
                             style="margin-left:16px"
-                            :icon="props.row.file.isFolder?'folder.svg':'file.svg'"
+                            :icon="fileIcon(props.row.file)"
                           />
                         </el-row>
                       </el-col>
@@ -64,7 +64,7 @@
                         <el-row type="flex">
                           <BalsaIcon
                             style="margin-left:16px"
-                            :icon="props.row.file.isFolder?'folder.svg':'file.svg'"
+                            :icon="fileIcon(props.row.file)"
                           />
                         </el-row>
                       </el-col>
@@ -117,6 +117,7 @@
 import BalsaIcon from '../BalsaIcon.vue';
 import Avatar from '../Avatar.vue';
 import ProfileContainer from './ProfileContainer.vue';
+import {getFileIcon, getFileUrl} from "../../utils";
 
 export default {
   components: {
@@ -136,7 +137,7 @@ export default {
           action: 'Like',
           file: {
             id: 1,
-            isFolder: false,
+            fileType: 'document',
             name: 'Anime',
             path: 'Abc / Data / Tek / Anime',
           },
@@ -151,7 +152,7 @@ export default {
           action: 'Invitation Accept',
           file: {
             id: 2,
-            isFolder: true,
+            fileType: 'folder',
             name: 'Untitled',
             path: 'Abc / Data / Tek / Anime',
           },
@@ -165,7 +166,7 @@ export default {
           },
           file: {
             id: 3,
-            isFolder: true,
+            fileType: 'folder',
             name: 'DarkSouls',
             path: 'Abc / Data / Tek / Anime',
           },
@@ -175,6 +176,14 @@ export default {
       ],
     };
   },
+  methods: {
+    fileUrl(file) {
+      return getFileUrl(file);
+    },
+    fileIcon(file) {
+      return getFileIcon(file);
+    },
+  }
 };
 </script>
 

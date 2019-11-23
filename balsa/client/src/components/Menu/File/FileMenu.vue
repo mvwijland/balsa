@@ -39,7 +39,7 @@
               mode="vertical"
               @open="true"
           >
-            <router-link :to="`/editor/${file.id}`" v-if="!file.isFolder">
+            <router-link :to="`/editor/${file.id}`" v-if="file.fileType !== 'folder'">
               <el-menu-item index="edit" v-if="file.hasWritePermission">Edit</el-menu-item>
               <el-menu-item index="edit" v-else>Show</el-menu-item>
             </router-link>
@@ -50,13 +50,13 @@
             >Share
             </el-menu-item>
             <el-menu-item
-                v-if="!file.isFolder"
+                v-if="file.fileType !== 'folder'"
                 index="duplicate"
                 @click="duplicateFileDialogHandler"
             >Make a Copy
             </el-menu-item>
             <el-menu-item
-                v-if="configurations.copyLink && !file.isFolder"
+                v-if="configurations.copyLink && file.fileType !== 'folder'"
                 index="copy-link"
                 @click="copyLinkHandler"
             >Copy link
@@ -82,7 +82,7 @@
             <el-popover
                 @hide="onHidePopover"
                 v-model="changeColor"
-                v-if="file.isFolder && file.hasWritePermission"
+                v-if="file.fileType === 'folder' && file.hasWritePermission"
                 placement="left-start"
                 width="200"
                 trigger="click"

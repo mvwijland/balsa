@@ -3,6 +3,7 @@ import { merge } from 'lodash';
 import { typeDefs as BaseType, directives as BaseDirectives } from './base';
 import { typeDefs as AuthTypes, resolvers as AuthResolvers, directives as AuthDirectives } from './auth';
 import { typeDefs as FileTypes, resolvers as FileResolvers } from './file';
+import { typeDefs as SpreadsheetTypes, resolvers as SpreadsheetResolvers } from './spreadsheet';
 import { typeDefs as FolderTypes, resolvers as FolderResolvers } from './folder';
 import { typeDefs as ConfigTypes, resolvers as ConfigResolvers } from './config';
 import { typeDefs as LogTypes, resolvers as LogResolvers } from './logging';
@@ -16,7 +17,17 @@ const directives = {};
 const apolloServer = new ApolloServer({
   playground: IS_DEV,
   introspection: IS_DEV,
-  typeDefs: [BaseType, AuthTypes, FileTypes, FolderTypes, ConfigTypes, LogTypes, UserUploadTypes, TemplateTypes],
+  typeDefs: [
+    BaseType,
+    AuthTypes,
+    FileTypes,
+    SpreadsheetTypes,
+    FolderTypes,
+    ConfigTypes,
+    LogTypes,
+    UserUploadTypes,
+    TemplateTypes,
+  ],
   resolvers: merge(
     resolvers,
     AuthResolvers,
@@ -25,6 +36,7 @@ const apolloServer = new ApolloServer({
     ConfigResolvers,
     LogResolvers,
     UserUploadResolvers,
+    SpreadsheetResolvers,
     TemplateResolvers,
   ),
   schemaDirectives: merge(directives, AuthDirectives, BaseDirectives),
