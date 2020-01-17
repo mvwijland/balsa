@@ -6,9 +6,7 @@
 </p>
 <br>
 <p align="center">
-  <a href="https://getbalsa.com">
     <img alt="Balsa" title="Balsa" src="https://user-images.githubusercontent.com/1191477/65648300-b33f3880-dfcf-11e9-9b76-760eae2a9d06.png">
-  </a>
 </p>
 <p align="center">
   
@@ -104,9 +102,9 @@ Security is critical to us. If you discover any issue regarding security, please
 
 ## Feedback
 
-Feel free to send us feedback on [Twitter](https://twitter.com/getbalsa) or [file an issue](https://github.com/balsa-team/balsa/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
+Feel free to [file an issue](https://github.com/balsa-team/balsa/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
 
-If there's anything you'd like to discuss, please feel free to join our [forum](https://community.getbalsa.com). In case there is a feature you care about currently missing, make sure to [browse the issue tracker](https://github.com/balsa-team/balsa/issues) and add your "👍" reaction to the issue(s) you care about. That way you will help us prioritize those ones.
+In case there is a feature you care about currently missing, make sure to [browse the issue tracker](https://github.com/balsa-team/balsa/issues) and add your "👍" reaction to the issue(s) you care about. That way you will help us prioritize those ones.
 
 
 ## License
