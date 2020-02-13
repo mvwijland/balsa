@@ -19,6 +19,7 @@ process.env.VUE_APP_DEMO_MODE = DEMO_MODE;
 process.env.VUE_APP_IS_SECURE = IS_SECURE;
 
 module.exports = {
+  publicPath: '/app',
   runtimeCompiler: true,
   css: {
     sourceMap: true,

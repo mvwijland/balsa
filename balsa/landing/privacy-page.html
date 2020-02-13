@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stack Multipurpose HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site Description Here">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class=" ">
+<a id="start"></a>
+<!--end bar-->
+<div class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
+     data-animation="from-right">
+    <div class="side-menu__module">
+        <a class="btn btn--icon bg--facebook block" href="#">
+                    <span class="btn__text">
+                        <i class="socicon-facebook"></i>
+                        Sign up with Facebook
+                    </span>
+        </a>
+        <a class="btn btn--icon bg--dark block" href="#">
+                    <span class="btn__text">
+                        <i class="socicon-mail"></i>
+                        Sign up with Email
+                    </span>
+        </a>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <span class="type--fine-print float-left">Already have an account?</span>
+        <a class="btn type--uppercase float-right" href="#">
+            <span class="btn__text">Login</span>
+        </a>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <ul class="list--loose list--hover">
+            <li>
+                <a href="#">
+                    <span class="h5">About Stack</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Careers</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Investors</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Locations</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Contact</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <ul class="social-list list-inline list--hover">
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-google icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-twitter icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-facebook icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-instagram icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-pinterest icon icon--xs"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+     data-notification-link="search-box">
+    <form>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <input type="search" name="query" placeholder="Type search query and hit enter"/>
+            </div>
+        </div>
+        <!--end of row-->
+    </form>
+</div>
+<!--end of notification-->
+<div class="nav-container ">
+    <div class="bar bar--sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 col-md-2">
+                    <a href="landing-page.html">
+                        <img class="logo logo-dark" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                        <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                    </a>
+                </div>
+                <div style="margin-top: 45px;" class="col-9 col-md-10 text-right">
+                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                    </a>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </div>
+    <!--end bar-->
+    <nav id="menu1" style="    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.1);" class="bar bar--sm bar-1 hidden-xs "
+         data-scroll-class='366px:pos-fixed'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-md-2 hidden-xs">
+                    <div class="bar__module">
+                        <a href="landing-page.html">
+                            <img class="logo logo-dark" alt="logo" style="max-height: 500px" width="80"
+                                 src="img/balsa-logo.png"/>
+                            <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                        </a>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div style="display: flex;align-items: center;justify-content: flex-end;"
+                     class="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <ul class="menu-horizontal text-left">
+                            <li class="dropdown">
+                                <span class="dropdown__trigger">Product</span>
+                                <div class="dropdown__container">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div style="max-width: 60%" class="dropdown__content col-lg-2 col-md-4">
+                                                <ul class="menu-vertical">
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold"
+                                                           href="features-page.html">
+                                                            Features
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               All features of Balsa, in one place                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px;"
+                                                           href="https://demo.getbalsa.com/">
+                                                            Demo
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               See a free demo,experience Balsa,check around
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                           href="security-page.html">
+                                                            Security Overview
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               Read Balsa Team's approach to security
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                           href="roadmap.html">
+                                                            Direction & Roadmap
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               We have a public roadmap and todo list
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!--end dropdown content-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                </div>
+                                <!--end dropdown container-->
+                            </li>
+                            <li>
+                                <a href="http://community.getbalsa.com/">
+                                    <span>Community</span>
+                                </a>
+                                <!--end dropdown container-->
+                            </li>
+                            <li>
+                                <a href="blog-list-page.html">
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="faq-page.html">
+                                    <span>FAQ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pricing-page.html">
+                                    <span>Pricing</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    <!--end bar-->
+</div>
+<div class="main-container">
+    <section>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 d-flex flex-column align-items-center">
+                <div class=" text-center col-md-8 d-flex flex-column align-items-center">
+                    <h2 style="color: rgba(35, 97, 109, 1.0);font-weight: bold;margin-bottom: 10px">Privacy policy</h2>
+                </div>
+            </div>
+        </div>
+        <!--end of row-->
+        <!--end of container-->
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <h4 style="font-size: 1.2em;margin-top: 15px">(Updated on 1 October 2019)</h4>
+                <h4 style="font-size: 1.2em;margin-top: 15px">Balsa recognizes that your privacy is very important and
+                    we take it seriously. This Privacy Policy (the "Privacy Policy") describes how Balsa Ltd ("Balsa,"
+                    "we," "our," or "us") collect, use, and share information in connection with your use of our
+                    websites (including www.getbalsa.com and any subdomains of this site unless expressly excluded by
+                    their own terms and conditions), services, and applications (collectively, the "Services").</h4>
+                <h4 style="font-size: 1.2em;margin-top: 15px">This Privacy Policy does not apply to information our
+                    customers may process when using our Services. A customer’s processing of any information using our
+                    Services is specific to their implementation and governed by customer’s own privacy policy and the
+                    written agreements between Balsa and the customer.</h4>
+                <h4 style="font-size: 1.2em;margin-top: 15px">If you have any questions about this Privacy Policy or
+                    Balsa's data collection, use, and disclosure practices, please contact us at <a
+                            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=privacy@getbalsa.com">privacy@getbalsa.com</a>
+                </h4>
+                <h3>Information we collect</h3>
+                <div style="margin-bottom: 20px">
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may collect and receive information about users of
+                        our Services ("users," "you," or "your") from various sources, including: (i) your use of the
+                        Services; (ii) information you provide through your user account on the Services (your
+                        "Account") if you register for the Services; and (iii) from third-party websites, services, and
+                        partners.</h4>
+                    <h4 style="font-size: 1.4em;margin-top: 15px;font-weight: bold">Information we collect when you use
+                        our Services.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">When you use our Services , our servers may
+                        automatically log the standard data provided by your web browser. It may include your Internet
+                        Protocol (IP) address, your browser type and version, the pages you visit, the time and date of
+                        your visit, the time spent on each page, and other details.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may also collect data about the device you are
+                        using to access our Services. This data may include the device type, operating system, unique
+                        device identifiers, device settings, and geo-location data. What we collect can depend on the
+                        individual settings of your device and software. We recommend checking the policies of your
+                        device manufacturer or software provider to learn what information they make available to
+                        us.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">In some countries, including countries in the European
+                        Economic Area ("EEA"), the information referenced above may be considered personal information
+                        under applicable data protection laws.</h4>
+                    <h4 style="font-size: 1.4em;margin-top: 15px;font-weight: bold">Information we collect when you use
+                        our Services.</h4>
+                    <div style="margin-bottom: 20px">
+                        <h4 style="font-size: 1.2em;margin-top: 15px">We may ask for personal information, such as
+                            your:</h4>
+                        <ul style="list-style: disc;margin-left: 25px;color: #000000">
+                            <li>Name
+                            </li>
+                            <li>Email address
+                            </li>
+                            <li>Phone/mobile number
+                            </li>
+                            <li>Company name</li>
+                        </ul>
+                    </div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">This data is considered “identifying information”, as
+                        it can personally identify you. We only request personal information relevant to providing you
+                        with a service, and only use it to help provide or improve this service.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">The personal information that you are asked to
+                        provide, and the reasons why you are asked to provide it, will be made clear to you at the point
+                        we ask you to provide your personal information.</h4>
+                    <h4 style="font-size: 1.4em;margin-top: 15px;font-weight: bold">Information we receive from third
+                        parties</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may receive publicly available information about
+                        you from our third-party partners and combine it with data that we have about you.</h4>
+                    <h3>How we collect information</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We collect information by fair and lawful means, with
+                        your knowledge and consent. We also let you know why we’re collecting it and how it will be
+                        used. You are free to refuse our request for this information, with the understanding that we
+                        may be unable to provide you with some of your desired services without it.</h4>
+                    <h3>Use of information</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may use a combination of identifying and
+                        non-identifying information to understand who our visitors are, how they use our services, and
+                        how we may improve their experience of our Services in the future. We do not disclose the
+                        specifics of this information publicly, but may share aggregated and anonymised versions of this
+                        information, for example, in website and customer usage trend reports.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may use your personal details to contact you with
+                        updates about our Services, along with promotional content that we believe may be of interest to
+                        you. If you wish to opt out of receiving promotional content, you can follow the “unsubscribe”
+                        instructions provided alongside any promotional correspondence from us.</h4>
+                    <h3>Data processing and storage</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We only transfer data within jurisdictions subject to
+                        data protection laws that reflect our commitment to protecting the privacy of our users.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We only retain personal information for as long as
+                        necessary to provide a service, or to improve our services in future. While we retain this data,
+                        we will protect it within commercially acceptable means to prevent loss and theft, as well as
+                        unauthorised access, disclosure, copying, use or modification. That said, we advise that no
+                        method of electronic transmission or storage is 100% secure, and cannot guarantee absolute data
+                        security.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">If you request your personal information be deleted,
+                        or where your personal information becomes no longer relevant to our operations, we will erase
+                        it from our system within a reasonable timeframe.</h4>
+                    <h3>Cookies</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We use “cookies” to collect information about you and
+                        your activity across our site. A cookie is a small piece of data that our website stores on your
+                        computer, and accesses each time you visit, so we can understand how you use our site. This
+                        helps us serve you content based on preferences you have specified. Please refer to our Cookie
+                        Policy for more information.</h4>
+                    <div style="margin-top: 20px" class="row">
+                        <h3>Third-party access to information</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <div style="margin-bottom: 20px">
+                            <h4 style="font-size: 1.2em;margin-top: 15px">We use third-party services for:</h4>
+                            <ul style="list-style: disc;margin-left: 25px;color: #000000">
+                                <li>Analytics tracking
+                                </li>
+                                <li>Advertising and promotion
+                                </li>
+                                <li>Content marketing
+                                </li>
+                                <li>Email marketing</li>
+                                <li>Payment processing</li>
+                            </ul>
+                        </div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">These services may access our data solely for the
+                            purpose of performing specific tasks on our behalf. We do not share any personally
+                            identifying information with them without your explicit consent. We do not give them
+                            permission to disclose or use any of our data for any other purpose.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">We may, from time to time, allow limited access to
+                            our data by external consultants and agencies for the purpose of analysis and service
+                            improvement. This access is only permitted for as long as necessary to perform a specific
+                            function. We only work with external agencies whose privacy policies align with ours.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">We will refuse government and law enforcement
+                            requests for data if we believe a request is too broad or unrelated to its stated purpose.
+                            However, we may cooperate if we believe the requested information is necessary and
+                            appropriate to comply with legal process, to protect our own rights and property, to protect
+                            the safety of the public and any person, to prevent a crime, or to prevent what we
+                            reasonably believe to be illegal, legally actionable, or unethical activity.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">We do not otherwise share or supply personal
+                            information to third parties. We do not sell or rent your personal information to marketers
+                            or third parties.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">Children’s privacy</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">Balsa does not knowingly collect information from
+                            children under the age of 13, and children under 13 are prohibited from using our Services.
+                            If you learn that a child has provided us with personal information in violation of this
+                            Privacy Policy, you can alert us at <a
+                                    href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=privacy@getbalsa.com">privacy@getbalsa.com.</a>
+                        </h4>
+                        <h3>Limits of our policy</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">This privacy policy only covers Balsa's own
+                            collecting and handling of data. We only work with partners, affiliates and third-party
+                            providers whose privacy policies align with ours, however we cannot accept responsibility or
+                            liability for their respective privacy practices.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">Our website may link to external sites that are
+                            not operated by us. Please be aware that we have no control over the content and policies of
+                            those sites, and cannot accept responsibility or liability for their respective privacy
+                            practices.</h4>
+                        <h3>Changes to this policy</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">This Privacy Policy may be modified from time to
+                            time, so please review it frequently. Changes to this Privacy Policy will be posted on our
+                            websites. If we materially change the ways in which we use or share personal information
+                            previously collected from you through our Services, we will notify you through our Services,
+                            by email, or other communication.</h4>
+                        <h3>Your rights and responsibilities</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">As our user, you have the right to be informed
+                            about how your data is collected and used. You are entitled to know what data we collect
+                            about you, and how it is processed. You are entitled to correct and update any personal
+                            information about you, and to request this information be deleted. You may amend or remove
+                            your account information at any time, using the tools provided in your account control
+                            panel.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">You are entitled to restrict or object to our use
+                            of your data, while retaining the right to use your personal information for your own
+                            purposes. You have the right to opt out of data about you being used in decisions based
+                            solely on automated processing.</h4>
+                        <h3>Contact us</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">If you have any questions or concerns about this
+                            Privacy Policy, please feel free to email us at <a
+                                    href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=privacy@getbalsa.com">
+                                privacy@getbalsa.com</a></h4>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <footer class="space--sm footer-2 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">Company</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="about-page.html">About Balsa</a>
+                        </li>
+                        <li>
+                            <a href="contact-page.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">Product</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="features-page.html">Features</a>
+                        </li>
+                        <li>
+                            <a href="https://demo.getbalsa.com">Demo</a>
+                        </li>
+                        <li>
+                            <a href="pricing-page.html">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="support-terms-page.html">Support Terms</a>
+                        </li>
+                        <li>
+                            <a href="security-page.html">Security Overview</a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html">Direction & roadmap</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">LEGAL</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="terms-page.html">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="privacy-page.html">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="cookie-page.html">Cookie Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">COMPARE</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="confluence-page.html">Confluence alternative</a>
+                        </li>
+                        <li>
+                            <a href="evernote-page.html">Evernote alternative</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="type--fine-print">&copy; 2019 Balsa</span>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </footer>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/flickity.min.js"></script>
+<script src="js/easypiechart.min.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/typed.min.js"></script>
+<script src="js/datepicker.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/ytplayer.min.js"></script>
+<script src="js/lightbox.min.js"></script>
+<script src="js/granim.min.js"></script>
+<script src="js/jquery.steps.min.js"></script>
+<script src="js/countdown.min.js"></script>
+<script src="js/twitterfetcher.min.js"></script>
+<script src="js/spectragram.min.js"></script>
+<script src="js/smooth-scroll.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

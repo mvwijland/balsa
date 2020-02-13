@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stack Multipurpose HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site Description Here">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class=" ">
+<a id="start"></a>
+<!--end bar-->
+<div class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
+     data-animation="from-right">
+    <div class="side-menu__module">
+        <a class="btn btn--icon bg--facebook block" href="#">
+                    <span class="btn__text">
+                        <i class="socicon-facebook"></i>
+                        Sign up with Facebook
+                    </span>
+        </a>
+        <a class="btn btn--icon bg--dark block" href="#">
+                    <span class="btn__text">
+                        <i class="socicon-mail"></i>
+                        Sign up with Email
+                    </span>
+        </a>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <span class="type--fine-print float-left">Already have an account?</span>
+        <a class="btn type--uppercase float-right" href="#">
+            <span class="btn__text">Login</span>
+        </a>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <ul class="list--loose list--hover">
+            <li>
+                <a href="#">
+                    <span class="h5">About Stack</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Careers</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Investors</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Locations</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="h5">Contact</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--end module-->
+    <hr>
+    <div class="side-menu__module">
+        <ul class="social-list list-inline list--hover">
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-google icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-twitter icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-facebook icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-instagram icon icon--xs"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="socicon socicon-pinterest icon icon--xs"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+     data-notification-link="search-box">
+    <form>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <input type="search" name="query" placeholder="Type search query and hit enter"/>
+            </div>
+        </div>
+        <!--end of row-->
+    </form>
+</div>
+<!--end of notification-->
+<div class="nav-container ">
+    <div class="bar bar--sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 col-md-2">
+                    <a href="landing-page.html">
+                        <img class="logo logo-dark" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                        <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                    </a>
+                </div>
+                <div style="margin-top: 45px;" class="col-9 col-md-10 text-right">
+                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                    </a>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </div>
+    <!--end bar-->
+    <nav id="menu1" style="    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.1);" class="bar bar--sm bar-1 hidden-xs "
+         data-scroll-class='366px:pos-fixed'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-md-2 hidden-xs">
+                    <div class="bar__module">
+                        <a href="landing-page.html">
+                            <img class="logo logo-dark" alt="logo" style="max-height: 500px" width="80"
+                                 src="img/balsa-logo.png"/>
+                            <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                        </a>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div style="display: flex;align-items: center;justify-content: flex-end;"
+                     class="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <ul class="menu-horizontal text-left">
+                            <li class="dropdown">
+                                <span class="dropdown__trigger">Product</span>
+                                <div class="dropdown__container">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div style="max-width: 60%" class="dropdown__content col-lg-2 col-md-4">
+                                                <ul class="menu-vertical">
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold"
+                                                           href="features-page.html">
+                                                            Features
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               All features of Balsa, in one place                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px;"
+                                                           href="https://demo.getbalsa.com/">
+                                                            Demo
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               See a free demo,experience Balsa,check around
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                           href="security-page.html">
+                                                            Security Overview
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               Read Balsa Team's approach to security
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                           href="roadmap.html">
+                                                            Direction & Roadmap
+                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                               We have a public roadmap and todo list
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!--end dropdown content-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                </div>
+                                <!--end dropdown container-->
+                            </li>
+                            <li>
+                                <a href="http://community.getbalsa.com/">
+                                    <span>Community</span>
+                                </a>
+                                <!--end dropdown container-->
+                            </li>
+                            <li>
+                                <a href="blog-list-page.html">
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="faq-page.html">
+                                    <span>FAQ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pricing-page.html">
+                                    <span>Pricing</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    <!--end bar-->
+</div>
+<div class="main-container">
+    <section >
+        <div style="display: flex;flex-direction: column;align-items: center" class="container">
+            <div class="col-md-10 col-lg-8">
+                <div style="margin-bottom: 80px" class="text-center">
+                    <h1 style="font-size: 36px; color: rgba(35, 97, 109, 1.0);">Balsa Frequently Asked Questions</h1>
+                </div>
+                <div style="margin-bottom: 30px;" class="text-center">
+                    <h1 style="font-size: 30px; color: rgba(35, 97, 109, 1.0);">General</h1>
+                </div>
+                <ul class="accordion accordion-2">
+                    <li class="active">
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">What is Balsa?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa is a reliable, scalable knowledge management solution. It helps organize information within the knowledge and collaborate among teams within an organization. Balsa supports shared documents with unlimited style, embedded objects, tasks, checklists, comments and real-time collaboration. This way, Balsa helps grow businesses by sharing the organizational knowledge by consolidating all internal company in one location.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Why did you create Balsa?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa was created to offer an alternative, open source, privacy oriented alternative to self hosted knowledgebase platforms.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Why is Balsa different?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Once you deploy Balsa on your own server, you can start using Balsa straight away. We have easy tutorials and documentation on how to get up and running with Balsa and store your most private documents and tasks with ease.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Where can I download Balsa?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa Github page includes the Community Edition for Balsa. For other editions, please get in touch with us.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Is there an online demo available?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Yes - please contact us and we'll arrange a server suited for your needs and requirements. It can be used for trial purposes for 30 days.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">What is in your roadmap?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Please check this page
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <!--end accordion-->
+            </div>
+        </div>
+    </section>
+    <section >
+        <div style="display: flex;flex-direction: column;align-items: center" class="container">
+            <div class="col-md-10 col-lg-8">
+                <div style="margin-bottom: 30px;" class="text-center">
+                    <h1 style="font-size: 30px; color: rgba(35, 97, 109, 1.0);">Licensing</h1>
+                </div>
+                <ul class="accordion accordion-2">
+                    <li class="active">
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">What are Balsa Team Edition and Balsa Enterprise Edition?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa Team Edition and Balsa Enterprise Edition are paid extensions to Balsa, which add more functionality and provide additional support options for customers.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">How does Team and Enterprise Edition licensing work?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Every organization running Balsa Team or Enterprise Edition on its own servers must have a license. There's no limit to the number of servers or environments used by that organization. The price is based on the number of users defined in production environment.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Why did you opensource Balsa?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                We want our application created not by a handful of developers, but hundreds. We want to discuss the future of Balsa in an open, democratic environment. We want your ideas to put in the next release, so academics, businesses and SMEs can benefit immediately.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Can I transfer a license?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Licenses are not transferrable to another company. Each license should be used for the company it is assigned to.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Can I get a refund?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Yes, until up to two weeks after purchase. Let us know the reason and maybe we can help.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Can I pay via invoice and purchase order?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa Team and Enterprise Edition can be purchased using card only, and there are no exceptions.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <!--end accordion-->
+            </div>
+        </div>
+    </section>
+    <section >
+        <div style="display: flex;flex-direction: column;align-items: center" class="container">
+            <div class="col-md-10 col-lg-9">
+                <div style="margin-bottom: 30px;" class="text-center">
+                    <h1 style="font-size: 30px; color: rgba(35, 97, 109, 1.0);">Installation</h1>
+                </div>
+                <ul class="accordion accordion-2">
+                    <li class="active">
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">What are different deployment options?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                You can either deploy Balsa on-premises, or let us host a completely private, non multi-tenant instance for your business. With high availability and data replication practices, always be in control of your business data, and be compliant with regulations such as GDPR and HIPAA.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Is it easy to install Balsa on-premises?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                It is quite straightforward. If you choose self hosting, you can take advantage of the installation scripts that come packed with Balsa, for Ubuntu and Red Hat Enterprise Linux. If your environment has strict firewall rules we also provide offline installation packages for Ubuntu and RHEL.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Should I deploy Balsa on a clean instance?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa is an document and knowledgebase platform that installs several modules from trusted sources that we should know of, and when there is an issue with underlying core functions (e.g Postgresql, NodeJS or Nginx), it becomes hard for us to understand where the issue stems from. Another reason is that we expect that Balsa should solely be running on the instance that it is installed.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">How much time does it take to install Balsa?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Depending on your server configuration and internet connection, it will take around 3-5 minutes, including downloading all required libraries and configuring the database.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Do I need HTTPS configuration?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                It is highly recommended that you use HTTPS to connect to dashboard. This will ensure all the data transfers between you and your server will be encrypted. We suggest you use Let’s Encrypt since it is one of the most used, free certificate authorities.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">Is it possible to install on Digital Ocean / Google Cloud Platform / AWS etc ?</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Balsa uses off the shelf components for installation and running. Hence, it is possible to deploy Balsa both on your own premises, or on a cloud provider of your choice. By default, Node.js (the web server Balsa needs) will run on port 80 or 443 (for HTTPS), so make sure those ports are free and not blocked.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 5px" class="accordion__title">
+                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold;margin-bottom: 5px;"
+                                  class="h4">We want you to help us with deployment</span>
+                        </div>
+                        <div class="accordion__content">
+                            <p style="color: rgba(122, 161, 185, 1.0);" class="lead">
+                                Sure! We can deploy to your servers via VPN or another medium during a 1-1 telco carry on all the deployment process from start to finish.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <!--end accordion-->
+            </div>
+        </div>
+    </section>
+    <section class="text-center ">
+        <div class="container">
+            <div class="row justify-content-center no-gutters">
+                <div class="col-md-8 col-lg-7">
+                    <h1 style="font-size: 32px; color: rgba(35, 97, 109, 1.0);">More questions? Contact us</h1>
+                    <form class="text-left form-email row mx-0"
+                          data-success="Thanks for your enquiry, we'll be in touch shortly."
+                          data-error="Please fill in all fields correctly.">
+                        <div class="col-md-12">
+                            <label style="color: rgba(122, 161, 185, 1.0);font-size: 16px;">Full Name</label>
+                            <input type="text" name="name" class="validate-required"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label style="color: rgba(122, 161, 185, 1.0);font-size: 16px;">Email Address</label>
+                            <input type="email" name="email" class="validate-required validate-email"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label style="color: rgba(122, 161, 185, 1.0);font-size: 16px;">Phone(Optional)</label>
+                            <input type="email" name="email" class="validate-required validate-email"/>
+                        </div>
+                        <div class="col-md-12">
+                            <label style="color: rgba(122, 161, 185, 1.0);font-size: 16px;">Your Message</label>
+                            <textarea rows="6" name="Message" class="validate-required"></textarea>
+                        </div>
+                        <div class="col-md-5 col-lg-4">
+                            <button style="background-color:rgba(35, 97, 109, 1.0)" type="submit"
+                                    class="btn btn--primary type--uppercase">Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <footer class="space--sm footer-2 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">Company</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="about-page.html">About Balsa</a>
+                        </li>
+                        <li>
+                            <a href="contact-page.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">Product</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="features-page.html">Features</a>
+                        </li>
+                        <li>
+                            <a href="https://demo.getbalsa.com">Demo</a>
+                        </li>
+                        <li>
+                            <a href="pricing-page.html">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="support-terms-page.html">Support Terms</a>
+                        </li>
+                        <li>
+                            <a href="security-page.html">Security Overview</a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html">Direction & roadmap</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">LEGAL</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="terms-page.html">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="privacy-page.html">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="cookie-page.html">Cookie Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 col-6">
+                    <h6 class="type--uppercase">COMPARE</h6>
+                    <ul class="list--hover">
+                        <li>
+                            <a href="confluence-page.html">Confluence alternative</a>
+                        </li>
+                        <li>
+                            <a href="evernote-page.html">Evernote alternative</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="type--fine-print">&copy; 2019 Balsa</span>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </footer>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/flickity.min.js"></script>
+<script src="js/easypiechart.min.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/typed.min.js"></script>
+<script src="js/datepicker.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/ytplayer.min.js"></script>
+<script src="js/lightbox.min.js"></script>
+<script src="js/granim.min.js"></script>
+<script src="js/jquery.steps.min.js"></script>
+<script src="js/countdown.min.js"></script>
+<script src="js/twitterfetcher.min.js"></script>
+<script src="js/spectragram.min.js"></script>
+<script src="js/smooth-scroll.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
