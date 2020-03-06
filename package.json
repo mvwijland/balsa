@@ -1,6 +1,6 @@
 {
   "name": "balsa",
-  "version": "0.9.4",
+  "version": "0.9.6",
   "main": "index.js",
   "repository": "https://github.com/balsa-team/balsa.git",
   "author": "Balsa Team",
