@@ -11,7 +11,7 @@
     "start": "lerna run start --stream --scope server",
     "build": "lerna run build --stream --scope client",
     "docker-compose-up": "lerna run docker-compose-up --stream",
-    "reset": "rimraf node_modules/ balsa/client/node_modules/ balsa/server/node_modules/ yarn.lock",
+    "reset": "rimraf node_modules/ balsa/client/node_modules/ balsa/server/node_modules/",
     "typeorm-ba": "babel-node ./node_modules/.bin/typeorm",
     "typeorm-ts": "lerna run typeorm-ts --scope server --",
     "test": "lerna run test --scope server",
