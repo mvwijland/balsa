@@ -38,7 +38,7 @@ const httpLink = ApolloLink.from([
 ]);
 
 const wsLink = new WebSocketLink({
-  uri: `${wsUrl}:3000'/graphql`,
+  uri: `${wsUrl}:3000/graphql`,
   options: {
     reconnect: true,
   },
