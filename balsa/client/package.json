@@ -52,7 +52,9 @@
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-svgstore-plugin": "^4.1.0",
     "handsontable": "6.2.0",
-    "@handsontable/vue": "latest"
+    "@handsontable/vue": "latest",
+    "apollo-link-ws": "latest",
+    "apollo-utilities": "latest"
   },
   "postcss": {
     "plugins": {

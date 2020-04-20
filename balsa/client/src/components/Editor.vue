@@ -507,9 +507,10 @@ import {
   Mention,
   Search,
   CodeBlockHighlight,
+  Collaboration,
 } from 'tiptap-extensions';
 import 'handsontable/dist/handsontable.full.css';
-import { gql } from 'apollo-server-core';
+import gql from 'graphql-tag';
 import TurnDown from 'turndown';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
@@ -684,10 +685,14 @@ export default {
               return fuse.search(query);
             },
           }),
+          new Collaboration({
+            version: 1,
+            debounce: 250,
+          }),
         ],
         autoFocus: 'end',
         content: '',
-        onUpdate: ({ getJSON, getHTML, state, ...rest }) => {
+        onUpdate: ({ getJSON, getHTML, state, transaction }) => {
           this.saveContent(getJSON(), getHTML(), state.selection.anchor);
           this.htmlData = getHTML();
         },
@@ -762,6 +767,26 @@ export default {
           publicViewCode: this.$route.params.publicViewCode,
           log: true,
         };
+      },
+      subscribeToMore: {
+        document: gql`
+            subscription documentUpdated($fileId: Int!, $updaterId: Int!){
+                documentUpdated(fileId: $fileId, updaterId: $updaterId)
+            }`,
+        // Variables passed to the subscription. Since we're using a function,
+        // they are reactive
+        variables () {
+          return {
+            fileId: parseInt(this.$route.params.id),
+            updaterId: parseInt(localStorage.getItem('USERID'))
+          }
+        },
+        // Mutate the previous result
+        updateQuery(previousResult, { subscriptionData }) {
+          const newContent = subscriptionData.data.documentUpdated;
+          previousResult.content = newContent;
+          this.updateFromSocket(newContent);
+        },
       },
       // Error handling
       error(error) {
@@ -1129,14 +1154,6 @@ export default {
         { h1: 'An apple a day keeps the doctor away', p: 'Take the red one.' },
         { h1: 'A picture is worth a thousand words', p: 'Learn biology with pictures.' },
         { h1: 'A thing begun is half done', p: 'We trust you.' },
-        /*'Better late than never', // Are we partying, yet?
-          'A cat has nine lives', // Everyone knows this.
-          'Actions speak louder than words', // But everything starts with a word or two.
-          'All’s well that ends well', // Focus on what you plan.
-          'Always put your best foot forward', // Go grab it, now.
-          'An apple a day keeps the doctor away', // Take the red one.
-          'A picture is worth a thousand words', // Learn biology with pictures.
-          'A thing begun is half done', // We trust you.*/
       ];
 
       return texts[Math.floor(Math.random() * texts.length)];
@@ -1182,6 +1199,9 @@ export default {
       fileDownload.click();
       document.body.removeChild(fileDownload);
     },
+    updateFromSocket(data) {
+      this.editor.setContent(JSON.parse(data))
+    }
   },
   beforeDestroy() {
     this.editor.destroy();

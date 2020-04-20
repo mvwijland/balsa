@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import passport from 'passport';
 import { createConnection } from 'typeorm';
-
+import http from 'http';
 // import {devLog, commonLog} from './logging/core';
 import jwtStrategy from './middleware/auth';
 import { apolloServer } from './graphql';
@@ -59,8 +59,12 @@ createConnection()
     const path = '/graphql';
     apolloServer.applyMiddleware({ app, path });
 
-    app.listen(PORT, () => {
-      console.log(`Listening on port: ${PORT}`);
+    const httpServer = http.createServer(app);
+    apolloServer.installSubscriptionHandlers(httpServer);
+
+    httpServer.listen({ port: PORT }, () => {
+      console.log(`🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+      console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${apolloServer.subscriptionsPath}`);
     });
   })
   .catch(error => console.log(error));

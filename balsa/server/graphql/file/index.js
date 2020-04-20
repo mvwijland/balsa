@@ -14,8 +14,11 @@ import { BehaviourLog } from '../../entities/behaviourLog';
 import { EmailNotifications } from '../../entities/emailNotifications';
 import { Conversation } from '../../entities/conversation';
 import { Template } from '../../entities/template';
-import {FOLDER} from "../../constants";
+import { FOLDER } from '../../constants';
+import { PubSub } from 'apollo-server-express';
+import { withFilter } from 'graphql-subscriptions';
 
+const pubsub = new PubSub();
 const logger = new BehaviourLogger();
 
 const typeDefs = gql`
@@ -53,6 +56,10 @@ const typeDefs = gql`
     conversation(id: Int, uuid: String): Conversation
     contributor(inviteCode: String): Contributor
     getFilePublicUrl(id: Int!): String!
+  }
+
+  extend type Subscription {
+    documentUpdated(fileId: Int!, updaterId: Int!): String!
   }
 
   type File {
@@ -486,6 +493,8 @@ const resolvers = {
 
       logger.log(user, file, BehaviourLog.ACTION_UPDATE_FILE, false, true);
 
+      pubsub.publish(`documentUpdated`, { documentUpdated: file.content, fileId: file.id, updaterId: user.id });
+
       return file;
     },
     deleteFile: async (_, { id }, context) => {
@@ -774,6 +783,16 @@ const resolvers = {
       const conversation = await qb.getOne();
 
       return conversation;
+    },
+  },
+  Subscription: {
+    documentUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['documentUpdated']),
+        (payload, variables) => {
+          return payload.fileId === variables.fileId;
+        },
+      ),
     },
   },
 };
