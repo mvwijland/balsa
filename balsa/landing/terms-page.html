@@ -1,507 +1,549 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Balsa - Trusted document, task and sheets for growing teams</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Trusted document, task and sheets for growing teams">
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i"
-          rel="stylesheet">
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body class=" ">
-<a id="start"></a>
-<!--end bar-->
-<div class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
-     data-animation="from-right">
-    <div class="side-menu__module">
-        <a class="btn btn--icon bg--facebook block" href="#">
-                    <span class="btn__text">
-                        <i class="socicon-facebook"></i>
-                        Sign up with Facebook
-                    </span>
-        </a>
-        <a class="btn btn--icon bg--dark block" href="#">
-                    <span class="btn__text">
-                        <i class="socicon-mail"></i>
-                        Sign up with Email
-                    </span>
-        </a>
-    </div>
-    <!--end module-->
-    <hr>
-    <div class="side-menu__module">
-        <span class="type--fine-print float-left">Already have an account?</span>
-        <a class="btn type--uppercase float-right" href="#">
-            <span class="btn__text">Login</span>
-        </a>
-    </div>
-    <!--end module-->
-    <hr>
-    <div class="side-menu__module">
-        <ul class="list--loose list--hover">
-            <li>
-                <a href="#">
-                    <span class="h5">About Stack</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="h5">Careers</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="h5">Investors</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="h5">Locations</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="h5">Contact</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!--end module-->
-    <hr>
-    <div class="side-menu__module">
-        <ul class="social-list list-inline list--hover">
-            <li>
-                <a href="#">
-                    <i class="socicon socicon-google icon icon--xs"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="socicon socicon-twitter icon icon--xs"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="socicon socicon-facebook icon icon--xs"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="socicon socicon-instagram icon icon--xs"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="socicon socicon-pinterest icon icon--xs"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
-     data-notification-link="search-box">
-    <form>
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-                <input type="search" name="query" placeholder="Type search query and hit enter"/>
-            </div>
+    <a id="start"></a>
+    <!--end bar-->
+    <div class="notification pos-right pos-top side-menu bg--white" data-notification-link="side-menu"
+        data-animation="from-right">
+        <div class="side-menu__module">
+            <a class="btn btn--icon bg--facebook block" href="#">
+                <span class="btn__text">
+                    <i class="socicon-facebook"></i>
+                    Sign up with Facebook
+                </span>
+            </a>
+            <a class="btn btn--icon bg--dark block" href="#">
+                <span class="btn__text">
+                    <i class="socicon-mail"></i>
+                    Sign up with Email
+                </span>
+            </a>
         </div>
-        <!--end of row-->
-    </form>
-</div>
-<!--end of notification-->
-<div class="nav-container ">
-    <div class="bar bar--sm visible-xs">
-        <div class="container">
-            <div class="row">
-                <div class="col-3 col-md-2">
-                    <a href="landing-page.html">
-                        <img class="logo logo-dark" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
-                        <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+        <!--end module-->
+        <hr>
+        <div class="side-menu__module">
+            <span class="type--fine-print float-left">Already have an account?</span>
+            <a class="btn type--uppercase float-right" href="#">
+                <span class="btn__text">Login</span>
+            </a>
+        </div>
+        <!--end module-->
+        <hr>
+        <div class="side-menu__module">
+            <ul class="list--loose list--hover">
+                <li>
+                    <a href="#">
+                        <span class="h5">About Stack</span>
                     </a>
-                </div>
-                <div style="margin-top: 45px;" class="col-9 col-md-10 text-right">
-                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
-                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="h5">Careers</span>
                     </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="h5">Investors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="h5">Locations</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="h5">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--end module-->
+        <hr>
+        <div class="side-menu__module">
+            <ul class="social-list list-inline list--hover">
+                <li>
+                    <a href="#">
+                        <i class="socicon socicon-google icon icon--xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="socicon socicon-twitter icon icon--xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="socicon socicon-facebook icon icon--xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="socicon socicon-instagram icon icon--xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="socicon socicon-pinterest icon icon--xs"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="notification pos-top pos-right search-box bg--white border--bottom" data-animation="from-top"
+        data-notification-link="search-box">
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <input type="search" name="query" placeholder="Type search query and hit enter" />
                 </div>
             </div>
             <!--end of row-->
-        </div>
-        <!--end of container-->
+        </form>
     </div>
-    <!--end bar-->
-    <nav id="menu1" style="    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.1);" class="bar bar--sm bar-1 hidden-xs "
-         data-scroll-class='366px:pos-fixed'>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1 col-md-2 hidden-xs">
-                    <div class="bar__module">
+    <!--end of notification-->
+    <div class="nav-container ">
+        <div class="bar bar--sm visible-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 col-md-2">
                         <a href="landing-page.html">
-                            <img class="logo logo-dark" alt="logo" style="max-height: 500px" width="80"
-                                 src="img/balsa-logo.png"/>
-                            <img class="logo logo-light" alt="logo" style="max-height: 500px" src="img/balsa-logo.png"/>
+                            <img class="logo logo-dark" alt="logo" style="max-height: 500px" src="img/balsa-logo.png" />
+                            <img class="logo logo-light" alt="logo" style="max-height: 500px"
+                                src="img/balsa-logo.png" />
                         </a>
                     </div>
-                    <!--end module-->
+                    <div style="margin-top: 45px;" class="col-9 col-md-10 text-right">
+                        <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs">
+                            <i class="icon icon--sm stack-interface stack-menu"></i>
+                        </a>
+                    </div>
                 </div>
-                <div style="display: flex;align-items: center;justify-content: flex-end;"
-                     class="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
-                    <div class="bar__module">
-                        <ul class="menu-horizontal text-left">
-                            <li class="dropdown">
-                                <span class="dropdown__trigger">Product</span>
-                                <div class="dropdown__container">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div style="max-width: 60%" class="dropdown__content col-lg-2 col-md-4">
-                                                <ul class="menu-vertical">
-                                                    <li>
-                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold"
-                                                           href="features-page.html">
-                                                            Features
-                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
-                                                               All features of Balsa, in one place                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px;"
-                                                           href="https://demo.getbalsa.com/">
-                                                            Demo
-                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
-                                                               See a free demo,experience Balsa,check around
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
-                                                           href="security-page.html">
-                                                            Security Overview
-                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
-                                                               Read Balsa Team's approach to security
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
-                                                           href="roadmap.html">
-                                                            Direction & Roadmap
-                                                            <span style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
-                                                               We have a public roadmap and todo list
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </div>
+        <!--end bar-->
+        <nav id="menu1" style="    box-shadow: 0 1px 15px rgba(1, 1, 1, 0.1);" class="bar bar--sm bar-1 hidden-xs "
+            data-scroll-class='366px:pos-fixed'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1 col-md-2 hidden-xs">
+                        <div class="bar__module">
+                            <a href="landing-page.html">
+                                <img class="logo logo-dark" alt="logo" style="max-height: 500px" width="80"
+                                    src="img/balsa-logo.png" />
+                                <img class="logo logo-light" alt="logo" style="max-height: 500px"
+                                    src="img/balsa-logo.png" />
+                            </a>
+                        </div>
+                        <!--end module-->
+                    </div>
+                    <div style="display: flex;align-items: center;justify-content: flex-end;"
+                        class="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
+                        <div class="bar__module">
+                            <ul class="menu-horizontal text-left">
+                                <li class="dropdown">
+                                    <span class="dropdown__trigger">Product</span>
+                                    <div class="dropdown__container">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div style="max-width: 60%" class="dropdown__content col-lg-2 col-md-4">
+                                                    <ul class="menu-vertical">
+                                                        <li>
+                                                            <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold"
+                                                                href="features-page.html">
+                                                                Features
+                                                                <span
+                                                                    style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                                    All features of Balsa, in one place </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px;"
+                                                                href="https://demo.getbalsa.com/">
+                                                                Demo
+                                                                <span
+                                                                    style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                                    See a free demo,experience Balsa,check around
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                                href="security-page.html">
+                                                                Security Overview
+                                                                <span
+                                                                    style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                                    Read Balsa Team's approach to security
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display: inline-grid;color: rgba(1, 23, 14, 1.0);;font-weight: bold;margin-top: 15px"
+                                                                href="roadmap.html">
+                                                                Direction & Roadmap
+                                                                <span
+                                                                    style="color: rgba(122, 161, 185, 1.0);font-weight: bold">
+                                                                    We have a public roadmap and todo list
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!--end dropdown content-->
                                             </div>
-                                            <!--end dropdown content-->
+                                            <!--end row-->
                                         </div>
-                                        <!--end row-->
                                     </div>
-                                </div>
-                                <!--end dropdown container-->
+                                    <!--end dropdown container-->
+                                </li>
+
+
+                                <li>
+                                    <a href="faq-page.html">
+                                        <span>FAQ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="pricing-page.html">
+                                        <span>Pricing</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--end module-->
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </nav>
+        <!--end bar-->
+    </div>
+    <div class="main-container">
+        <section>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 d-flex flex-column align-items-center">
+                    <div class=" text-center col-md-8 d-flex flex-column align-items-center">
+                        <h2 style="color: rgba(35, 97, 109, 1.0);font-weight: bold;margin-bottom: 10px">Terms of
+                            service</h2>
+                    </div>
+                </div>
+            </div>
+            <!--end of row-->
+            <!--end of container-->
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <h4 style="font-size: 1.2em;margin-top: 15px">(Updated on 1 October 2019)</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Your use of this website (the "Site") and the services
+                        made available on the Site ("Services") is subject to these Terms of Service (these "Terms").
+                        These
+                        Terms apply between you (“User,” "Users," "you," or "your") as the user of the Site and Services
+                        and
+                        Balsa Ltd ("Balsa," "we," "our," or "us").</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">These Terms do not apply to Balsa Enterprise Edition
+                        subscriptions which are governed by written agreements between Balsa and the customer.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Please read these Terms carefully, as they affect your
+                        legal rights. Your agreement to comply with and be bound by these Terms is deemed to occur upon
+                        your
+                        first use of the Site and/or Services. If you do not agree to be bound by these Terms, you
+                        should
+                        stop using the Site and Services immediately.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">If you have any questions about these Terms please
+                        contact
+                        us at <a
+                            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=hello@getbalsa.com">hello@getbalsa.com</a>
+                    </h4>
+                    <h3>Intellectual property and acceptable use</h3>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">All Content included on this Site, unless uploaded by
+                        Users, is the property of Balsa, our affiliates or other relevant third parties. In these Terms,
+                        Content means any text, graphics, images, audio, video, software, data compilations, page
+                        layout,
+                        underlying code and software and any other form of information capable of being stored in a
+                        computer
+                        that appears on or forms part of this Site, including any such content uploaded by Users.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">By continuing to use the Site you acknowledge that
+                        such
+                        Content is protected by copyright, trademarks, database rights and other intellectual property
+                        rights. Nothing on this site shall be construed as granting, by implication, estoppel, or
+                        otherwise,
+                        any license or right to use any trademark, logo or service mark displayed on the site without
+                        the
+                        owner's prior written permission</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">You may temporarily download one copy of the materials
+                        (information or software) on this Site for personal, non-commercial transitory viewing only. You
+                        must not otherwise reproduce, modify, copy, distribute or use for commercial purposes any
+                        Content
+                        without the written permission of Balsa.</h4>
+                    <h3>Prohibited use</h3>
+                    <div style="margin-bottom: 20px">
+                        <h4 style="font-size: 1.2em;margin-top: 15px">You may not use the Site and Services for any of
+                            the
+                            following purposes:</h4>
+                        <ul style="list-style: disc;margin-left: 25px;color: #000000">
+                            <li>in any way which causes, or may cause, damage to the Site and Services or interferes
+                                with
+                                any
+                                other person's use or enjoyment of the Site and Services;
                             </li>
-                            <li>
-                                <a href="http://community.getbalsa.com/">
-                                    <span>Community</span>
-                                </a>
-                                <!--end dropdown container-->
+                            <li>in any way which is harmful, unlawful, illegal, abusive, harassing, threatening or
+                                otherwise
+                                objectionable or in breach of any applicable law, regulation, governmental order;
                             </li>
-                            <li>
-                                <a href="blog-list-page.html">
-                                    <span>Blog</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="faq-page.html">
-                                    <span>FAQ</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pricing-page.html">
-                                    <span>Pricing</span>
-                                </a>
+                            <li>making, transmitting or storing electronic copies of Content protected by copyright
+                                without
+                                the permission of the owner.
                             </li>
                         </ul>
                     </div>
-                    <!--end module-->
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </nav>
-    <!--end bar-->
-</div>
-<div class="main-container">
-    <section>
-        <div class="row">
-            <div class="col-md-12 col-lg-12 d-flex flex-column align-items-center">
-                <div class=" text-center col-md-8 d-flex flex-column align-items-center">
-                    <h2 style="color: rgba(35, 97, 109, 1.0);font-weight: bold;margin-bottom: 10px">Terms of
-                        service</h2>
-                </div>
-            </div>
-        </div>
-        <!--end of row-->
-        <!--end of container-->
-    </section>
-    <section>
-        <div class="container">
-            <div class="row">
-                <h4 style="font-size: 1.2em;margin-top: 15px">(Updated on 1 October 2019)</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Your use of this website (the "Site") and the services
-                    made available on the Site ("Services") is subject to these Terms of Service (these "Terms"). These
-                    Terms apply between you (“User,” "Users," "you," or "your") as the user of the Site and Services and
-                    Balsa Ltd ("Balsa," "we," "our," or "us").</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">These Terms do not apply to Balsa Enterprise Edition
-                    subscriptions which are governed by written agreements between Balsa and the customer.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Please read these Terms carefully, as they affect your
-                    legal rights. Your agreement to comply with and be bound by these Terms is deemed to occur upon your
-                    first use of the Site and/or Services. If you do not agree to be bound by these Terms, you should
-                    stop using the Site and Services immediately.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">If you have any questions about these Terms please contact
-                    us at <a
-                            href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=hello@getbalsa.com">hello@getbalsa.com</a>
-                </h4>
-                <h3>Intellectual property and acceptable use</h3>
-                <h4 style="font-size: 1.2em;margin-top: 15px">All Content included on this Site, unless uploaded by
-                    Users, is the property of Balsa, our affiliates or other relevant third parties. In these Terms,
-                    Content means any text, graphics, images, audio, video, software, data compilations, page layout,
-                    underlying code and software and any other form of information capable of being stored in a computer
-                    that appears on or forms part of this Site, including any such content uploaded by Users.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">By continuing to use the Site you acknowledge that such
-                    Content is protected by copyright, trademarks, database rights and other intellectual property
-                    rights. Nothing on this site shall be construed as granting, by implication, estoppel, or otherwise,
-                    any license or right to use any trademark, logo or service mark displayed on the site without the
-                    owner's prior written permission</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">You may temporarily download one copy of the materials
-                    (information or software) on this Site for personal, non-commercial transitory viewing only. You
-                    must not otherwise reproduce, modify, copy, distribute or use for commercial purposes any Content
-                    without the written permission of Balsa.</h4>
-                <h3>Prohibited use</h3>
-                <div style="margin-bottom: 20px">
-                    <h4 style="font-size: 1.2em;margin-top: 15px">You may not use the Site and Services for any of the
-                        following purposes:</h4>
-                    <ul style="list-style: disc;margin-left: 25px;color: #000000">
-                        <li>in any way which causes, or may cause, damage to the Site and Services or interferes with
-                            any
-                            other person's use or enjoyment of the Site and Services;
-                        </li>
-                        <li>in any way which is harmful, unlawful, illegal, abusive, harassing, threatening or otherwise
-                            objectionable or in breach of any applicable law, regulation, governmental order;
-                        </li>
-                        <li>making, transmitting or storing electronic copies of Content protected by copyright without
-                            the permission of the owner.
-                        </li>
-                    </ul>
-                </div>
-                <h3>Registration</h3>
-                <div style="border-bottom:1px solid" class="col-md-12"></div>
-                <h4 style="font-size: 1.2em;margin-top: 15px">You must ensure that the details provided by you on
-                    registration or at any time are correct and complete. You must inform us immediately of any changes
-                    to the information that you provide when registering by updating your personal details to ensure we
-                    can communicate with you effectively.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">We may suspend or cancel your registration with immediate
-                    effect for any reasonable purposes or if you breach these Terms.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">You may cancel your registration at any time by contacting
-                    us. If you do so, you must immediately stop using the Site and Services. Cancellation or suspension
-                    of your registration does not affect any statutory rights.</h4>
-                <h3>Links to other websites</h3>
-                <div style="border-bottom:1px solid" class="col-md-12"></div>
-                <h4 style="font-size: 1.2em;margin-top: 15px">This Site may contain links to other websites. Unless
-                    expressly stated, these sites are not under the control of Balsa or that of our affiliates.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">We assume no responsibility for the content of such
-                    websites and disclaim liability for any and all forms of loss or damage arising out of the use of
-                    them.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">The inclusion of a link to another website on this Site
-                    does not imply any endorsement of the websites themselves or of those in control of them.</h4>
-                <h3>Privacy Policy and Cookie Policy</h3>
-                <div style="border-bottom:1px solid" class="col-md-12"></div>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Use of the Site and Services is also governed by our
-                    Privacy Policy and Cookies Policy, which are incorporated into these Terms by this reference.</h4>
-                <h3>Availability of the Site and disclaimers</h3>
-                <div style="border-bottom:1px solid" class="col-md-12"></div>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Any online facilities, tools, services or information that
-                    Balsa makes available through the Site is provided "as is" and on an "as available" basis. We give
-                    no warranty that the Site and Services will be free of defects and/or faults. To the maximum extent
-                    permitted by the law, we provide no warranties (express or implied) of fitness for a particular
-                    purpose, accuracy of information, compatibility and satisfactory quality. Balsa is under no
-                    obligation to update information on the Site.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Whilst Balsa uses reasonable endeavours to ensure that the
-                    Site and Services are secure and free of errors, viruses and other malware, we give no warranty or
-                    guaranty in that regard and all Users take responsibility for their own security, that of their
-                    personal details and their computers. Balsa accepts no liability for any disruption or
-                    non-availability of the Site or Services.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Balsa reserves the right to alter, suspend or discontinue
-                    any part (or the whole of) the Site including, but not limited to, any products and/or services
-                    available. These Terms shall continue to apply to any modified version of the Site unless it is
-                    expressly stated otherwise.</h4>
-                <h3>Limitation of liability</h3>
-                <div style="border-bottom:1px solid" class="col-md-12"></div>
-                <h4 style="font-size: 1.2em;margin-top: 15px">Nothing in these Terms will: (a) limit or exclude our or
-                    your liability for death or personal injury resulting from our or your negligence, as applicable;
-                    (b) limit or exclude our or your liability for fraud or fraudulent misrepresentation; or (c) limit
-                    or exclude any of our or your liabilities in any way that is not permitted under applicable
-                    law.</h4>
-                <h4 style="font-size: 1.2em;margin-top: 15px">We will not be liable to you in respect of any losses
-                    arising out of events beyond our reasonable control.</h4>
-                <div>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">To the maximum extent permitted by law, Balsa accepts
-                        no
-                        liability for any of the following:</h4>
-                    <ul style="list-style: disc;margin-left: 25px;color: #000000">
-                        <li>any business losses, such as loss of profits, income, revenue, anticipated savings,
-                            business, contracts, goodwill or commercial opportunities;
-                        </li>
-                        <li>loss or corruption of any data, database or software;</li>
-                        <li>any special, indirect or consequential loss or damage.</li>
-                    </ul>
-                </div>
-                <div style="margin-top: 20px" class="row">
-                    <h3>General</h3>
+                    <h3>Registration</h3>
                     <div style="border-bottom:1px solid" class="col-md-12"></div>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">You may not transfer any of your rights under these
-                        Terms
-                        to any other person. We may transfer our rights under these Terms where we reasonably believe
-                        your
-                        rights will not be affected.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">These Terms may be varied by us from time to time.
-                        Such
-                        revised terms will apply to the Site and Services from the date of publication. Users should
-                        check
-                        the Terms regularly to ensure familiarity with the then current version.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">These Terms together with the Privacy Policy and
-                        Cookie
-                        Policy contain the whole agreement between the parties relating to its subject matter and
-                        supersede
-                        all prior discussions, arrangements or agreements that might have taken place in relation to the
-                        Terms.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">The Contracts (Rights of Third Parties) Act 1999 shall
-                        not
-                        apply to these Terms and no third party will have any right to enforce or rely on any provision
+                    <h4 style="font-size: 1.2em;margin-top: 15px">You must ensure that the details provided by you on
+                        registration or at any time are correct and complete. You must inform us immediately of any
+                        changes
+                        to the information that you provide when registering by updating your personal details to ensure
+                        we
+                        can communicate with you effectively.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We may suspend or cancel your registration with
+                        immediate
+                        effect for any reasonable purposes or if you breach these Terms.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">You may cancel your registration at any time by
+                        contacting
+                        us. If you do so, you must immediately stop using the Site and Services. Cancellation or
+                        suspension
+                        of your registration does not affect any statutory rights.</h4>
+                    <h3>Links to other websites</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">This Site may contain links to other websites. Unless
+                        expressly stated, these sites are not under the control of Balsa or that of our affiliates.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We assume no responsibility for the content of such
+                        websites and disclaim liability for any and all forms of loss or damage arising out of the use
                         of
-                        these Terms.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">If any court or competent authority finds that any
-                        provision of these Terms(or part of any provision) is invalid, illegal or unenforceable, that
-                        provision or part-provision will, to the extent required, be deemed to be deleted, and the
-                        validity
-                        and enforceability of the other provisions of these Terms will not be affected.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">Unless otherwise agreed, no delay, act or omission by
-                        a
-                        party in exercising any right or remedy will be deemed a waiver of that, or any other, right or
-                        remedy.</h4>
-                    <h4 style="font-size: 1.2em;margin-top: 15px">This Agreement shall be governed by and interpreted
-                        according to the law of Canada and all disputes arising under the Agreement (including
-                        non-contractual disputes or claims) shall be subject to the exclusive jurisdiction of the
-                        Canadian
-                        courts.</h4>
+                        them.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">The inclusion of a link to another website on this
+                        Site
+                        does not imply any endorsement of the websites themselves or of those in control of them.</h4>
+                    <h3>Privacy Policy and Cookie Policy</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Use of the Site and Services is also governed by our
+                        Privacy Policy and Cookies Policy, which are incorporated into these Terms by this reference.
+                    </h4>
+                    <h3>Availability of the Site and disclaimers</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Any online facilities, tools, services or information
+                        that
+                        Balsa makes available through the Site is provided "as is" and on an "as available" basis. We
+                        give
+                        no warranty that the Site and Services will be free of defects and/or faults. To the maximum
+                        extent
+                        permitted by the law, we provide no warranties (express or implied) of fitness for a particular
+                        purpose, accuracy of information, compatibility and satisfactory quality. Balsa is under no
+                        obligation to update information on the Site.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Whilst Balsa uses reasonable endeavours to ensure that
+                        the
+                        Site and Services are secure and free of errors, viruses and other malware, we give no warranty
+                        or
+                        guaranty in that regard and all Users take responsibility for their own security, that of their
+                        personal details and their computers. Balsa accepts no liability for any disruption or
+                        non-availability of the Site or Services.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Balsa reserves the right to alter, suspend or
+                        discontinue
+                        any part (or the whole of) the Site including, but not limited to, any products and/or services
+                        available. These Terms shall continue to apply to any modified version of the Site unless it is
+                        expressly stated otherwise.</h4>
+                    <h3>Limitation of liability</h3>
+                    <div style="border-bottom:1px solid" class="col-md-12"></div>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">Nothing in these Terms will: (a) limit or exclude our
+                        or
+                        your liability for death or personal injury resulting from our or your negligence, as
+                        applicable;
+                        (b) limit or exclude our or your liability for fraud or fraudulent misrepresentation; or (c)
+                        limit
+                        or exclude any of our or your liabilities in any way that is not permitted under applicable
+                        law.</h4>
+                    <h4 style="font-size: 1.2em;margin-top: 15px">We will not be liable to you in respect of any losses
+                        arising out of events beyond our reasonable control.</h4>
+                    <div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">To the maximum extent permitted by law, Balsa
+                            accepts
+                            no
+                            liability for any of the following:</h4>
+                        <ul style="list-style: disc;margin-left: 25px;color: #000000">
+                            <li>any business losses, such as loss of profits, income, revenue, anticipated savings,
+                                business, contracts, goodwill or commercial opportunities;
+                            </li>
+                            <li>loss or corruption of any data, database or software;</li>
+                            <li>any special, indirect or consequential loss or damage.</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 20px" class="row">
+                        <h3>General</h3>
+                        <div style="border-bottom:1px solid" class="col-md-12"></div>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">You may not transfer any of your rights under
+                            these
+                            Terms
+                            to any other person. We may transfer our rights under these Terms where we reasonably
+                            believe
+                            your
+                            rights will not be affected.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">These Terms may be varied by us from time to time.
+                            Such
+                            revised terms will apply to the Site and Services from the date of publication. Users should
+                            check
+                            the Terms regularly to ensure familiarity with the then current version.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">These Terms together with the Privacy Policy and
+                            Cookie
+                            Policy contain the whole agreement between the parties relating to its subject matter and
+                            supersede
+                            all prior discussions, arrangements or agreements that might have taken place in relation to
+                            the
+                            Terms.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">The Contracts (Rights of Third Parties) Act 1999
+                            shall
+                            not
+                            apply to these Terms and no third party will have any right to enforce or rely on any
+                            provision
+                            of
+                            these Terms.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">If any court or competent authority finds that any
+                            provision of these Terms(or part of any provision) is invalid, illegal or unenforceable,
+                            that
+                            provision or part-provision will, to the extent required, be deemed to be deleted, and the
+                            validity
+                            and enforceability of the other provisions of these Terms will not be affected.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">Unless otherwise agreed, no delay, act or omission
+                            by
+                            a
+                            party in exercising any right or remedy will be deemed a waiver of that, or any other, right
+                            or
+                            remedy.</h4>
+                        <h4 style="font-size: 1.2em;margin-top: 15px">This Agreement shall be governed by and
+                            interpreted
+                            according to the law of Canada and all disputes arising under the Agreement (including
+                            non-contractual disputes or claims) shall be subject to the exclusive jurisdiction of the
+                            Canadian
+                            courts.</h4>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer class="space--sm footer-2 ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 col-6">
-                    <h6 class="type--uppercase">Company</h6>
-                    <ul class="list--hover">
-                        <li>
-                            <a href="about-page.html">About Balsa</a>
-                        </li>
-                        <li>
-                            <a href="contact-page.html">Contact Us</a>
-                        </li>
-                    </ul>
+        </section>
+        <footer class="space--sm footer-2 ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 col-6">
+                        <h6 class="type--uppercase">Company</h6>
+                        <ul class="list--hover">
+                            <li>
+                                <a href="about-page.html">About Balsa</a>
+                            </li>
+                            <li>
+                                <a href="contact-page.html">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-6">
+                        <h6 class="type--uppercase">Product</h6>
+                        <ul class="list--hover">
+                            <li>
+                                <a href="features-page.html">Features</a>
+                            </li>
+                            <li>
+                                <a href="https://demo.getbalsa.com">Demo</a>
+                            </li>
+                            <li>
+                                <a href="pricing-page.html">Pricing</a>
+                            </li>
+                            <li>
+                                <a href="support-terms-page.html">Support Terms</a>
+                            </li>
+                            <li>
+                                <a href="security-page.html">Security Overview</a>
+                            </li>
+                            <li>
+                                <a href="roadmap.html">Direction & roadmap</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-6">
+                        <h6 class="type--uppercase">LEGAL</h6>
+                        <ul class="list--hover">
+                            <li>
+                                <a href="terms-page.html">Terms of Service</a>
+                            </li>
+                            <li>
+                                <a href="privacy-page.html">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="cookie-page.html">Cookie Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-6">
+                        <h6 class="type--uppercase">COMPARE</h6>
+                        <ul class="list--hover">
+                            <li>
+                                <a href="confluence-page.html">Confluence alternative</a>
+                            </li>
+                            <li>
+                                <a href="evernote-page.html">Evernote alternative</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 col-6">
-                    <h6 class="type--uppercase">Product</h6>
-                    <ul class="list--hover">
-                        <li>
-                            <a href="features-page.html">Features</a>
-                        </li>
-                        <li>
-                            <a href="https://demo.getbalsa.com">Demo</a>
-                        </li>
-                        <li>
-                            <a href="pricing-page.html">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="support-terms-page.html">Support Terms</a>
-                        </li>
-                        <li>
-                            <a href="security-page.html">Security Overview</a>
-                        </li>
-                        <li>
-                            <a href="roadmap.html">Direction & roadmap</a>
-                        </li>
-                    </ul>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="type--fine-print">&copy; 2019 Balsa</span>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 col-6">
-                    <h6 class="type--uppercase">LEGAL</h6>
-                    <ul class="list--hover">
-                        <li>
-                            <a href="terms-page.html">Terms of Service</a>
-                        </li>
-                        <li>
-                            <a href="privacy-page.html">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="cookie-page.html">Cookie Policy</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-lg-3 col-6">
-                    <h6 class="type--uppercase">COMPARE</h6>
-                    <ul class="list--hover">
-                        <li>
-                            <a href="confluence-page.html">Confluence alternative</a>
-                        </li>
-                        <li>
-                            <a href="evernote-page.html">Evernote alternative</a>
-                        </li>
-                    </ul>
-                </div>
+                <!--end of row-->
             </div>
-            <!--end of row-->
-            <div class="row">
-                <div class="col-md-6">
-                    <span class="type--fine-print">&copy; 2019 Balsa</span>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </footer>
-</div>
-<!--<div class="loader"></div>-->
-<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
-    <i class="stack-interface stack-up-open-big"></i>
-</a>
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/flickity.min.js"></script>
-<script src="js/easypiechart.min.js"></script>
-<script src="js/parallax.js"></script>
-<script src="js/typed.min.js"></script>
-<script src="js/datepicker.js"></script>
-<script src="js/isotope.min.js"></script>
-<script src="js/ytplayer.min.js"></script>
-<script src="js/lightbox.min.js"></script>
-<script src="js/granim.min.js"></script>
-<script src="js/jquery.steps.min.js"></script>
-<script src="js/countdown.min.js"></script>
-<script src="js/twitterfetcher.min.js"></script>
-<script src="js/spectragram.min.js"></script>
-<script src="js/smooth-scroll.min.js"></script>
-<script src="js/scripts.js"></script>
+            <!--end of container-->
+        </footer>
+    </div>
+    <!--<div class="loader"></div>-->
+    <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+        <i class="stack-interface stack-up-open-big"></i>
+    </a>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/flickity.min.js"></script>
+    <script src="js/easypiechart.min.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/ytplayer.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
+    <script src="js/granim.min.js"></script>
+    <script src="js/jquery.steps.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/twitterfetcher.min.js"></script>
+    <script src="js/spectragram.min.js"></script>
+    <script src="js/smooth-scroll.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
+
 </html>
