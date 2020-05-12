@@ -1,0 +1,360 @@
+{
+  "nodes": {
+    "doc": {
+      "group": "block*",
+      "content": "title block*"
+    },
+    "text": {
+      "group": "inline"
+    },
+    "paragraph": {
+      "group": "block",
+      "draggable": false,
+      "parseDOM": [
+        {
+          "tag": "p"
+        }
+      ],
+      "content": "inline*"
+    },
+    "code_block": {
+      "group": "block",
+      "draggable": false,
+      "parseDOM": [
+        {
+          "tag": "pre",
+          "preserveWhitespace": "full"
+        }
+      ],
+      "content": "text*",
+      "defining": true,
+      "marks": ""
+    },
+    "iframe": {
+      "attrs": {
+        "src": {
+          "default": null
+        }
+      },
+      "group": "block",
+      "selectable": false,
+      "parseDOM": [
+        {
+          "tag": "iframe"
+        }
+      ]
+    },
+    "title": {
+      "parseDOM": [
+        {
+          "tag": "h1"
+        }
+      ],
+      "content": "inline*"
+    },
+    "blockquote": {
+      "group": "block",
+      "draggable": false,
+      "defining": true,
+      "parseDOM": [
+        {
+          "tag": "blockquote"
+        }
+      ],
+      "content": "block*"
+    },
+    "bullet_list": {
+      "group": "block",
+      "parseDOM": [
+        {
+          "tag": "ul"
+        }
+      ],
+      "content": "list_item+"
+    },
+    "hard_break": {
+      "group": "inline",
+      "selectable": false,
+      "parseDOM": [
+        {
+          "tag": "br"
+        }
+      ],
+      "inline": true
+    },
+    "image": {
+      "attrs": {
+        "src": {
+          "default": null
+        },
+        "alt": {
+          "default": null
+        },
+        "title": {
+          "default": null
+        }
+      },
+      "group": "inline",
+      "inline": true,
+      "draggable": true,
+      "parseDOM": [
+        {
+          "tag": "img[src]"
+        }
+      ]
+    },
+    "heading": {
+      "attrs": {
+        "level": {
+          "default": 1
+        }
+      },
+      "group": "block",
+      "defining": true,
+      "draggable": false,
+      "parseDOM": [
+        {
+          "tag": "h1",
+          "attrs": {
+            "level": 1
+          }
+        },
+        {
+          "tag": "h2",
+          "attrs": {
+            "level": 2
+          }
+        },
+        {
+          "tag": "h3",
+          "attrs": {
+            "level": 3
+          }
+        }
+      ],
+      "content": "inline*"
+    },
+    "horizontal_rule": {
+      "group": "block",
+      "parseDOM": [
+        {
+          "tag": "hr"
+        }
+      ]
+    },
+    "list_item": {
+      "draggable": false,
+      "defining": true,
+      "parseDOM": [
+        {
+          "tag": "li"
+        }
+      ],
+      "content": "paragraph block*"
+    },
+    "ordered_list": {
+      "attrs": {
+        "order": {
+          "default": 1
+        }
+      },
+      "group": "block",
+      "parseDOM": [
+        {
+          "tag": "ol"
+        }
+      ],
+      "content": "list_item+"
+    },
+    "todo_item": {
+      "attrs": {
+        "done": {
+          "default": false
+        }
+      },
+      "draggable": true,
+      "parseDOM": [
+        {
+          "priority": 51,
+          "tag": "[data-type=\"todo_item\"]"
+        }
+      ],
+      "content": "(paragraph|todo_list)+"
+    },
+    "todo_list": {
+      "group": "block",
+      "parseDOM": [
+        {
+          "priority": 51,
+          "tag": "[data-type=\"todo_list\"]"
+        }
+      ],
+      "content": "todo_item+"
+    },
+    "table": {
+      "group": "block",
+      "parseDOM": [
+        {
+          "tag": "table"
+        }
+      ],
+      "content": "table_row+",
+      "tableRole": "table",
+      "isolating": true
+    },
+    "table_header": {
+      "attrs": {
+        "background": {
+          "default": null
+        },
+        "colspan": {
+          "default": 1
+        },
+        "colwidth": {
+          "default": null
+        },
+        "rowspan": {
+          "default": 1
+        }
+      },
+      "parseDOM": [
+        {
+          "tag": "th"
+        }
+      ],
+      "content": "block+",
+      "tableRole": "header_cell",
+      "isolating": true
+    },
+    "table_cell": {
+      "attrs": {
+        "background": {
+          "default": null
+        },
+        "colspan": {
+          "default": 1
+        },
+        "colwidth": {
+          "default": null
+        },
+        "rowspan": {
+          "default": 1
+        }
+      },
+      "parseDOM": [
+        {
+          "tag": "td"
+        }
+      ],
+      "content": "block+",
+      "isolating": true,
+      "tableRole": "cell"
+    },
+    "table_row": {
+      "parseDOM": [
+        {
+          "tag": "tr"
+        }
+      ],
+      "content": "(table_cell | table_header)*",
+      "tableRole": "row"
+    },
+    "mention": {
+      "attrs": {
+        "id": {
+          "default": null
+        },
+        "label": {
+          "default": null
+        }
+      },
+      "atom": true,
+      "inline": true,
+      "group": "inline",
+      "selectable": false,
+      "parseDOM": [
+        {
+          "tag": "span[data-mention-id]"
+        }
+      ]
+    }
+  },
+  "marks": {
+    "bold": {
+      "parseDOM": [
+        {
+          "tag": "strong"
+        },
+        {
+          "tag": "b"
+        },
+        {
+          "style": "font-weight"
+        }
+      ]
+    },
+    "code": {
+      "excludes": "_",
+      "parseDOM": [
+        {
+          "tag": "code"
+        }
+      ]
+    },
+    "comment": {
+      "attrs": {
+        "guid": {
+          "default": null
+        }
+      }
+    },
+    "italic": {
+      "parseDOM": [
+        {
+          "tag": "i"
+        },
+        {
+          "tag": "em"
+        },
+        {
+          "style": "font-style=italic"
+        }
+      ]
+    },
+    "link": {
+      "attrs": {
+        "href": {
+          "default": null
+        }
+      },
+      "inclusive": false,
+      "parseDOM": [
+        {
+          "tag": "a[href]"
+        }
+      ]
+    },
+    "strike": {
+      "parseDOM": [
+        {
+          "tag": "s"
+        },
+        {
+          "tag": "del"
+        },
+        {
+          "tag": "strike"
+        },
+        {
+          "style": "text-decoration"
+        }
+      ]
+    },
+    "underline": {
+      "parseDOM": [
+        {"tag":  "u"},
+        {"style": "text-decoration"}
+      ]
+    }
+  }
+}

@@ -23,6 +23,9 @@ export class BalsaFile extends UserAwareEntity {
   @Column({ default: '' })
   public content: string;
 
+  @Column({ default: '[]' })
+  public stepHistory: string;
+
   @Column({ nullable: true })
   public contentHtml: string;
 
@@ -31,6 +34,9 @@ export class BalsaFile extends UserAwareEntity {
 
   @Column({ nullable: true })
   public cursorPosition: number;
+
+  @Column({ nullable: false, default: 0 })
+  public version: number;
 
   @Column({ default: 'READ_ONLY' })
   public defaultPublicPermissionLevel: string;

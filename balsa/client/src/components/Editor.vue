@@ -135,14 +135,6 @@
               <icon name="annotation" />
             </button>
 
-            <button
-              :class="{ 'is-active': showConversation }"
-              class="menubar__button"
-              @click="commands.createHandsonTable"
-            >
-              <icon name="plus" />
-            </button>
-
             <!-- <button
               class="menubar__button"
               :class="{ 'is-active': isActive.code_block() }"
@@ -308,7 +300,7 @@
         :class="{'closed': !showConversation}"
         class="comment-balsa no-print"
       >
-        <div v-for="(comment,index) in conversation.comments" :key="{index}">
+        <div v-for="(comment,index) in conversation.comments" :key="index">
           <el-row type="flex" justify="space-between">
             <el-row type="flex" align="middle">
               <Avatar
@@ -531,6 +523,7 @@ export default {
   },
   data() {
     return {
+      documentVersion: 0,
       inputComment: '',
       selectedConversationId: null,
       showConversation: false,
@@ -548,7 +541,195 @@ export default {
       placeholderH1: '',
       placeholderP: '',
       htmlData: '',
-      editor: new Editor({
+      editor: null,
+      query: null,
+      suggestionRange: null,
+      filteredUsers: [],
+      navigatedUserIndex: 0,
+      insertMention: () => {},
+      observer: null,
+    };
+  },
+  computed: {
+    hasResults() {
+      return this.filteredUsers.length;
+    },
+    showSuggestions() {
+      return this.query || this.hasResults;
+    },
+  },
+  apollo: {
+    File: {
+      query: gql`
+        query File($id: Int!, $inviteCode: String, $publicViewCode: String, $log: Boolean) {
+          File(id: $id, inviteCode: $inviteCode, publicViewCode: $publicViewCode, log: $log) {
+            id
+            name
+            content
+            version
+            cursorPosition
+            isStarred
+            hasWritePermission
+            user {
+              id
+              firstName
+              lastName
+            }
+            contributors {
+              user {
+                id
+                firstName
+                lastName
+              }
+            }
+            comments {
+              id
+              from
+              to
+              text
+            }
+          }
+        }
+      `,
+      variables() {
+        return {
+          id: parseInt(this.$route.params.id),
+          inviteCode: this.$route.params.inviteCode,
+          publicViewCode: this.$route.params.publicViewCode,
+          log: true,
+        };
+      },
+      subscribeToMore: {
+        document: gql`
+            subscription documentUpdated($fileId: Int!, $updaterId: Int!){
+                documentUpdated(fileId: $fileId, updaterId: $updaterId)
+            }`,
+        // Variables passed to the subscription. Since we're using a function,
+        // they are reactive
+        variables () {
+          return {
+            fileId: parseInt(this.$route.params.id),
+            updaterId: parseInt(localStorage.getItem('USERID'))
+          }
+        },
+        updateQuery(previousResult, { subscriptionData }) {
+          const data = JSON.parse(subscriptionData.data.documentUpdated);
+          previousResult.version = data.version;
+          this.documentVersion = data.version;
+          this.updateFromSocket(data);
+        },
+      },
+      error(error) {
+        console.error("We've got an error!", error.graphQLErrors[0].message);
+      },
+      result({ data }) {
+        // assumes that value is the JSON value, keeps the cursor at the same position
+        if (!this.editor) {
+          this.onInit(data.File);
+        }
+
+        if (!data.File.hasWritePermission) {
+          this.editor.setOptions({ editable: false });
+        }
+        if (data.File.content && JSON.stringify(this.editor.getJSON()) !== data.File.content) {
+          // a change as happened, update the content, cursor is at the start of the editor,
+          // however, that is no big deal, assume it's a different content anyways.
+          if (!this.firstTime) {
+            this.editor.setContent(JSON.parse(data.File.content));
+            this.firstTime = true;
+            if (data.File.cursorPosition) {
+              const state = this.editor.state;
+              const tr = state.tr.setSelection(
+                state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
+              );
+
+              this.editor.view.dispatch(tr.scrollIntoView());
+            }
+          }
+          // if (data.File.cursorPosition) {
+          //   const state = this.editor.state;
+          //   const tr = state.tr.setSelection(
+          //     state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
+          //   );
+          //   //this.editor.view.dispatch(tr.scrollIntoView());
+          // }
+        }
+        // if (
+        //   data.File.content === '' ||
+        //   data.File.content === `{"type":"doc","content":[{"type":"title"},{"type":"paragraph"}]}`
+        // ) {
+        //   const state = this.editor.state;
+        //   const tr = state.tr.setSelection(
+        //     state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
+        //   );
+        //   this.editor.view.dispatch(tr.scrollIntoView());
+        // }
+      },
+    },
+    contributor: {
+      query: gql`
+        query contributor($inviteCode: String) {
+          contributor(inviteCode: $inviteCode) {
+            id
+            permissionLevel
+            email
+            isAnon
+            user {
+              id
+              email
+            }
+          }
+        }
+      `,
+      skip() {
+        return !this.$route.params.inviteCode;
+      },
+      variables() {
+        return {
+          inviteCode: this.$route.params.inviteCode,
+        };
+      },
+      result({ data }) {
+        if (data.contributor.permissionLevel !== 'READ_WRITE') {
+          this.editor.setOptions({
+            editable: false,
+          });
+        }
+      },
+    },
+    conversation: {
+      query: CONVERSATION_QUERY,
+      skip() {
+        return !this.showConversation && !this.selectedConversationId;
+      },
+      variables() {
+        return {
+          uuid: this.selectedConversationId,
+        };
+      },
+    },
+    myProfile: {
+      query: MYPROFILE_QUERY,
+    },
+  },
+  created() {
+    window.addEventListener('keydown', this.handleSearch);
+    window.addEventListener('scroll', this.handleScroll);
+    let randText = this.randomPlaceHolder();
+    this.placeholderH1 = randText.h1;
+    this.placeholderP = randText.p;
+  },
+  destroyed() {
+    window.removeEventListener('keydown', this.handleSearch);
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    onInit(file) {
+      if (!file.content) {
+        file.content = `{"type":"doc","content":[{"type":"title"},{"type":"paragraph"}]}`;
+      }
+      this.documentVersion = file.version;
+      this.editor = new Editor({
         editable: this.$route.name !== 'readOnlyEditor',
         extensions: [
           // new Comment(this.createComment, [{ from: 38, to: 53, text: 'a' }]),
@@ -686,210 +867,38 @@ export default {
             },
           }),
           new Collaboration({
-            version: 1,
+            version: this.documentVersion,
             debounce: 250,
+            onSendable: ({ sendable }) => {
+              const steps = JSON.stringify(sendable.steps);
+              const version = sendable.version;
+              const clientID = sendable.clientID.toString();
+              this.updateFile({steps, version, clientID});
+            },
           }),
         ],
         autoFocus: 'end',
-        content: '',
+        content: JSON.parse(file.content),
         onUpdate: ({ getJSON, getHTML, state, transaction }) => {
-          this.saveContent(getJSON(), getHTML(), state.selection.anchor);
+          // this.saveContent(getJSON(), getHTML(), state.selection.anchor);
           this.htmlData = getHTML();
         },
-        onTransaction: ({ state, transaction }) => {
-          // Skip the first transaction to avoid overwriting cursor position
-          // Don't update if the cursorPosition is correct already.
-          // Don't update if the file also changed
-          if (
-            this.firstTransactionPassed &&
-            !transaction.docChanged &&
-            state.selection.anchor !== this.File.cursorPosition
-          ) {
-            this.updateFile({ cursorPosition: state.selection.anchor });
-          }
-          this.firstTransactionPassed = true;
-        },
+        // onTransaction: ({ state, transaction }) => {
+        //   // Skip the first transaction to avoid overwriting cursor position
+        //   // Don't update if the cursorPosition is correct already.
+        //   // Don't update if the file also changed
+        //   if (
+        //     this.firstTransactionPassed &&
+        //     !transaction.docChanged &&
+        //     state.selection.anchor !== this.File.cursorPosition
+        //   ) {
+        //     this.updateFile({ cursorPosition: state.selection.anchor });
+        //   }
+        //   this.firstTransactionPassed = true;
+        // },
         onInit: ({ transaction }) => {},
-      }),
-      query: null,
-      suggestionRange: null,
-      filteredUsers: [],
-      navigatedUserIndex: 0,
-      insertMention: () => {},
-      observer: null,
-    };
-  },
-
-  computed: {
-    hasResults() {
-      return this.filteredUsers.length;
+  })
     },
-    showSuggestions() {
-      return this.query || this.hasResults;
-    },
-  },
-  apollo: {
-    File: {
-      query: gql`
-        query File($id: Int!, $inviteCode: String, $publicViewCode: String, $log: Boolean) {
-          File(id: $id, inviteCode: $inviteCode, publicViewCode: $publicViewCode, log: $log) {
-            id
-            name
-            content
-            cursorPosition
-            isStarred
-            hasWritePermission
-            user {
-              id
-              firstName
-              lastName
-            }
-            contributors {
-              user {
-                id
-                firstName
-                lastName
-              }
-            }
-            comments {
-              id
-              from
-              to
-              text
-            }
-          }
-        }
-      `,
-      variables() {
-        return {
-          id: parseInt(this.$route.params.id),
-          inviteCode: this.$route.params.inviteCode,
-          publicViewCode: this.$route.params.publicViewCode,
-          log: true,
-        };
-      },
-      subscribeToMore: {
-        document: gql`
-            subscription documentUpdated($fileId: Int!, $updaterId: Int!){
-                documentUpdated(fileId: $fileId, updaterId: $updaterId)
-            }`,
-        // Variables passed to the subscription. Since we're using a function,
-        // they are reactive
-        variables () {
-          return {
-            fileId: parseInt(this.$route.params.id),
-            updaterId: parseInt(localStorage.getItem('USERID'))
-          }
-        },
-        // Mutate the previous result
-        updateQuery(previousResult, { subscriptionData }) {
-          const newContent = subscriptionData.data.documentUpdated;
-          previousResult.content = newContent;
-          this.updateFromSocket(newContent);
-        },
-      },
-      // Error handling
-      error(error) {
-        console.error("We've got an error!", error.graphQLErrors[0].message);
-      },
-      result({ data }) {
-        // assumes that value is the JSON value, keeps the cursor at the same position
-        if (!data.File.hasWritePermission) {
-          this.editor.setOptions({ editable: false });
-        }
-        if (data.File.content && JSON.stringify(this.editor.getJSON()) !== data.File.content) {
-          // a change as happened, update the content, cursor is at the start of the editor,
-          // however, that is no big deal, assume it's a different content anyways.
-          if (!this.firstTime) {
-            this.editor.setContent(JSON.parse(data.File.content));
-            this.firstTime = true;
-            if (data.File.cursorPosition) {
-              const state = this.editor.state;
-              const tr = state.tr.setSelection(
-                state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
-              );
-
-              this.editor.view.dispatch(tr.scrollIntoView());
-            }
-          }
-          // if (data.File.cursorPosition) {
-          //   const state = this.editor.state;
-          //   const tr = state.tr.setSelection(
-          //     state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
-          //   );
-          //   //this.editor.view.dispatch(tr.scrollIntoView());
-          // }
-        }
-        if (
-          data.File.content === '' ||
-          data.File.content === `{"type":"doc","content":[{"type":"title"},{"type":"paragraph"}]}`
-        ) {
-          const state = this.editor.state;
-          const tr = state.tr.setSelection(
-            state.selection.constructor.near(state.tr.doc.resolve(data.File.cursorPosition)),
-          );
-          this.editor.view.dispatch(tr.scrollIntoView());
-        }
-      },
-    },
-    contributor: {
-      query: gql`
-        query contributor($inviteCode: String) {
-          contributor(inviteCode: $inviteCode) {
-            id
-            permissionLevel
-            email
-            isAnon
-            user {
-              id
-              email
-            }
-          }
-        }
-      `,
-      skip() {
-        return !this.$route.params.inviteCode;
-      },
-      variables() {
-        return {
-          inviteCode: this.$route.params.inviteCode,
-        };
-      },
-      result({ data }) {
-        if (data.contributor.permissionLevel !== 'READ_WRITE') {
-          this.editor.setOptions({
-            editable: false,
-          });
-        }
-      },
-    },
-    conversation: {
-      query: CONVERSATION_QUERY,
-      skip() {
-        return !this.showConversation && !this.selectedConversationId;
-      },
-      variables() {
-        return {
-          uuid: this.selectedConversationId,
-        };
-      },
-    },
-    myProfile: {
-      query: MYPROFILE_QUERY,
-    },
-  },
-  created() {
-    window.addEventListener('keydown', this.handleSearch);
-    window.addEventListener('scroll', this.handleScroll);
-    let randText = this.randomPlaceHolder();
-    this.placeholderH1 = randText.h1;
-    this.placeholderP = randText.p;
-  },
-  destroyed() {
-    window.removeEventListener('keydown', this.handleSearch);
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  methods: {
     handleSearch(e) {
       if ((e.which == '115' || e.which == '83' || e.which == '70') && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
@@ -1077,8 +1086,8 @@ export default {
     updateFile(variables) {
       return this.$apollo.mutate({
         mutation: gql`
-          mutation updateFile($id: Int!, $content: String, $contentHtml: String, $cursorPosition: Int) {
-            updateFile(id: $id, content: $content, contentHtml: $contentHtml, cursorPosition: $cursorPosition) {
+          mutation updateFile($id: Int!, $content: String, $contentHtml: String, $cursorPosition: Int, $steps: String, $version: Int, $clientID: String) {
+            updateFile(id: $id, content: $content, contentHtml: $contentHtml, cursorPosition: $cursorPosition, clientID: $clientID, steps: $steps, version: $version) {
               id
               content
               cursorPosition
@@ -1200,7 +1209,9 @@ export default {
       document.body.removeChild(fileDownload);
     },
     updateFromSocket(data) {
-      this.editor.setContent(JSON.parse(data))
+      if (data.steps) {
+        this.editor.extensions.options.collaboration.update(data);
+      }
     }
   },
   beforeDestroy() {

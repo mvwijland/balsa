@@ -17,6 +17,7 @@ import { Template } from '../../entities/template';
 import { FOLDER } from '../../constants';
 import { PubSub } from 'apollo-server-express';
 import { withFilter } from 'graphql-subscriptions';
+import { updateDoc } from './editorUtils';
 
 const pubsub = new PubSub();
 const logger = new BehaviourLogger();
@@ -32,6 +33,9 @@ const typeDefs = gql`
       parentId: Int
       name: String
       content: String
+      steps: String
+      version: Int
+      clientID: String
       contentHtml: String
       cursorPosition: Int
       defaultPermissionLevel: String
@@ -73,6 +77,7 @@ const typeDefs = gql`
     createdAt: String
     updatedAt: String
     readAt: String
+    version: Int
     contributors: [Contributor]
     lastEditor: Contributor
     nonMeContributors: [User] @userAware
@@ -343,8 +348,10 @@ const resolvers = {
       if (templateId) {
         const template = await Template.findOne({ id: templateId });
         newFile.content = template.content;
-      } else {
+      } else if (content) {
         newFile.content = content;
+      } else {
+        newFile.content = `{"type":"doc","content":[{"type":"title"},{"type":"paragraph"}]}`;
       }
 
       const savedFile = await newFile.save();
@@ -422,20 +429,23 @@ const resolvers = {
 
       return removedConversation;
     },
-    updateFile: async (_, { id, parentId, ...fields }, context) => {
+    updateFile: async (_, { id, parentId, clientID, version, steps, ...fields }, context) => {
       const user = context.user;
       const log = fields.log;
       const qb = BalsaFile.getRepository().createQueryBuilder('file');
-      const file = await qb
+      let file = await qb
         .leftJoinAndSelect('file.contributors', 'contributors')
         .leftJoinAndSelect('file.user', 'user')
         .leftJoinAndSelect('contributors.user', 'contributor')
         .where('file.id = :id', { id })
         .getOne();
-
       if (!file) {
         throw new Error('No file');
       }
+      const updateResponse = updateDoc(version, clientID, steps, file);
+      const newSteps = updateResponse.newSteps;
+      const updateStatus = updateResponse.status;
+      file = updateResponse.file;
 
       if (parentId && parentId !== 0) {
         file.parent = await BalsaFile.findOne({ id: parentId });
@@ -492,8 +502,27 @@ const resolvers = {
       }
 
       logger.log(user, file, BehaviourLog.ACTION_UPDATE_FILE, false, true);
-
-      pubsub.publish(`documentUpdated`, { documentUpdated: file.content, fileId: file.id, updaterId: user.id });
+      if (newSteps) {
+        const reply = {
+          steps: newSteps,
+          version: file.version,
+        };
+        if (updateStatus === 'updated') {
+          pubsub.publish(`documentUpdated`, {
+            documentUpdated: JSON.stringify(reply),
+            fileId: file.id,
+            updaterId: user.id,
+          });
+        } else if (updateStatus === 'version_mismatch') {
+          reply.version = version;
+          pubsub.publish(`documentUpdated`, {
+            documentUpdated: JSON.stringify(reply),
+            fileId: file.id,
+            updaterId: user.id,
+            status: updateStatus,
+          });
+        }
+      }
 
       return file;
     },
@@ -790,6 +819,9 @@ const resolvers = {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['documentUpdated']),
         (payload, variables) => {
+          if (payload.status === 'version_mismatch') {
+            return payload.fileId === variables.fileId && payload.updaterId === variables.updaterId;
+          }
           return payload.fileId === variables.fileId;
         },
       ),
