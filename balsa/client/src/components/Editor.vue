@@ -470,7 +470,6 @@ import _ from 'lodash';
 import Title from './Editor/Components/Title';
 import Iframe from './Editor/Components/Iframe';
 import Comment from './Editor/Nodes/Comment';
-import HandsonTable from './Editor/Nodes/HandsonTable';
 import Image from './Editor/Nodes/Image';
 import TodoItem from './Editor/Nodes/TodoItem';
 import {
@@ -501,7 +500,6 @@ import {
   CodeBlockHighlight,
   Collaboration,
 } from 'tiptap-extensions';
-import 'handsontable/dist/handsontable.full.css';
 import gql from 'graphql-tag';
 import TurnDown from 'turndown';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -738,7 +736,6 @@ export default {
             hideConversationBox: this.hideConversationBox,
             createConversation: this.createConversation,
           }),
-          new HandsonTable(),
           new CodeBlockHighlight({
             languages: {
               javascript,
