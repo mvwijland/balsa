@@ -49,6 +49,7 @@ const typeDefs = gql`
     createConversation(fileId: Int!, uuid: String!): Conversation
     deleteConversation(fileId: Int!, uuid: String!): Conversation
     mentionUser(fileId: Int!, userId: Int!): Boolean @nonDemoMode
+    updateCursor(position: Int!, colorClass: String!, fileId: Int!): Boolean
   }
 
   extend type Query {
@@ -64,6 +65,7 @@ const typeDefs = gql`
 
   extend type Subscription {
     documentUpdated(fileId: Int!, updaterId: Int!): String!
+    documentCursor(fileId: Int!): String!
   }
 
   type File {
@@ -646,6 +648,16 @@ const resolvers = {
         }
       });
     },
+    updateCursor: async (_, { position, colorClass, fileId }, context) => {
+      const user = context.user;
+      const data = {};
+      data[user.id] = { position, name: `${user.firstName} ${user.lastName}`, colorClass };
+      pubsub.publish(`documentCursor`, {
+        documentCursor: JSON.stringify(data),
+        fileId,
+      });
+      return true;
+    },
   },
   Query: {
     allFiles: async () => {
@@ -822,6 +834,14 @@ const resolvers = {
           if (payload.status === 'version_mismatch') {
             return payload.fileId === variables.fileId && payload.updaterId === variables.updaterId;
           }
+          return payload.fileId === variables.fileId;
+        },
+      ),
+    },
+    documentCursor: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['documentCursor']),
+        (payload, variables) => {
           return payload.fileId === variables.fileId;
         },
       ),

@@ -1,0 +1,42 @@
+
+#cursorNameBar {
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 5px;
+  color: #000;
+  font-weight: 600;
+  position: absolute;
+  display: none;
+  z-index: 1;
+  background: rgba(153, 154, 152, 0.44);
+}
+
+@keyframes fading {
+  from {
+    box-shadow: 2px 0px 0px 0px var(--cursor-color);
+  }
+
+  49.9% {
+    box-shadow: 2px 0px 0px 0px var(--cursor-color);
+  }
+  50% {
+    box-shadow: unset;
+  }
+
+  99.9% {
+    box-shadow: unset;
+  }
+
+  to {
+    box-shadow: 2px 0px 0px 0px var(--cursor-color);
+  }
+}
+
+.remoteUserCursor {
+  --cursor-color: rgba(153, 154, 152, 0.44);
+  background: transparent;
+  width: 1px;
+  animation-duration: 1s;
+  animation-name: fading;
+  animation-iteration-count: infinite;
+}

@@ -29,6 +29,7 @@
       :file="File"
       v-if="!this.$apollo.queries.File.loading && $store.getters.isRemoveFileDialogOpen"
     />
+    <span id="cursorNameBar"></span>
     <div class="editor balsa-container" style="margin-bottom:2%;position:relative;">
       <el-row type="flex" class="no-print" justify="center" style="position:relative;min-height:60px">
         <editor-menu-bar
@@ -472,6 +473,7 @@ import Iframe from './Editor/Components/Iframe';
 import Comment from './Editor/Nodes/Comment';
 import Image from './Editor/Nodes/Image';
 import TodoItem from './Editor/Nodes/TodoItem';
+import MultiCursorPlugin from './Editor/Plugins/MultiCursor';
 import {
   Blockquote,
   CodeBlock,
@@ -523,6 +525,7 @@ export default {
     return {
       documentVersion: 0,
       inputComment: '',
+      cursors: {},
       selectedConversationId: null,
       showConversation: false,
       firstTime: false,
@@ -709,6 +712,27 @@ export default {
     myProfile: {
       query: MYPROFILE_QUERY,
     },
+    $subscribe: {
+      documentCursor: {
+        query: gql`
+          subscription documentCursor($fileId: Int!) {
+              documentCursor(fileId: $fileId)
+          }
+        `,
+        variables() {
+          return {
+            fileId: parseInt(this.$route.params.id)
+          }
+        },
+        result ({ data }) {
+          data = JSON.parse(data.documentCursor);
+          for (const [user, _data] of Object.entries(data)) {
+            this.cursors[user] = _data
+          }
+          this.editor.extensions.view.updateState(this.editor.view.state);
+        },
+      }
+    },
   },
   created() {
     window.addEventListener('keydown', this.handleSearch);
@@ -730,7 +754,6 @@ export default {
       this.editor = new Editor({
         editable: this.$route.name !== 'readOnlyEditor',
         extensions: [
-          // new Comment(this.createComment, [{ from: 38, to: 53, text: 'a' }]),
           new Comment({
             showConversationBox: this.showConversationBox,
             hideConversationBox: this.hideConversationBox,
@@ -873,6 +896,12 @@ export default {
               this.updateFile({steps, version, clientID});
             },
           }),
+          new MultiCursorPlugin({
+            userId: parseInt(localStorage.getItem('USERID')),
+            cursorUpdated: () => {},
+            updateCursor: this.updateCursor,
+            cursors: this.cursors
+          }),
         ],
         autoFocus: 'end',
         content: JSON.parse(file.content),
@@ -894,7 +923,7 @@ export default {
         //   this.firstTransactionPassed = true;
         // },
         onInit: ({ transaction }) => {},
-  })
+      });
     },
     handleSearch(e) {
       if ((e.which == '115' || e.which == '83' || e.which == '70') && (e.ctrlKey || e.metaKey)) {
@@ -1102,6 +1131,23 @@ export default {
         },
       });
     },
+    updateCursor(position, colorClass) {
+      return this.$apollo.mutate({
+        mutation: gql`
+          mutation updateCursor($position: Int!, $colorClass: String!, $fileId: Int!) {
+            updateCursor(position: $position, colorClass: $colorClass, fileId: $fileId)
+          }
+        `,
+        variables: {
+          fileId: parseInt(this.$route.params.id),
+          position,
+          colorClass,
+        },
+        context: {
+          debounceKey: '1',
+        },
+      });
+    },
     createComment(variables) {
       this.$apollo
         .mutate({
@@ -1218,6 +1264,7 @@ export default {
 </script>
 <style lang="scss">
 @import '../assets/sass/variables.scss';
+@import '../assets/sass/cursors.scss';
 
 .el-input--small input {
   font-size: 13px;
@@ -1688,4 +1735,3 @@ li[data-type='todo_item']:hover {
   background-color: #e5e5e5;
 }
 </style>
-
