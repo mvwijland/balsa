@@ -112,6 +112,11 @@ export default new Router({
     },
     {
       path: '/editor/:id',
+      name: 'document',
+      component: EditorRouter,
+    },
+    {
+      path: '/editor/:id',
       name: 'editor',
       component: EditorRouter,
     },

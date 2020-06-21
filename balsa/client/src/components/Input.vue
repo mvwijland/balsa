@@ -12,7 +12,7 @@
     >
       <!-- <i class="el-icon-edit el-input__icon" slot="suffix"></i> -->
       <template slot-scope="{ item }">
-        <div v-if="item.file.fileType !== 'folder'">
+        <div v-if="item.file.fileType === 'document'">
           <el-popover
             :open-delay="500"
             popper-class="hey"
