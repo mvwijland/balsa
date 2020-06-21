@@ -49,7 +49,7 @@ const typeDefs = gql`
     createConversation(fileId: Int!, uuid: String!): Conversation
     deleteConversation(fileId: Int!, uuid: String!): Conversation
     mentionUser(fileId: Int!, userId: Int!): Boolean @nonDemoMode
-    updateCursor(position: Int!, colorClass: String!, fileId: Int!): Boolean
+    updateCursor(position: Int!, fileId: Int!): Boolean
   }
 
   extend type Query {
@@ -65,7 +65,7 @@ const typeDefs = gql`
 
   extend type Subscription {
     documentUpdated(fileId: Int!, updaterId: Int!): String!
-    documentCursor(fileId: Int!): String!
+    documentCursor(fileId: Int!, updaterId: Int!): String!
   }
 
   type File {
@@ -525,7 +525,6 @@ const resolvers = {
           });
         }
       }
-
       return file;
     },
     deleteFile: async (_, { id }, context) => {
@@ -648,13 +647,14 @@ const resolvers = {
         }
       });
     },
-    updateCursor: async (_, { position, colorClass, fileId }, context) => {
+    updateCursor: async (_, { position, fileId }, context) => {
       const user = context.user;
       const data = {};
-      data[user.id] = { position, name: `${user.firstName} ${user.lastName}`, colorClass };
+      data[user.id] = { position, userName: `${user.firstName} ${user.lastName}` };
       pubsub.publish(`documentCursor`, {
         documentCursor: JSON.stringify(data),
         fileId,
+        updaterId: user.id,
       });
       return true;
     },
@@ -842,7 +842,7 @@ const resolvers = {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['documentCursor']),
         (payload, variables) => {
-          return payload.fileId === variables.fileId;
+          return payload.fileId === variables.fileId && payload.updaterId !== variables.updaterId;
         },
       ),
     },

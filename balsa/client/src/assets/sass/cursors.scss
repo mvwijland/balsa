@@ -3,12 +3,12 @@
   padding: 3px 6px;
   font-size: 12px;
   border-radius: 5px;
-  color: #000;
+  color: #fff;
   font-weight: 600;
   position: absolute;
   display: none;
   z-index: 1;
-  background: rgba(153, 154, 152, 0.44);
+  background: #339BFF;
 }
 
 @keyframes fading {
@@ -33,7 +33,7 @@
 }
 
 .remoteUserCursor {
-  --cursor-color: rgba(153, 154, 152, 0.44);
+  --cursor-color: #339BFF;
   background: transparent;
   width: 1px;
   animation-duration: 1s;

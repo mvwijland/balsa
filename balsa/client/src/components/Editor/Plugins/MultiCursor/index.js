@@ -1,12 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { Extension } from 'tiptap';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-const TOTAL_COLOR_COUNT = 6;
-const colorClasses = Array.from({ length: TOTAL_COLOR_COUNT }, (x, i) => `remoteUserCursor${i}`);
-
-const getRandomColorClass = () => {
-  return colorClasses[Math.floor(Math.random() * colorClasses.length)];
-};
 
 class MultiCursorExtension extends Extension {
   constructor(options) {
@@ -50,32 +44,44 @@ class MultiCursorExtension extends Extension {
 
         state: {
           init() {
-            let cursors = {};
+            let cursors = _this.options.cursors;
             return {
               cursors,
+              userName: _this.options.userName,
               userId: _this.options.userId,
             };
           },
 
           apply(tr, prev) {
-            const { selection } = tr;
+            const { selection, steps } = tr;
             const next = { ...prev };
-            next.cursors[next.userId] = {};
-            next.cursors[next.userId].position = selection.from > selection.to ? selection.from : selection.to;
-            if (!next.cursors[next.userId].colorClass) {
-              next.cursors[next.userId].colorClass = getRandomColorClass();
+            const position = selection.from > selection.to ? selection.from : selection.to;
+            const userName = _this.options.userName;
+
+            // set others
+            for (const [user, data] of Object.entries(_this.options.getCursors())) {
+              if (user !== _this.options.userId) {
+                next.cursors[user] = data;
+              }
             }
-            _this.options.updateCursor(next.cursors[next.userId].position, next.cursors[next.userId].colorClass);
+
+            // set myself
+            next.cursors[next.userId] = {
+              position,
+              userName,
+            };
+            _this.options.updateCursor(next.cursors[next.userId].position);
             return next;
           },
         },
 
         props: {
           decorations(editorState) {
+            const pluginState = key.getState(editorState);
             const decos = [];
-            for (const [user, data] of Object.entries(_this.options.cursors)) {
+            for (const [user, data] of Object.entries(pluginState.cursors)) {
               const position = data.position;
-              const userName = data.name;
+              const userName = data.userName;
               if (user != _this.options.userId) {
                 decos.push(
                   Decoration.inline(
@@ -103,10 +109,11 @@ class MultiCursorExtension extends Extension {
 
 export default function(
   options = {
-    cursorUpdated: () => {},
     updateCursor: position => {},
     userId: null,
+    userName: null,
     cursors: {},
+    getCursors: () => {},
   },
 ) {
   return new MultiCursorExtension(options);

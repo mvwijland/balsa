@@ -1,10 +1,10 @@
 export const getFileIcon = file => {
   if (file.fileType === 'document') {
-    return 'file.svg';
+    return 'newFile2.png';
   } else if (file.fileType === 'folder') {
     return 'folder.svg';
   } else {
-    return 'spreadsheet.svg';
+    return 'spreadsheet.png';
   }
 };
 

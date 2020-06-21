@@ -34,16 +34,9 @@
                 <template v-slot:image>
                   <!--it was file.svg -->
                   <BalsaIcon
-                    v-if="file.fileType === 'document'"
-                    icon="newFile2.png"
+                    :icon="getFileIcon(file)"
                   />
-                  <el-row v-else type="flex" justify="center" style="padding:24px 0 24px 0">
-                    <icon
-                      name="folder"
-                      style="width:31px;height:24px;"
-                      :style="{color:file.color}"
-                    />
-                  </el-row>
+
                 </template>
 
                 <FileContainer :file="file" />
@@ -76,11 +69,11 @@ import FileContainer from './FileContainer.vue';
 import Divider from './Divider.vue';
 import FileCapsule from './FileCapsule.vue';
 import FileMenu from './Menu/File/FileMenu.vue';
-import moment from 'moment';
-import { ALL_FOLDERS_QUERY, ONLY_FOLDERS_QUERY, STARRED_FILES_QUERY, GET_FOLDER_PATH_QUERY } from '../queries';
+
 import _ from 'lodash';
 import gql from 'graphql-tag';
 import NotificationMixin from './Mixins/NotificationMixin';
+
 export default {
   name: 'tabContainer',
   components: {
@@ -128,6 +121,15 @@ export default {
   },
 
   methods: {
+    getFileIcon(file) {
+      if (file.fileType === 'document') {
+        return 'newFile2.png';
+      } else if (file.fileType === 'folder') {
+        return 'folder.svg';
+      } else {
+        return 'spreadsheet.png';
+      }
+    },
     loadingSuccessState(parent, child) {
       this.notifySuccess(`${child} moved to folder ${parent}`);
     },
@@ -166,7 +168,6 @@ export default {
     },
     changeCss(id) {
       //this.Vue.set(this, 'activeDragCss', parseInt(index));
-      //console.log('changeCss', index, this.activeDragCss);
       if (id !== this.activeDragCss) this.activeDragCss = id;
 
       //this.$set(this.data, 'activeDragCss', parseInt(index));

@@ -715,13 +715,14 @@ export default {
     $subscribe: {
       documentCursor: {
         query: gql`
-          subscription documentCursor($fileId: Int!) {
-              documentCursor(fileId: $fileId)
+          subscription documentCursor($fileId: Int!, $updaterId: Int!) {
+              documentCursor(fileId: $fileId, updaterId: $updaterId)
           }
         `,
         variables() {
           return {
-            fileId: parseInt(this.$route.params.id)
+            fileId: parseInt(this.$route.params.id),
+            updaterId: parseInt(localStorage.getItem('USERID')),
           }
         },
         result ({ data }) {
@@ -898,9 +899,10 @@ export default {
           }),
           new MultiCursorPlugin({
             userId: parseInt(localStorage.getItem('USERID')),
-            cursorUpdated: () => {},
+            userName: `${this.myProfile.firstName} ${this.myProfile.lastName}`,
             updateCursor: this.updateCursor,
-            cursors: this.cursors
+            cursors: this.cursors,
+            getCursors: () => {return JSON.parse(JSON.stringify(this.cursors))}
           }),
         ],
         autoFocus: 'end',
@@ -1125,26 +1127,26 @@ export default {
           id: parseInt(this.$route.params.id),
           ...variables,
           log: true,
+          contentHtml: this.htmlData ? this.htmlData : undefined
         },
         context: {
           debounceKey: '1',
         },
       });
     },
-    updateCursor(position, colorClass) {
+    updateCursor(position) {
       return this.$apollo.mutate({
         mutation: gql`
-          mutation updateCursor($position: Int!, $colorClass: String!, $fileId: Int!) {
-            updateCursor(position: $position, colorClass: $colorClass, fileId: $fileId)
+          mutation updateCursor($position: Int!, $fileId: Int!) {
+            updateCursor(position: $position, fileId: $fileId)
           }
         `,
         variables: {
           fileId: parseInt(this.$route.params.id),
           position,
-          colorClass,
         },
         context: {
-          debounceKey: '1',
+          debounceKey: '99',
         },
       });
     },
